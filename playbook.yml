@@ -1,6 +1,5 @@
 ---
 - name: Config setup playbook
-  gather_facts: false
   hosts: "{{ host_override | default('localhost') }}"
 
   tasks:
