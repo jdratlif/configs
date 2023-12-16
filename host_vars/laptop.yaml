@@ -1,81 +1,70 @@
 ---
 aliases:
-  vpn_iu: >-
-    sudo ~/openconnect/fix_322/sbin/openconnect --protocol=nc
-    -s "/home/jdratlif/venvs/vpn-slice/bin/vpn-slice 10.0.0.0/8 {{ vpn_hosts['iu'] | join(' ') }}"
-    -u jdratlif https://vpn.iu.edu/groups
+  vpn: >-
+    sudo openconnect
+    -u {{ ansible_user_id }}
+    --protocol=pulse
+    -s "vpn-slice 10.0.0.0/8 {{ vpn_hosts | join(' ') }}"
+    https://vpn.iu.edu/groups
 
 gitconfig:
   name: "John Ratliff"
   email: "john@technoplaza.net"
+  credentials:
+    - name: https://github.grnoc.iu.edu
+      username: "{{ ansible_user_id }}"
+      helper: cache --timeout 14400
 
-ssh_host_configs:
-  noaa-bldc:
-    Hostname: "bastion.bldc.nwave.noaa.gov"
-  noaa-ctc:
-    Hostname: "bastion.ctc.nwave.noaa.gov"
-  noaa-boul:
-    Hostname: "bastion.boul.nwave.noaa.gov"
-  "noaa-bldc noaa-ctc noaa-boul":
-    DynamicForward: "7070"
-    LocalForward:
-      - "5950 localhost:5950"
-      - "5951 localhost:5951"
-      - "5952 localhost:5952"
-      - "5953 localhost:5953"
-      - "5954 localhost:5954"
-      - "5955 localhost:5955"
-      - "5956 localhost:5956"
-      - "5957 localhost:5957"
-      - "5958 localhost:5958"
-      - "5959 localhost:5959"
-    PKCS11Provider: "/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so"
-    PubkeyAcceptedKeyTypes: "+ssh-rsa"
-  skip:
-    Hostname: skip.grnoc.iu.edu
-  leap:
-    Hostname: leap.grnoc.iu.edu
-  jump:
-    Hostname: jump.grnoc.iu.edu
-  "skip leap jump":
-    KexAlgorithms: diffie-hellman-group14-sha1
-    LocalForward:
-      - "5901 localhost:24478"
-      - "5922 localhost:24422"
+ssh_vscode_hosts:
+  jdratlif-dev7.grnoc.iu.edu:
+    port: 10001
+  awx.grnoc.iu.edu:
+    port: 10002
+  puppet7.grnoc.iu.edu:
+    port: 10003
+  awx.bldc.nwave.noaa.gov:
+    port: 20001
+  puppet7.bldc.nwave.noaa.gov:
+    port: 20002
+  cobbler.bldc.nwave.noaa.gov:
+    port: 20003
 
 use_tmux: true
 
 vpn_hosts:
-  iu:
-    - account.net.internet2.edu
-    - account.noc.onenet.net
-    - awx.grnoc.iu.edu
-    - awx-test.bldc.grnoc.iu.edu
-    - awx.bldc.nwave.noaa.gov
-    - awx.ctc.nwave.noaa.gov
-    - build.grnoc.iu.edu
-    - cni-mapper.grnoc.iu.edu
-    - cni-mapper-bl.grnoc.iu.edu
-    - cosign.areon.net
-    - cloud.grnoc.iu.edu
-    - cloud.bldc.grnoc.iu.edu
-    - cloud.ctc.grnoc.iu.edu
-    - db.ncren.net
-    - db-test.ncren.net
-    - footprints.ncren.net
-    - oob2.ak23.bldc.grnoc.iu.edu
-    - oob2.n13.ctc.grnoc.iu.edu
-    - os.bldc.net.internet2.edu
-    - os.wash2.net.internet2.edu
-    - nessus.boul.nwave.noaa.gov
-    - snapp.ncren.net
-    - snapp-frontend-01.globalnoc.mcnc.org
-    - snapp-frontend-02.globalnoc.mcnc.org
-    - snapp-frontend-test-01.globalnoc.mcnc.org
-    - snapp-services-01.globalnoc.mcnc.org
-    - snapp-services-02.globalnoc.mcnc.org
-    - snapp-services-test-01.globalnoc.mcnc.org
-    - weblogin.grnoc.iu.edu
-    - weblogin.net.cen.ct.gov
-    - weblogin.oshean.org
-    - weblogin.nwave.noaa.gov
+  # AAA web application hosts
+  - weblogin.grnoc.iu.edu
+  - otp.grnoc.iu.edu
+  - cosign.areon.net
+  - weblogin.net.cen.ct.gov
+  - account.net.internet2.edu
+  - account.noc.onenet.net
+  - weblogin.oshean.org
+  - account.nwave.noaa.gov
+  - account.scinet.usda.gov
+
+  # AWX hosts
+  - awx.grnoc.iu.edu
+  - awx.bldc.nwave.noaa.gov
+  - awx.ctc.nwave.noaa.gov
+
+  # Cobbler
+  - build.grnoc.iu.edu
+
+  # GHE
+  - github.nwave.noaa.gov
+
+  # MCNC
+  - db.ncren.net
+  - db-test.ncren.net
+  - footprints.ncren.net
+
+  # OpenStack / VMware
+  - cloud.bldc.grnoc.iu.edu
+  - cloud.ctc.grnoc.iu.edu
+  - cloud.bldc.scinet.usda.gov
+  - cloud.ctc.scinet.usda.gov
+  - vmware-test.grnoc.iu.edu
+
+  # Tenable
+  - tenable.ctc.nwave.noaa.gov
