@@ -2,7 +2,7 @@
 - name: Copy perltidyrc
   ansible.builtin.copy:
     src: perltidyrc
-    dest: "{{ home_dir }}/.perltidyrc"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    dest: "{{ ansible_user_dir }}/.perltidyrc"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
     mode: "0644"

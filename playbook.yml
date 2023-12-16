@@ -3,10 +3,6 @@
   hosts: "{{ targets | default('localhost') }}"
 
   tasks:
-    - name: Import common values
-      ansible.builtin.import_role:
-        name: common
-
     - name: Setup bash profile
       ansible.builtin.import_role:
         name: bash
@@ -26,7 +22,7 @@
     - name: Setup tmux config
       ansible.builtin.import_role:
         name: tmux
-      when: use_tmux
+      when: use_tmux | default(false)
 
     - name: Setup vim
       ansible.builtin.import_role:

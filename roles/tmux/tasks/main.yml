@@ -2,7 +2,7 @@
 - name: Template tmux.conf
   ansible.builtin.template:
     src: tmux.conf.j2
-    dest: "{{ home_dir }}/.tmux.conf"
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    dest: "{{ ansible_user_dir }}/.tmux.conf"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
     mode: "0644"

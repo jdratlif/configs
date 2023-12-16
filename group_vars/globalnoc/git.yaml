@@ -1,11 +1,11 @@
 ---
 gitconfig:
   name: John Ratliff
-  email: jdratlif@globalnoc.iu.edu
+  email: "{{ ansible_user_id }}@globalnoc.iu.edu"
   credentials:
     - name: https://github.grnoc.iu.edu
-      username: jdratlif
+      username: "{{ ansible_user_id }}"
       helper: cache --timeout 14400
     - name: https://github.nwave.noaa.gov
-      username: jdratlif
+      username: "{{ ansible_user_id }}"
       helper: cache --timeout 14400
