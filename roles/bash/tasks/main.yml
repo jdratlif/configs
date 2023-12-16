@@ -1,0 +1,16 @@
+---
+- name: Template bash_profile
+  ansible.builtin.template:
+    src: bash.profile.j2
+    dest: "{{ home_dir }}/.bash_profile"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: "0644"
+
+- name: Template bashrc
+  ansible.builtin.template:
+    src: bashrc.j2
+    dest: "{{ home_dir }}/.bashrc"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: "0644"

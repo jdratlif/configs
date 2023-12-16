@@ -1,0 +1,6 @@
+---
+ssh_authorized_keys: []
+
+ssh_host_common_configs:
+  ServerAliveCountMax: 3
+  ServerAliveInterval: 30

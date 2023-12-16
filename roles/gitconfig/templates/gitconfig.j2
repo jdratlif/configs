@@ -1,0 +1,29 @@
+[user]
+	name = {{ gitconfig.name }}
+	email = {{ gitconfig.email }}
+[pull]
+	rebase = true
+[alias]
+	oneline = log --oneline
+{% if gitconfig.credentials is defined %}
+{% for c in gitconfig.credentials %}
+[credential "{{ c.name }}"]
+	username = {{ c.username }}
+	helper = {{ c.helper }}
+{% endfor %}
+{% endif %}
+[safe]
+        directory = *
+{% if use_vscode_git %}
+[core]
+	editor = code --wait
+[diff]
+	tool = default-difftool
+[difftool "default-difftool"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[commit]
+	template = /dev/null
+{% else %}
+[core]
+	editor = vim
+{% endif %}

@@ -1,0 +1,6 @@
+---
+- name: Remove old config files
+  ansible.builtin.file:
+    path: "{{ home_dir }}/{{ item }}"
+    state: absent
+  with_items: "{{ files }}"

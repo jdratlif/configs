@@ -1,0 +1,122 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# User specific aliases and functions
+PROMPT_COMMAND=my_prompt
+
+git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+
+my_prompt() {
+    local exit_code="$?"
+
+    RESET="\[\033[0m\]"
+    RED="\[\033[0;31m\]"
+    GREEN="\[\033[01;32m\]"
+    BLUE="\[\033[01;34m\]"
+    YELLOW="\[\033[01;33m\]"
+    CYAN="\[\033[00;36m\]"
+
+    GIT_BRANCH=$(git_branch)
+
+    if [[ $exit_code -ne 0 ]]; then
+        PS1="(${RED}"
+    else
+        PS1="(${GREEN}"
+    fi
+
+    PS1="${PS1}${exit_code}${RESET}) ${YELLOW}\H${RESET} [${BLUE}\w${RESET}]"
+
+    if [[ ! -z $GIT_BRANCH ]]; then
+        PS1="${PS1} (${CYAN}${GIT_BRANCH}${RESET})"
+    fi
+
+    PS1="${PS1}\n\$ "
+
+    if [[ ! -z $VIRTUAL_ENV ]]; then
+        venv=$(basename $VIRTUAL_ENV)
+        PS1="($venv) $PS1"
+    fi
+}
+
+# history options
+shopt -s histappend
+shopt -s histverify
+
+export HISTTIMEFORMAT="%h %d %H:%M:%S "
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTCONTROL="ignorespace"
+
+export EDITOR=vim
+
+export PAGER='less -X'
+export LIBVIRT_DEFAULT_URI='qemu:///system'
+
+# setup LANG and LC_ALL
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# begin local path augments
+{% if path_local_pre is defined %}
+export PATH="{{ path_local_pre | join(':') }}:$PATH"
+{% endif %}
+{% if path_local_post is defined %}
+export PATH="$PATH:{{ path_local_post | join(':') }}"
+{% endif %}
+# end local path augments
+
+# begin local exports
+{% if exports is defined %}
+{% for item in exports | dictsort %}
+export {{ item[0] }}='{{ item[1] }}'
+{% endfor %}
+{% endif %}
+# end local exports
+
+# begin local functions
+{% for item in functions | dictsort %}
+function {{ item[0] }} {
+{% for line in item[1] %}
+    {{ line }}
+{% endfor %}
+}
+{% endfor %}
+# end local functions
+
+# begin local aliases
+{% for item in aliases | dictsort %}
+alias {{ item[0] }}='{{ item[1] }}'
+{% endfor %}
+# end aliases
+
+# begin source imports
+{% for item in bash_sources %}
+source {{ item }}
+{% endfor %}
+# end source imports
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc

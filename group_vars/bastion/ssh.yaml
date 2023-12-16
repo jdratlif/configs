@@ -1,0 +1,5 @@
+---
+ssh_host_common_configs:
+  ControlMaster: auto
+  ControlPath: ~/.ssh/cp-%r@%h:%p
+  ControlPersist: 5m

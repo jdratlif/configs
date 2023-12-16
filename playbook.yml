@@ -1,0 +1,34 @@
+---
+- name: Config setup playbook
+  gather_facts: false
+  hosts: "{{ host_override | default('localhost') }}"
+
+  tasks:
+    - name: Import common values
+      ansible.builtin.import_role:
+        name: common
+
+    - name: Setup bash profile
+      ansible.builtin.import_role:
+        name: bash
+
+    - name: Setup gitconfig
+      ansible.builtin.import_role:
+        name: gitconfig
+
+    - name: Setup perltidy
+      ansible.builtin.import_role:
+        name: perltidy
+
+    - name: Setup ssh configs
+      ansible.builtin.import_role:
+        name: ssh
+
+    - name: Setup tmux config
+      ansible.builtin.import_role:
+        name: tmux
+      when: use_tmux
+
+    - name: Setup vim
+      ansible.builtin.import_role:
+        name: vim

@@ -1,0 +1,3 @@
+---
+path_local_pre:
+  - "~/openssh/bin"

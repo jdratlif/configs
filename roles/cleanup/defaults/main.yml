@@ -1,0 +1,12 @@
+---
+files:
+  - .dircolors
+  - .emacs
+  - .last-sync
+  - .oh-my-zsh
+  - .tmux-common.conf
+  - .Xthemes
+  - .zcompdump
+  - .zprofile
+  - .zsh_history
+  - .zshrc

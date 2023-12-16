@@ -1,0 +1,3 @@
+---
+aliases:
+  eyaml: "sudo /opt/puppetlabs/puppet/bin/eyaml"
