@@ -1,6 +1,6 @@
 ---
 - name: Config setup playbook
-  hosts: "{{ host_override | default('localhost') }}"
+  hosts: "{{ targets | default('localhost') }}"
 
   tasks:
     - name: Import common values
