@@ -1,0 +1,8 @@
+---
+task_list:
+  - bash # write bashrc/bash_profile
+  - gitconfig # write .gitconfig
+  - perltidy # write .perltidyrc
+  - ssh # write ssh config and authorized_keys
+  - tmux # write .tmux.conf
+  - vim # write vimrc and yaml plugin

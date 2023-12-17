@@ -8,24 +8,31 @@
     - name: Setup bash profile
       ansible.builtin.import_role:
         name: bash
+      when: '"bash" in task_list'
 
     - name: Setup gitconfig
       ansible.builtin.import_role:
         name: gitconfig
+      when: '"gitconfig" in task_list'
 
     - name: Setup perltidy
       ansible.builtin.import_role:
         name: perltidy
+      when: '"perltidy" in task_list'
 
     - name: Setup ssh configs
       ansible.builtin.import_role:
         name: ssh
+      when: '"ssh" in task_list'
 
     - name: Setup tmux config
       ansible.builtin.import_role:
         name: tmux
-      when: use_tmux | default(false)
+      when:
+        - '"tmux" in task_list'
+        - use_tmux | default(false)
 
     - name: Setup vim
       ansible.builtin.import_role:
         name: vim
+      when: '"vim" in task_list'
