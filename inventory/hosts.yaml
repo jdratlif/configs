@@ -576,15 +576,20 @@ all:
                 netsage-dev.grnoc.iu.edu: {}
                 netsage-elk1.grnoc.iu.edu: {}
                 netsage-flow.grnoc.iu.edu: {}
+                netsage-os.cold1.bldc.grnoc.iu.edu: {}
+                netsage-os.cold2.bldc.grnoc.iu.edu: {}
+                netsage-os.coordinator.bldc.grnoc.iu.edu: {}
                 netsage-os.data1.bldc.grnoc.iu.edu: {}
                 netsage-os.data1.ctc.grnoc.iu.edu: {}
                 netsage-os.data2.bldc.grnoc.iu.edu: {}
                 netsage-os.data2.ctc.grnoc.iu.edu: {}
+                netsage-os.hot1.bldc.grnoc.iu.edu: {}
                 netsage-os.ingest.bldc.grnoc.iu.edu: {}
                 netsage-os.ingest.ctc.grnoc.iu.edu: {}
                 netsage-os.manage.bldc.grnoc.iu.edu: {}
                 netsage-os.manage.ctc.grnoc.iu.edu: {}
                 netsage-os.manage2.bldc.grnoc.iu.edu: {}
+                netsage-os.warm1.bldc.grnoc.iu.edu: {}
                 netsage-pipeline-dev2.bldc.grnoc.iu.edu: {}
                 netsage-pipeline-stage.grnoc.iu.edu: {}
                 netsage-portal-all.grnoc.iu.edu: {}
@@ -699,7 +704,6 @@ all:
                 zckaster-dev.grnoc.iu.edu: {}
             sea:
               hosts:
-                araje-demo.grnoc.iu.edu: {}
                 araje-dev.grnoc.iu.edu: {}
                 araje-oel8.grnoc.iu.edu: {}
                 awx-frontend.ctc.grnoc.iu.edu: {}
@@ -733,6 +737,10 @@ all:
                 sn-tools.ctc.grnoc.iu.edu: {}
                 sn-tools.grnoc.iu.edu: {}
                 sschonem-dev7.grnoc.iu.edu: {}
+          vars:
+            ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+              -o ProxyCommand='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+              -W %h:%p -q ansible-syseng-servers-internal@skip.grnoc.iu.edu'
         i2:
           children:
             ics:
@@ -835,6 +843,10 @@ all:
               hosts: {}
             sms:
               hosts: {}
+          vars:
+            ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+              -o ProxyCommand='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+              -W %h:%p -q ansible-syseng-servers@bastion.ctc.net.internet2.edu'
         nwave:
           children:
             ics:
@@ -885,6 +897,7 @@ all:
                 radius.bldc.nwave.noaa.gov: {}
                 radius.boul.nwave.noaa.gov: {}
                 radius.ctc.nwave.noaa.gov: {}
+                radius.lab.nwave.noaa.gov: {}
                 radius.silv.nwave.noaa.gov: {}
                 radius.silv2.nwave.noaa.gov: {}
                 spare01.boul.nwave.noaa.gov: {}
@@ -1031,7 +1044,6 @@ all:
               hosts:
                 auto-conf.bldc.nwave.noaa.gov: {}
                 auto-conf.ctc.nwave.noaa.gov: {}
-                awx-frontend.bldc.nwave.noaa.gov: {}
                 awx.bldc.nwave.noaa.gov: {}
                 awx.ctc.nwave.noaa.gov: {}
                 carto.bldc.nwave.noaa.gov: {}
@@ -1073,9 +1085,14 @@ all:
                 snapp-test.ctc.nwave.noaa.gov: {}
             sea:
               hosts:
+                awx-frontend.bldc.nwave.noaa.gov: {}
                 ps-test-jdratlif.ctc.nwave.noaa.gov: {}
             sms:
               hosts: {}
+          vars:
+            ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+              -o ProxyCommand='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+              -W %h:%p -q syscnf@bastion.ctc.nwave.noaa.gov'
         puppet:
           children:
             puppet_grnoc:
@@ -1138,6 +1155,10 @@ all:
               hosts: {}
             sms:
               hosts: {}
+          vars:
+            ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+              -o ProxyCommand='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+              -W %h:%p -q ansible-syseng-servers@bastion.ctc.scinet.usda.gov'
     other:
       hosts:
         laptop:

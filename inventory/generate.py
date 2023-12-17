@@ -23,7 +23,8 @@ def main():
     user = getuser()
     password = getpass("GRNOC GHE Token: ")
 
-    hosts = dict()
+    cloud_hosts = dict()
+    cloud_vars = dict()
 
     for cloud in clouds:
         url = (
@@ -31,15 +32,20 @@ def main():
             f"{cloud}.yaml"
         )
         data = yaml.safe_load(requests.get(url, auth=(user, password)).text)
-        team_data = data["all"]["children"][f"cloud_{cloud}"]["children"]
 
-        hosts[cloud] = dict()
+        cloud_data = data["all"]["children"][f"cloud_{cloud}"]
+        cloud_children = cloud_data["children"]
+
+        cloud_hosts[cloud] = dict()
+        cloud_vars[cloud] = cloud_data["vars"]
 
         for team in teams:
-            hosts[cloud][team] = dict()
+            cloud_hosts[cloud][team] = dict()
 
-            if team in team_data:
-                hosts[cloud][team] = {host: {} for host in team_data[team]["hosts"]}
+            if team in cloud_children:
+                cloud_hosts[cloud][team] = {
+                    host: {} for host in cloud_children[team]["hosts"]
+                }
 
     other_hosts = dict()
 
@@ -99,13 +105,16 @@ def main():
 
     for cloud in clouds:
         # create cloud category under globalnoc hosts
-        cloud_hosts = hosts[cloud]
         cloud_group_hosts[cloud] = {}
-        globalnoc_hosts[cloud] = {"children": dict()}
+
+        globalnoc_hosts[cloud] = {
+            "children": dict(),
+            "vars": cloud_vars[cloud],
+        }
 
         # add each team under the cloud in globalnoc hosts
         for team in teams:
-            team_hosts = cloud_hosts[team]
+            team_hosts = cloud_hosts[cloud][team]
             team_host_list = team_hosts.keys()
 
             globalnoc_hosts[cloud]["children"][team] = {"hosts": team_hosts}
@@ -143,10 +152,10 @@ def main():
             }
 
     try:
-        with open("hosts.yml", "w") as f:
+        with open("hosts.yaml", "w") as f:
             yaml.safe_dump(inventory, f)
     except OSError:
-        print("Error writing to inventory/hosts.yml file", file=sys.stderr)
+        print("Error writing to inventory/hosts.yaml file", file=sys.stderr)
         sys.exit(1)
 
 
