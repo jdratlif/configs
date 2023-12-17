@@ -2,6 +2,7 @@
 - name: Template tmux.conf
   ansible.builtin.template:
     src: tmux.conf.j2
+    backup: true
     dest: "{{ ansible_user_dir }}/.tmux.conf"
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"

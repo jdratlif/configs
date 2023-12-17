@@ -25,6 +25,7 @@
 - name: Setup ssh config file
   ansible.builtin.template:
     src: ssh_config.j2
+    backup: true
     dest: "{{ ansible_user_dir }}/.ssh/config"
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"

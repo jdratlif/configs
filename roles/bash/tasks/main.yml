@@ -2,6 +2,7 @@
 - name: Template bash_profile
   ansible.builtin.template:
     src: bash.profile.j2
+    backup: true
     dest: "{{ ansible_user_dir }}/.bash_profile"
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"
@@ -10,6 +11,7 @@
 - name: Template bashrc
   ansible.builtin.template:
     src: bashrc.j2
+    backup: true
     dest: "{{ ansible_user_dir }}/.bashrc"
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"

@@ -2,6 +2,7 @@
 - name: Copy vimrc
   ansible.builtin.copy:
     src: main.vim
+    backup: true
     dest: "{{ ansible_user_dir }}/.vimrc"
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"

@@ -2,6 +2,7 @@
 - name: Template gitconfig
   ansible.builtin.template:
     src: gitconfig.j2
+    backup: true
     dest: "{{ ansible_user_dir }}/.gitconfig"
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"
