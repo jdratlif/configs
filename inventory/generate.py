@@ -108,16 +108,16 @@ def main():
         cloud_group_hosts[cloud] = {}
 
         globalnoc_hosts[cloud] = {
-            "children": dict(),
+            "hosts": dict(),
             "vars": cloud_vars[cloud],
         }
 
+        cloud_team_list = []
+
         # add each team under the cloud in globalnoc hosts
         for team in teams:
-            team_hosts = cloud_hosts[cloud][team]
-            team_host_list = team_hosts.keys()
-
-            globalnoc_hosts[cloud]["children"][team] = {"hosts": team_hosts}
+            team_host_list = cloud_hosts[cloud][team].keys()
+            cloud_team_list.extend(team_host_list)
 
             for group in groups:
                 if group not in cloud_group_hosts[cloud]:
@@ -150,6 +150,8 @@ def main():
             globalnoc_hosts[group]["children"][f"{group}_{cloud}"] = {
                 "hosts": {host: dict() for host in cloud_group_hosts[cloud][group]}
             }
+
+        globalnoc_hosts[cloud]["hosts"] = {host: {} for host in cloud_team_list}
 
     try:
         with open("hosts.yaml", "w") as f:
