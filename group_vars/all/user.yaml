@@ -1,3 +1,2 @@
 ---
-grnoc_user: "{{ awx_user_name | default(lookup('ansible.builtin.env', 'USER')) }}"
 grnoc_home_dir: "/home/{{ grnoc_user }}"

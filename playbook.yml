@@ -4,6 +4,11 @@
   become: "{{ switch_user | default(false) }}"
 
   tasks:
+    - name: Import grnoc_user
+      ansible.builtin.include_role:
+        name: globalnoc.common.grnoc_user
+        public: true
+
     - name: Setup bash profile
       ansible.builtin.import_role:
         name: bash
