@@ -9,6 +9,12 @@
         name: globalnoc.common.grnoc_user
         public: true
 
+    - name: Log message to syslog for pci-dss compliance
+      ansible.builtin.include_role:
+        name: globalnoc.common.syslog_ticket
+      vars:
+        message: "Ansible configuring home directory for {{ grnoc_user }}"
+
     - name: Setup bash profile
       ansible.builtin.import_role:
         name: bash
