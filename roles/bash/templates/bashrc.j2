@@ -1,4 +1,5 @@
-# .bashrc
+# THIS FILE WAS AUTO-GENERATED | LOCAL CHANGES MAY BE OVERWRITTEN
+# ansible template: home-dir-config/roles/bash/templates/bashrc.j2
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -15,7 +16,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# User specific aliases and functions
 PROMPT_COMMAND=my_prompt
 
 git_branch() {
@@ -74,38 +74,49 @@ export LANG=en_US.UTF-8
 
 {% if bash_path_pre | length > 0 or bash_path_post | length > 0 %}
 export PATH="{{ (bash_path_pre + ['$PATH'] + bash_path_post) | join(':') }}"
-{% endif %}
 
+{% endif %}
+{% if bash_exports %}
 # begin local exports
-{% if exports is defined %}
-{% for item in exports | dictsort %}
+{% for item in bash_exports | dictsort %}
 export {{ item[0] }}='{{ item[1] }}'
 {% endfor %}
-{% endif %}
 # end local exports
 
+{% endif %}
+{% if bash_functions %}
 # begin local functions
-{% for item in bash_functions | dictsort %}
+    {%- for item in bash_functions | dictsort %}
+
 function {{ item[0] }} {
-{% for line in item[1] %}
+        {%- for line in item[1] %}
+
     {{ line }}
-{% endfor %}
+        {%- endfor %}
+
 }
-{% endfor %}
+    {%- endfor %}
+
 # end local functions
+{% endif %}
 
+{% if bash_aliases %}
 # begin local aliases
-{% for item in aliases | dictsort %}
+    {%- for item in bash_aliases | dictsort %}
+
 alias {{ item[0] }}='{{ item[1] }}'
-{% endfor %}
-# end aliases
+    {%- endfor %}
 
+# end local aliases
+{% endif %}
+
+{% if bash_sources | length > 0 %}
 # begin source imports
-{% for item in bash_sources %}
+    {%- for item in bash_sources %}
 source {{ item }}
-{% endfor %}
+    {%- endfor %}
 # end source imports
-
+{% endif %}
 # User specific aliases and functions
 if [ -d ~/.bashrc.d ]; then
     for rc in ~/.bashrc.d/*; do

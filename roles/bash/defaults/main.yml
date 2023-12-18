@@ -1,4 +1,6 @@
 ---
+bash_aliases: {}
+bash_exports: {}
 bash_functions: {}
 bash_path_pre: []
 bash_path_post: []

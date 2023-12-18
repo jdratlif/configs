@@ -1,5 +1,5 @@
 ---
-aliases:
+bash_aliases:
   vpn: >-
     sudo openconnect
     -u {{ grnoc_user }}

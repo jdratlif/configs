@@ -1,4 +1,4 @@
 ---
-aliases:
+bash_aliases:
   awx: "sudo docker exec -it awx_task /bin/bash"
   make_awx_venv: "sudo /usr/local/sbin/make_awx_venv.sh"

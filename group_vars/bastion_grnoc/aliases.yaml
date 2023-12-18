@@ -1,3 +1,0 @@
----
-aliases:
-  myansible: source ~/venvs/ansible/bin/activate

@@ -1,4 +1,8 @@
 ---
+bash_aliases:
+  puppet: "sudo /opt/puppetlabs/bin/puppet"
+  rpm7: 'rpm --define="_gpg_name globalnoc@iu.edu"'
+
 bash_functions:
   find_puppet_class:
     - find -iname "*.eyaml" -exec sh -c "CLASS=$1 "'RES=$(yq ".classes[] | select(. == \"${CLASS}\")" < {} 2>/dev/null); test ! -z $RES && echo {}' \;

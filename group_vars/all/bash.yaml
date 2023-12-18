@@ -1,4 +1,10 @@
 ---
+bash_aliases:
+  fix_perms: 'find . -type f -exec chmod 644 {} \; ; find . -type d -exec chmod 755 {} \;'
+  ls: "ls --color=auto"
+  ll: "ls -l --color=auto"
+  ipt: "sudo iptables --line-numbers -nvL"
+
 bash_functions:
   del_known_host:
     - LINE_NUMBER=$1
