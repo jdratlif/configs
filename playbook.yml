@@ -2,12 +2,19 @@
 - name: Config setup playbook
   hosts: "{{ targets | default('localhost') }}"
   become: "{{ switch_user | default(false) }}"
+  vars_files:
+    - "vars/{{ custom_vars_file | default('empty') }}.yaml"
 
   tasks:
     - name: Import grnoc_user
       ansible.builtin.include_role:
         name: globalnoc.common.grnoc_user
         public: true
+
+    - name: Import auto vars
+      ansible.builtin.include_vars:
+        dir: "vars/auto/{{ grnoc_user }}"
+      failed_when: false
 
     - name: Log message to syslog for pci-dss compliance
       ansible.builtin.include_role:

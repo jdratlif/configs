@@ -1,6 +1,6 @@
 ---
 gitconfig:
-  name: John Ratliff
+  name: "{{ git_name }}"
   email: "{{ grnoc_user }}@globalnoc.iu.edu"
   credentials:
     - name: https://github.grnoc.iu.edu

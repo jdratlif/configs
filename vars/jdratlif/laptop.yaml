@@ -1,0 +1,20 @@
+---
+ssh_host_configs:
+  xaiver:
+    Hostname: xaiver.technoplaza.net
+    Port: 5122
+    LocalForward: 13389 192.168.1.6:3389
+
+ssh_vscode_hosts:
+  jdratlif-dev7.grnoc.iu.edu:
+    port: 10001
+  awx.grnoc.iu.edu:
+    port: 10002
+  puppet7.grnoc.iu.edu:
+    port: 10003
+  awx.bldc.nwave.noaa.gov:
+    port: 20001
+  puppet7.bldc.nwave.noaa.gov:
+    port: 20002
+  cobbler.bldc.nwave.noaa.gov:
+    port: 20003

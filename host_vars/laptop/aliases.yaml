@@ -7,32 +7,6 @@ aliases:
     -s "vpn-slice 10.0.0.0/8 {{ vpn_hosts | join(' ') }}"
     https://vpn.iu.edu/groups
 
-gitconfig:
-  name: "John Ratliff"
-  email: "john@technoplaza.net"
-  credentials:
-    - name: https://github.grnoc.iu.edu
-      username: "{{ grnoc_user }}"
-      helper: cache --timeout 14400
-
-ssh_bastion_config: true
-
-ssh_vscode_hosts:
-  jdratlif-dev7.grnoc.iu.edu:
-    port: 10001
-  awx.grnoc.iu.edu:
-    port: 10002
-  puppet7.grnoc.iu.edu:
-    port: 10003
-  awx.bldc.nwave.noaa.gov:
-    port: 20001
-  puppet7.bldc.nwave.noaa.gov:
-    port: 20002
-  cobbler.bldc.nwave.noaa.gov:
-    port: 20003
-
-use_tmux: true
-
 vpn_hosts:
   # AAA web application hosts
   - weblogin.grnoc.iu.edu
