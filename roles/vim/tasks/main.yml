@@ -3,31 +3,31 @@
   ansible.builtin.copy:
     src: main.vim
     backup: true
-    dest: "{{ ansible_user_dir }}/.vimrc"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    dest: "{{ grnoc_home_dir }}/.vimrc"
+    owner: "{{ grnoc_user }}"
+    group: "{{ grnoc_user }}"
     mode: "0644"
 
 - name: Ensure ownership of viminfo
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.viminfo"
+    path: "{{ grnoc_home_dir }}/.viminfo"
     state: file
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    owner: "{{ grnoc_user }}"
+    group: "{{ grnoc_user }}"
   failed_when: false
 
 - name: Create vim directory
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.vim"
+    path: "{{ grnoc_home_dir }}/.vim"
     state: directory
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    owner: "{{ grnoc_user }}"
+    group: "{{ grnoc_user }}"
     mode: "0755"
 
 - name: Copy yaml plugin
   ansible.builtin.copy:
     src: plugins/yaml.vim
-    dest: "{{ ansible_user_dir }}/.vim"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    dest: "{{ grnoc_home_dir }}/.vim"
+    owner: "{{ grnoc_user }}"
+    group: "{{ grnoc_user }}"
     mode: "0644"

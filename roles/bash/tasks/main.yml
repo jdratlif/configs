@@ -3,16 +3,16 @@
   ansible.builtin.template:
     src: bash.profile.j2
     backup: true
-    dest: "{{ ansible_user_dir }}/.bash_profile"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    dest: "{{ grnoc_home_dir }}/.bash_profile"
+    owner: "{{ grnoc_user }}"
+    group: "{{ grnoc_user }}"
     mode: "0644"
 
 - name: Template bashrc
   ansible.builtin.template:
     src: bashrc.j2
     backup: true
-    dest: "{{ ansible_user_dir }}/.bashrc"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    dest: "{{ grnoc_home_dir }}/.bashrc"
+    owner: "{{ grnoc_user }}"
+    group: "{{ grnoc_user }}"
     mode: "0644"

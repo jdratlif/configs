@@ -2,7 +2,7 @@
 aliases:
   vpn: >-
     sudo openconnect
-    -u {{ ansible_user_id }}
+    -u {{ grnoc_user }}
     --protocol=pulse
     -s "vpn-slice 10.0.0.0/8 {{ vpn_hosts | join(' ') }}"
     https://vpn.iu.edu/groups
@@ -12,7 +12,7 @@ gitconfig:
   email: "john@technoplaza.net"
   credentials:
     - name: https://github.grnoc.iu.edu
-      username: "{{ ansible_user_id }}"
+      username: "{{ grnoc_user }}"
       helper: cache --timeout 14400
 
 ssh_vscode_hosts:

@@ -1,24 +1,24 @@
 ---
 - name: Make ssh config directory
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.ssh"
+    path: "{{ grnoc_home_dir }}/.ssh"
     state: directory
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    owner: "{{ grnoc_user }}"
+    group: "{{ grnoc_user }}"
     mode: "0700"
 
 - name: Setup ssh authorized_keys file
   ansible.builtin.template:
     src: authorized_keys.j2
-    dest: "{{ ansible_user_dir }}/.ssh/authorized_keys"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    dest: "{{ grnoc_home_dir }}/.ssh/authorized_keys"
+    owner: "{{ grnoc_user }}"
+    group: "{{ grnoc_user }}"
     mode: "0600"
   when: ssh_authorized_keys | length > 0
 
 - name: Remove authorized keys file
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.ssh/authorized_keys"
+    path: "{{ grnoc_home_dir }}/.ssh/authorized_keys"
     state: absent
   when: ssh_authorized_keys | length == 0
 
@@ -26,7 +26,7 @@
   ansible.builtin.template:
     src: ssh_config.j2
     backup: true
-    dest: "{{ ansible_user_dir }}/.ssh/config"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    dest: "{{ grnoc_home_dir }}/.ssh/config"
+    owner: "{{ grnoc_user }}"
+    group: "{{ grnoc_user }}"
     mode: "0600"

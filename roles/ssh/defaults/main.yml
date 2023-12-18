@@ -6,6 +6,6 @@ ssh_host_configs: {}
 ssh_host_common_configs:
   ServerAliveCountMax: 3
   ServerAliveInterval: 30
-  User: "{{ ansible_user_id }}"
+  User: "{{ grnoc_user }}"
 
 ssh_vscode_hosts: {}

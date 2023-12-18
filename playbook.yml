@@ -2,7 +2,6 @@
 - name: Config setup playbook
   hosts: "{{ targets | default('localhost') }}"
   become: "{{ switch_user | default(false) }}"
-  become_user: "{{ awx_user_name | default('root') }}"
 
   tasks:
     - name: Setup bash profile
