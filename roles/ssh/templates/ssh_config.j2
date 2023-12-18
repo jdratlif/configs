@@ -9,7 +9,7 @@ CanonicalizeHostname yes
 CanonicalDomains {{ ssh_canonical_domains | join(' ') }}
 
 {% endif %}
-{% if 'bastion' not in group_names %}
+{% if ssh_bastion_config %}
 ################################################################################
 # VS Code Hosts
 {% if ansible_facts['os_family'] == "Windows" %}

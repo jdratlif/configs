@@ -15,6 +15,8 @@ gitconfig:
       username: "{{ grnoc_user }}"
       helper: cache --timeout 14400
 
+ssh_bastion_config: true
+
 ssh_vscode_hosts:
   jdratlif-dev7.grnoc.iu.edu:
     port: 10001
