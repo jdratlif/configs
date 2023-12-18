@@ -1,0 +1,3 @@
+[submodule "collections/ansible_collections/globalnoc/common"]
+	path = collections/ansible_collections/globalnoc/common
+	url = https://github.grnoc.iu.edu/Ansible/globalnoc-common-collection.git
