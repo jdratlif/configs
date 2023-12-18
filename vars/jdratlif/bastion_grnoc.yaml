@@ -1,0 +1,3 @@
+---
+bash_path_pre:
+  - /opt/openssh95/bin

@@ -72,14 +72,9 @@ export LIBVIRT_DEFAULT_URI='qemu:///system'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# begin local path augments
-{% if path_local_pre is defined %}
-export PATH="{{ path_local_pre | join(':') }}:$PATH"
+{% if bash_path_pre | length > 0 or bash_path_post | length > 0 %}
+export PATH="{{ (bash_path_pre + ['$PATH'] + bash_path_post) | join(':') }}"
 {% endif %}
-{% if path_local_post is defined %}
-export PATH="$PATH:{{ path_local_post | join(':') }}"
-{% endif %}
-# end local path augments
 
 # begin local exports
 {% if exports is defined %}
