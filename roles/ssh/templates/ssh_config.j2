@@ -145,7 +145,7 @@ Match originalhost "*.scinet.usda.gov,!bastion.*.scinet.usda.gov"
 
 Host {{ host[0] }}
     {%- for name, value in host[1].items() %}
-        {%- if value is string or value is integer %}
+        {%- if value is string or value is number %}
 
     {{ name }} {{ value }}
         {%- else %}
