@@ -5,3 +5,17 @@ bash_functions: {}
 bash_path_pre: []
 bash_path_post: []
 bash_sources: []
+
+bash_custom_prompt: true
+bash_custom_my_prompt: false
+
+bash_editor: vim
+
+bash_history_append: true
+bash_history_verify: true
+
+bash_history_time_format: "%h %d %H:%M:%S"
+bash_history_size: 10000
+bash_history_file_size: 10000
+
+bash_pager: less -X

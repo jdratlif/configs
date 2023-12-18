@@ -16,7 +16,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+{% if bash_custom_prompt %}
 PROMPT_COMMAND=my_prompt
+    {%- if not bash_custom_my_prompt %}
+
 
 git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
@@ -53,19 +56,26 @@ my_prompt() {
         PS1="($venv) $PS1"
     fi
 }
+    {%- endif %}
+{% endif %}
+
 
 # history options
+{% if bash_history_append %}
 shopt -s histappend
+{% endif %}
+{% if bash_history_verify %}
 shopt -s histverify
+{% endif %}
 
-export HISTTIMEFORMAT="%h %d %H:%M:%S "
-export HISTSIZE=10000
-export HISTFILESIZE=10000
+export HISTTIMEFORMAT="{{ bash_history_time_format }}"
+export HISTSIZE={{ bash_history_size }}
+export HISTFILESIZE={{ bash_history_file_size }}
 export HISTCONTROL="ignorespace"
 
-export EDITOR=vim
+export EDITOR={{ bash_editor }}
 
-export PAGER='less -X'
+export PAGER="{{ bash_pager }}"
 export LIBVIRT_DEFAULT_URI='qemu:///system'
 
 # setup LANG and LC_ALL
