@@ -1,2 +1,5 @@
 ---
-bash_sources: []
+bash_functions:
+  del_known_host:
+    - LINE_NUMBER=$1
+    - "[[ ! -z $LINE_NUMBER ]] && sed -i -e $1d ~/.ssh/known_hosts"

@@ -90,7 +90,7 @@ export {{ item[0] }}='{{ item[1] }}'
 # end local exports
 
 # begin local functions
-{% for item in functions | dictsort %}
+{% for item in bash_functions | dictsort %}
 function {{ item[0] }} {
 {% for line in item[1] %}
     {{ line }}

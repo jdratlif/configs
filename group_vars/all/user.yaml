@@ -1,2 +1,0 @@
----
-grnoc_home_dir: "/home/{{ grnoc_user }}"

@@ -2,6 +2,8 @@
 - name: Config setup playbook
   hosts: "{{ targets | default('localhost') }}"
   become: "{{ switch_user | default(false) }}"
+  vars:
+    grnoc_home_dir: "/home/{{ grnoc_user }}"
   vars_files:
     - "vars/{{ custom_vars_file | default('empty') }}.yaml"
 
