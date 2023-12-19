@@ -18,6 +18,14 @@
         dir: "vars/auto/{{ grnoc_user }}"
       failed_when: false
 
+    - name: Ensure required variables are defined
+      ansible.builtin.assert:
+        that:
+          - git_name is defined
+          - git_name is string
+          - git_name | length > 0
+      when: '"gitconfig" in task_list'
+
     - name: Log message to syslog for pci-dss compliance
       ansible.builtin.include_role:
         name: globalnoc.common.syslog_ticket
