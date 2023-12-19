@@ -5,5 +5,5 @@
     backup: true
     dest: "{{ grnoc_home_dir }}/.tmux.conf"
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
     mode: "0644"

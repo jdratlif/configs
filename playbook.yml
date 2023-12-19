@@ -3,7 +3,7 @@
   hosts: "{{ targets | default('localhost') }}"
   become: "{{ switch_user | default(false) }}"
   vars:
-    grnoc_home_dir: "/home/{{ grnoc_user }}"
+    grnoc_home_dir: "/{{ 'Users' if ansible_facts['os_family'] == 'Darwin' else 'home' }}/{{ grnoc_user }}"
   vars_files:
     - "vars/{{ custom_vars_file | default('empty') }}.yaml"
 
@@ -23,6 +23,15 @@
         name: globalnoc.common.syslog_ticket
       vars:
         message: "Ansible configuring home directory for {{ grnoc_user }}"
+
+    - name: Lookup primary group
+      ansible.builtin.command: "id -gn {{ grnoc_user }}"
+      changed_when: false
+      register: output
+
+    - name: Register group name
+      ansible.builtin.set_fact:
+        grnoc_group: "{{ output.stdout }}"
 
     - name: Setup bash profile
       ansible.builtin.import_role:

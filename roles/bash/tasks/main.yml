@@ -5,7 +5,7 @@
     backup: true
     dest: "{{ grnoc_home_dir }}/.bash_profile"
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
     mode: "0644"
 
 - name: Template bashrc
@@ -14,5 +14,5 @@
     backup: true
     dest: "{{ grnoc_home_dir }}/.bashrc"
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
     mode: "0644"

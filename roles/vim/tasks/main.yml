@@ -5,7 +5,7 @@
     backup: true
     dest: "{{ grnoc_home_dir }}/.vimrc"
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
     mode: "0644"
 
 - name: Ensure ownership of viminfo
@@ -13,7 +13,7 @@
     path: "{{ grnoc_home_dir }}/.viminfo"
     state: file
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
   failed_when: false
 
 - name: Create vim directory
@@ -21,7 +21,7 @@
     path: "{{ grnoc_home_dir }}/.vim"
     state: directory
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
     mode: "0755"
 
 - name: Copy yaml plugin
@@ -29,5 +29,5 @@
     src: plugins/yaml.vim
     dest: "{{ grnoc_home_dir }}/.vim"
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
     mode: "0644"

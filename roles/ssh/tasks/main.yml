@@ -4,7 +4,7 @@
     path: "{{ grnoc_home_dir }}/.ssh"
     state: directory
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
     mode: "0700"
 
 - name: Setup ssh authorized_keys file
@@ -12,7 +12,7 @@
     src: authorized_keys.j2
     dest: "{{ grnoc_home_dir }}/.ssh/authorized_keys"
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
     mode: "0600"
   when: ssh_authorized_keys | length > 0
 
@@ -28,5 +28,5 @@
     backup: true
     dest: "{{ grnoc_home_dir }}/.ssh/config"
     owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_user }}"
+    group: "{{ grnoc_group }}"
     mode: "0600"
