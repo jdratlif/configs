@@ -7,12 +7,13 @@
     owner: "{{ grnoc_user }}"
     group: "{{ grnoc_group }}"
     mode: "0644"
+  when: not bash_zsh
 
-- name: Template bashrc
+- name: Template bashrc/zshrc
   ansible.builtin.template:
     src: bashrc.j2
     backup: true
-    dest: "{{ grnoc_home_dir }}/.bashrc"
+    dest: "{{ grnoc_home_dir }}/{{ bash_rc_file }}"
     owner: "{{ grnoc_user }}"
     group: "{{ grnoc_group }}"
     mode: "0644"

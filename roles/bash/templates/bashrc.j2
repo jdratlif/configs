@@ -1,11 +1,13 @@
 # THIS FILE WAS AUTO-GENERATED | LOCAL CHANGES MAY BE OVERWRITTEN
 # ansible template: home-dir-config/roles/bash/templates/bashrc.j2
 
+{% if not bash_zsh %}
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+{% endif %}
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -61,17 +63,16 @@ my_prompt() {
 
 
 # history options
-{% if bash_history_append %}
-shopt -s histappend
-{% endif %}
-{% if bash_history_verify %}
-shopt -s histverify
-{% endif %}
+{% for option in bash_history_options %}
+{{ 'setopt' if bash_zsh else 'shopt -s' }} {{ option }}
+{% endfor %}
 
+{% if not bash_zsh %}
+export HISTCONTROL="ignorespace"
+{% endif %}
 export HISTTIMEFORMAT="{{ bash_history_time_format }}"
 export HISTSIZE={{ bash_history_size }}
 export HISTFILESIZE={{ bash_history_file_size }}
-export HISTCONTROL="ignorespace"
 
 export EDITOR={{ bash_editor }}
 
@@ -128,8 +129,8 @@ source {{ item }}
 # end source imports
 {% endif %}
 # User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/*; do
+if [ -d ~/{{ bash_rc_file }}.d ]; then
+    for rc in ~/{{ bash_rc_file }}.d/*; do
         if [ -f "$rc" ]; then
             . "$rc"
         fi

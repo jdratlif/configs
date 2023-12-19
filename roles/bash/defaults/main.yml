@@ -11,11 +11,26 @@ bash_custom_my_prompt: false
 
 bash_editor: vim
 
-bash_history_append: true
-bash_history_verify: true
+bash_history_options: "{{ history_options['zshrc'] if bash_zsh else history_options['bash'] }}"
 
-bash_history_time_format: "%h %d %H:%M:%S"
+bash_history_time_format: "[%F %T]"
 bash_history_size: 10000
 bash_history_file_size: 10000
 
+bash_rc_file: "{{ '.zshrc' if bash_zsh else '.bashrc' }}"
+
 bash_pager: less -X
+
+bash_zsh: "{{ true if ansible_facts['os_family'] == 'Darwin' else false }}"
+
+history_options:
+  bash:
+    - histappend
+    - histverify
+  zshrc:
+    - EXTENDED_HISTORY
+    - HIST_IGNORE_ALL_DUPS
+    - HIST_IGNORE_SPACE
+    - HIST_VERIFY
+    - INC_APPEND_HISTORY
+    - SHARE_HISTORY
