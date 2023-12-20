@@ -15,8 +15,6 @@ ansible-core = "<2.13"
 ansible-lint = { version = "<6.13", markers = 'platform_system != "Windows"' }
 
 # inventory generation
-requests = "^2.31.0"
-urllib3 = "<2.0.0"
 pyyaml = "^6.0.1"
 
 [build-system]
