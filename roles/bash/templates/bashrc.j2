@@ -115,7 +115,7 @@ function {{ item[0] }} {
 # begin local aliases
     {%- for item in bash_aliases | dictsort %}
 
-alias {{ item[0] }}='{{ item[1] }}'
+alias {{ item[0] }}={{ item[1] | quote }}
     {%- endfor %}
 
 # end local aliases
