@@ -6,6 +6,7 @@
 # Canonical hostname
 
 CanonicalizeHostname yes
+CanonicalizeMaxDots {{ ssh_canonical_dots }}
 CanonicalDomains {{ ssh_canonical_domains | join(' ') }}
 
 {% endif %}

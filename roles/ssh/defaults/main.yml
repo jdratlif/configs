@@ -1,6 +1,7 @@
 ---
 ssh_authorized_keys: []
 ssh_bastion_config: false
+ssh_canonical_dots: 2
 ssh_host_configs: {}
 
 ssh_host_common_configs:
