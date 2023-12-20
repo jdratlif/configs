@@ -9,9 +9,20 @@
     - "vars/{{ custom_vars_file | default('empty') }}.yaml"
 
   tasks:
-    - name: Import auto vars
+    - name: Import auto/user vars
       ansible.builtin.include_vars:
         dir: "vars/auto/{{ grnoc_user }}"
+      failed_when: false
+
+    - name: Import host/user vars
+      ansible.builtin.include_vars:
+        dir: "vars/host_vars/{{ inventory_hostname }}/{{ grnoc_user }}"
+      failed_when: false
+
+    - name: Import group/user vars
+      ansible.builtin.include_vars:
+        dir: "vars/group_vars/{{ item }}/{{ grnoc_user }}"
+      loop: "{{ group_names }}"
       failed_when: false
 
     - name: Ensure required variables are defined
