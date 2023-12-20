@@ -83,6 +83,7 @@ all:
                 mbalas-dev.grnoc.iu.edu: {}
                 njuers-dev.grnoc.iu.edu: {}
                 nmahade-dev.grnoc.iu.edu: {}
+                nocui-dev.grnoc.iu.edu: {}
                 nself-dev.grnoc.iu.edu: {}
                 nsrirang-dev.grnoc.iu.edu: {}
                 pauchamb-dev01.grnoc.iu.edu: {}
@@ -210,6 +211,7 @@ all:
             cosign2.grnoc.iu.edu: {}
             cpe.desales.light.globalnoc.iu.edu: {}
             cpe.ivytech.light.globalnoc.iu.edu: {}
+            cpe.jdratlif.light.globalnoc.iu.edu: {}
             csacco-dev.grnoc.iu.edu: {}
             csacco-psbuild-dev.grnoc.iu.edu: {}
             cvkunte-dev.grnoc.iu.edu: {}
@@ -457,19 +459,22 @@ all:
             netsage-elk1.grnoc.iu.edu: {}
             netsage-flow.grnoc.iu.edu: {}
             netsage-os.cold1.bldc.grnoc.iu.edu: {}
+            netsage-os.cold1.ctc.grnoc.iu.edu: {}
             netsage-os.cold2.bldc.grnoc.iu.edu: {}
+            netsage-os.cold2.ctc.grnoc.iu.edu: {}
+            netsage-os.cold3.bldc.grnoc.iu.edu: {}
+            netsage-os.cold3.ctc.grnoc.iu.edu: {}
             netsage-os.coordinator.bldc.grnoc.iu.edu: {}
-            netsage-os.data1.bldc.grnoc.iu.edu: {}
-            netsage-os.data1.ctc.grnoc.iu.edu: {}
-            netsage-os.data2.bldc.grnoc.iu.edu: {}
-            netsage-os.data2.ctc.grnoc.iu.edu: {}
+            netsage-os.coordinator.ctc.grnoc.iu.edu: {}
             netsage-os.hot1.bldc.grnoc.iu.edu: {}
+            netsage-os.hot1.ctc.grnoc.iu.edu: {}
             netsage-os.ingest.bldc.grnoc.iu.edu: {}
             netsage-os.ingest.ctc.grnoc.iu.edu: {}
             netsage-os.manage.bldc.grnoc.iu.edu: {}
             netsage-os.manage.ctc.grnoc.iu.edu: {}
             netsage-os.manage2.bldc.grnoc.iu.edu: {}
             netsage-os.warm1.bldc.grnoc.iu.edu: {}
+            netsage-os.warm1.ctc.grnoc.iu.edu: {}
             netsage-pipeline-dev2.bldc.grnoc.iu.edu: {}
             netsage-pipeline-stage.grnoc.iu.edu: {}
             netsage-portal-all.grnoc.iu.edu: {}
@@ -497,6 +502,7 @@ all:
             njuers-dev.grnoc.iu.edu: {}
             nmahade-dev.grnoc.iu.edu: {}
             nocmon.noc.onenet.net: {}
+            nocui-dev.grnoc.iu.edu: {}
             nself-dev-2.grnoc.iu.edu: {}
             nself-dev-oel8.grnoc.iu.edu: {}
             nself-dev.grnoc.iu.edu: {}
@@ -727,11 +733,6 @@ all:
             webdoc-dev-01.grnoc.iu.edu: {}
             worldview.grnoc.iu.edu: {}
             zckaster-dev.grnoc.iu.edu: {}
-          vars:
-            ansible_ssh_common_args:
-              -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-              -o ProxyCommand='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-              -W %h:%p -q ansible-syseng-servers-internal@skip.grnoc.iu.edu'
         i2:
           hosts:
             account.bldc.net.internet2.edu: {}
@@ -824,11 +825,6 @@ all:
             storage3.os.wash2.net.internet2.edu: {}
             syslog.bldc.net.internet2.edu: {}
             syslog.ctc.net.internet2.edu: {}
-          vars:
-            ansible_ssh_common_args:
-              -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-              -o ProxyCommand='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-              -W %h:%p -q ansible-syseng-servers@bastion.ctc.net.internet2.edu'
         nwave:
           hosts:
             aaa.boul.nwave.noaa.gov: {}
@@ -972,6 +968,7 @@ all:
             perf01.june01.nwave.noaa.gov: {}
             perf01.june02.nwave.noaa.gov: {}
             perf01.kans01.nwave.noaa.gov: {}
+            perf01.ketc01.nwave.noaa.gov: {}
             perf01.keyl01.nwave.noaa.gov: {}
             perf01.keyw01.nwave.noaa.gov: {}
             perf01.lajo01.nwave.noaa.gov: {}
@@ -1061,11 +1058,6 @@ all:
             ubuntu.ctc.nwave.noaa.gov: {}
             vm-nms.denv.wireless.nwave.noaa.gov: {}
             x-perf.wash.nwave.noaa.gov: {}
-          vars:
-            ansible_ssh_common_args:
-              -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-              -o ProxyCommand='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-              -W %h:%p -q syscnf@bastion.ctc.nwave.noaa.gov'
         puppet:
           children:
             puppet_grnoc:
@@ -1118,11 +1110,6 @@ all:
             syslog.ctc.scinet.usda.gov: {}
             tools.bldc.scinet.usda.gov: {}
             tsds.bldc.scinet.usda.gov: {}
-          vars:
-            ansible_ssh_common_args:
-              -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-              -o ProxyCommand='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-              -W %h:%p -q ansible-syseng-servers@bastion.ctc.scinet.usda.gov'
     other:
       hosts:
         laptop:
