@@ -1,8 +1,6 @@
 import re
 import sys
-from getpass import getpass, getuser
 
-import requests
 import yaml
 
 
@@ -20,18 +18,18 @@ def main():
         )
         sys.exit(1)
 
-    user = getuser()
-    password = getpass("GRNOC GHE Token: ")
-
     cloud_hosts = dict()
     cloud_vars = dict()
 
     for cloud in clouds:
-        url = (
-            "https://raw.github.grnoc.iu.edu/Ansible/ansible-inventory/main/"
-            f"{cloud}.yaml"
-        )
-        data = yaml.safe_load(requests.get(url, auth=(user, password)).text)
+        filename = f"grnoc/{cloud}.yaml"
+
+        try:
+            with open(filename, "r") as f:
+                data = yaml.safe_load(f)
+        except OSError:
+            print(f"Unable to open inventory file {filename}", file=sys.stderr)
+            sys.exit(1)
 
         cloud_data = data["all"]["children"][f"cloud_{cloud}"]
         cloud_children = cloud_data["children"]
@@ -108,15 +106,15 @@ def main():
         cloud_group_hosts[cloud] = {}
 
         globalnoc_hosts[cloud] = {
-            "hosts": dict(),
+            "children": dict(),
         }
-
-        cloud_team_list = []
 
         # add each team under the cloud in globalnoc hosts
         for team in teams:
             team_host_list = cloud_hosts[cloud][team].keys()
-            cloud_team_list.extend(team_host_list)
+            globalnoc_hosts[cloud]["children"][f"{team}_{cloud}"] = {
+                "hosts": {host: {} for host in team_host_list}
+            }
 
             for group in groups:
                 if group not in cloud_group_hosts[cloud]:
@@ -147,10 +145,8 @@ def main():
 
         for group in groups:
             globalnoc_hosts[group]["children"][f"{group}_{cloud}"] = {
-                "hosts": {host: dict() for host in cloud_group_hosts[cloud][group]}
+                "hosts": {host: {} for host in cloud_group_hosts[cloud][group]}
             }
-
-        globalnoc_hosts[cloud]["hosts"] = {host: {} for host in cloud_team_list}
 
     try:
         with open("hosts.yaml", "w") as f:
