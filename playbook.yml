@@ -3,16 +3,12 @@
   hosts: "{{ targets | default('localhost') }}"
   become: "{{ switch_user | default(false) }}"
   vars:
+    grnoc_user: "{{ ansible_user_id }}"
     grnoc_home_dir: "/{{ 'Users' if ansible_facts['os_family'] == 'Darwin' else 'home' }}/{{ grnoc_user }}"
   vars_files:
     - "vars/{{ custom_vars_file | default('empty') }}.yaml"
 
   tasks:
-    - name: Import grnoc_user
-      ansible.builtin.include_role:
-        name: globalnoc.common.grnoc_user
-        public: true
-
     - name: Import auto vars
       ansible.builtin.include_vars:
         dir: "vars/auto/{{ grnoc_user }}"
@@ -26,20 +22,16 @@
           - git_name | length > 0
       when: '"gitconfig" in task_list'
 
-    - name: Log message to syslog for pci-dss compliance
-      ansible.builtin.include_role:
-        name: globalnoc.common.syslog_ticket
-      vars:
-        message: "Ansible configuring home directory for {{ grnoc_user }}"
+    - name: Find user's primary group
+      block:
+        - name: Lookup primary group
+          ansible.builtin.command: "id -gn {{ grnoc_user }}"
+          changed_when: false
+          register: output
 
-    - name: Lookup primary group
-      ansible.builtin.command: "id -gn {{ grnoc_user }}"
-      changed_when: false
-      register: output
-
-    - name: Register group name
-      ansible.builtin.set_fact:
-        grnoc_group: "{{ output.stdout }}"
+        - name: Register group name
+          ansible.builtin.set_fact:
+            grnoc_group: "{{ output.stdout }}"
 
     - name: Setup bash profile
       ansible.builtin.import_role:

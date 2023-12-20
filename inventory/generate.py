@@ -109,7 +109,6 @@ def main():
 
         globalnoc_hosts[cloud] = {
             "hosts": dict(),
-            "vars": cloud_vars[cloud],
         }
 
         cloud_team_list = []
