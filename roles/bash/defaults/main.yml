@@ -13,7 +13,7 @@ bash_editor: vim
 
 bash_history_options: "{{ history_options['zshrc'] if bash_zsh else history_options['bash'] }}"
 
-bash_history_time_format: "[%F %T]"
+bash_history_time_format: "[%F %T] "
 bash_history_size: 10000
 bash_history_file_size: 10000
 
