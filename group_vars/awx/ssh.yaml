@@ -1,0 +1,14 @@
+---
+ssh_host_common_configs:
+  StrictHostKeyChecking: "no"
+  UserKnownHostsFile: /dev/null
+
+ssh_host_configs:
+  "grnoc skip leap":
+    User: ansible-syseng-servers-internal
+  "i2 i2-bldc i2-ctc":
+    User: ansible-syseng-servers
+  "scinet scinet-bldc scinet-ctc":
+    User: ansible-syseng-servers
+  "nwave nwave-bldc nwave-ctc nwave-boul":
+    User: syscnf
