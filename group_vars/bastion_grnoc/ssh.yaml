@@ -3,6 +3,11 @@ ssh_canonical_domains:
   - grnoc.iu.edu
 
 ssh_host_configs:
+  # el6 hosts
+  neteng-sb:
+    Hostname: neteng-sb.ctc.grnoc.iu.edu
+    HostKeyAlgorithms: +ssh-rsa
+
   # oob devices
   oob-ak23 oob-ak23-1:
     Hostname: oob.ak23.bldc.grnoc.iu.edu
