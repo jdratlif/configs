@@ -58,8 +58,10 @@ Host scinet-ctc
 
 Host grnoc leap skip
     HostKeyAlgorithms +ssh-rsa
-    PubkeyAcceptedAlgorithms +ssh-rsa
     KexAlgorithms +diffie-hellman-group14-sha1
+    {%- if inventory_hostname == "laptop" %}
+    PubkeyAcceptedAlgorithms +ssh-rsa
+    {%- endif %}
     {%- if ansible_facts['os_family'] == "Windows" +%}
 
 ################################################################################
@@ -94,7 +96,7 @@ Host grnoc leap skip i2 i2-bldc i2-ctc noaa noaa-bldc noaa-ctc scinet scinet-bld
 Match originalhost "*.grnoc.iu.edu,!leap.grnoc.iu.edu,!skip.grnoc.iu.edu"
     ProxyJump grnoc
 
-Math originalhost "*.net.internet2.edu,!bastion.bldc.net.internet2.edu,!bastion.ctc.net.internet2.edu"
+Match originalhost "*.net.internet2.edu,!bastion.bldc.net.internet2.edu,!bastion.ctc.net.internet2.edu"
     ProxyJump i2
 
 Match originalhost "*.nwave.noaa.gov,!bastion.*.nwave.noaa.gov"
