@@ -59,7 +59,7 @@ Host scinet-ctc
 Host grnoc leap skip
     HostKeyAlgorithms +ssh-rsa
     KexAlgorithms +diffie-hellman-group14-sha1
-    {%- if inventory_hostname == "laptop" %}
+    {%- if inventory_hostname == "laptop" +%}
     PubkeyAcceptedAlgorithms +ssh-rsa
     {%- endif %}
     {%- if ansible_facts['os_family'] == "Windows" +%}
