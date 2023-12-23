@@ -3,7 +3,7 @@
   ansible.builtin.template:
     src: gitconfig.j2
     backup: true
-    dest: "{{ grnoc_home_dir }}/.gitconfig"
-    owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_group }}"
+    dest: "{{ config_home_dir }}/.gitconfig"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
     mode: "0644"

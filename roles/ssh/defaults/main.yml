@@ -7,6 +7,6 @@ ssh_host_configs: {}
 ssh_host_common_configs:
   ServerAliveCountMax: 3
   ServerAliveInterval: 30
-  User: "{{ grnoc_user }}"
+  User: "{{ config_user }}"
 
 ssh_vscode_hosts: {}

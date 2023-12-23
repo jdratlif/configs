@@ -1,27 +1,24 @@
 ---
 - name: Config setup playbook
-  hosts: "{{ targets | default('localhost') }}"
+  hosts: "{{ targets | default('laptop') }}"
   become: "{{ switch_user | default(false) }}"
-  vars:
-    grnoc_user: "{{ ansible_user_id }}"
-    grnoc_home_dir: "/{{ 'Users' if ansible_facts['os_family'] == 'Darwin' else 'home' }}/{{ grnoc_user }}"
   vars_files:
     - "vars/{{ custom_vars_file | default('empty') }}.yaml"
 
   tasks:
     - name: Import auto/user vars
       ansible.builtin.include_vars:
-        dir: "vars/auto/{{ grnoc_user }}"
+        dir: "vars/auto/{{ config_user }}"
       failed_when: false
 
     - name: Import host/user vars
       ansible.builtin.include_vars:
-        dir: "vars/host_vars/{{ inventory_hostname }}/{{ grnoc_user }}"
+        dir: "vars/host_vars/{{ inventory_hostname }}/{{ config_user }}"
       failed_when: false
 
     - name: Import group/user vars
       ansible.builtin.include_vars:
-        dir: "vars/group_vars/{{ item }}/{{ grnoc_user }}"
+        dir: "vars/group_vars/{{ item }}/{{ config_user }}"
       loop: "{{ group_names }}"
       failed_when: false
 
@@ -36,42 +33,45 @@
     - name: Find user's primary group
       block:
         - name: Lookup primary group
-          ansible.builtin.command: "id -gn {{ grnoc_user }}"
+          ansible.builtin.command: "id -gn {{ config_user }}"
           changed_when: false
           register: output
 
         - name: Register group name
           ansible.builtin.set_fact:
-            grnoc_group: "{{ output.stdout }}"
+            config_group: "{{ output.stdout }}"
 
-    - name: Setup bash profile
-      ansible.builtin.import_role:
-        name: bash
-      when: '"bash" in task_list'
+    - name: Ignore tasks on Windows
+      when: config_os_family != "Windows"
+      block:
+        - name: Setup bash profile
+          ansible.builtin.import_role:
+            name: bash
+          when: '"bash" in task_list'
+
+        - name: Setup perltidy
+          ansible.builtin.import_role:
+            name: perltidy
+          when: '"perltidy" in task_list'
+
+        - name: Setup tmux config
+          ansible.builtin.import_role:
+            name: tmux
+          when:
+            - '"tmux" in task_list'
+            - use_tmux | default(false)
+
+        - name: Setup vim
+          ansible.builtin.import_role:
+            name: vim
+          when: '"vim" in task_list'
 
     - name: Setup gitconfig
       ansible.builtin.import_role:
         name: gitconfig
       when: '"gitconfig" in task_list'
 
-    - name: Setup perltidy
-      ansible.builtin.import_role:
-        name: perltidy
-      when: '"perltidy" in task_list'
-
     - name: Setup ssh configs
       ansible.builtin.import_role:
         name: ssh
       when: '"ssh" in task_list'
-
-    - name: Setup tmux config
-      ansible.builtin.import_role:
-        name: tmux
-      when:
-        - '"tmux" in task_list'
-        - use_tmux | default(false)
-
-    - name: Setup vim
-      ansible.builtin.import_role:
-        name: vim
-      when: '"vim" in task_list'

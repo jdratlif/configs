@@ -2,7 +2,7 @@
 bash_aliases:
   vpn: >-
     sudo openconnect
-    -u {{ grnoc_user }}
+    -u {{ config_user }}
     --protocol=pulse
     -s "vpn-slice 10.0.0.0/8 {{ vpn_hosts | join(' ') }}"
     https://vpn.iu.edu/groups

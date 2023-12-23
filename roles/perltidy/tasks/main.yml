@@ -3,7 +3,7 @@
   ansible.builtin.copy:
     src: perltidyrc
     backup: true
-    dest: "{{ grnoc_home_dir }}/.perltidyrc"
-    owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_group }}"
+    dest: "{{ config_home_dir }}/.perltidyrc"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
     mode: "0644"

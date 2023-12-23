@@ -3,9 +3,9 @@
   ansible.builtin.template:
     src: bash.profile.j2
     backup: true
-    dest: "{{ grnoc_home_dir }}/.bash_profile"
-    owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_group }}"
+    dest: "{{ config_home_dir }}/.bash_profile"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
     mode: "0644"
   when: not bash_zsh
 
@@ -13,7 +13,7 @@
   ansible.builtin.template:
     src: bashrc.j2
     backup: true
-    dest: "{{ grnoc_home_dir }}/{{ bash_rc_file }}"
-    owner: "{{ grnoc_user }}"
-    group: "{{ grnoc_group }}"
+    dest: "{{ config_home_dir }}/{{ bash_rc_file }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
     mode: "0644"

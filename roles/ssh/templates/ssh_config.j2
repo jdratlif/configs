@@ -13,7 +13,7 @@ CanonicalDomains {{ ssh_canonical_domains | join(' ') }}
 
 ################################################################################
 # VS Code Hosts
-        {%- if ansible_facts['os_family'] == "Windows" +%}
+        {%- if config_os_family == "Windows" +%}
             {% for host in ssh_vscode_hosts +%}
 Host {{ host }}
     HostName localhost
@@ -62,7 +62,7 @@ Host grnoc leap skip
     {%- if inventory_hostname == "laptop" +%}
     PubkeyAcceptedAlgorithms +ssh-rsa
     {%- endif %}
-    {%- if ansible_facts['os_family'] == "Windows" +%}
+    {%- if config_os_family == "Windows" +%}
 
 ################################################################################
 # Port forwarding for VS Code on Windows
@@ -125,9 +125,9 @@ Host scinet scinet-bldc scinet-ctc
 # PKCS11 for CAC bastions
 
 Host noaa noaa-bldc noaa-ctc scinet scinet-bldc scinet-ctc
-        {%- if ansible_facts['os_family'] == "Darwin" +%}
+        {%- if config_os_family == "Darwin" +%}
     PKCS11Provider /usr/lib/ssh-keychain.dylib
-        {%- elif ansible_facts['os_family'] == "Windows" +%}
+        {%- elif config_os_family == "Windows" +%}
     PKCS11Provider "C:\\Program Files\\OpenSC Project\\OpenSC\\pkcs11\\opensc-pkcs11.dll"
         {%- else +%}
     PKCS11Provider /usr/lib64/pkcs11/opensc-pkcs11.so

@@ -21,7 +21,7 @@ bash_rc_file: "{{ '.zshrc' if bash_zsh else '.bashrc' }}"
 
 bash_pager: less -X
 
-bash_zsh: "{{ true if ansible_facts['os_family'] == 'Darwin' else false }}"
+bash_zsh: "{{ true if config_os_family == 'Darwin' else false }}"
 
 history_options:
   bash:
