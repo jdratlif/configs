@@ -68,7 +68,7 @@ my_prompt() {
 {% endfor %}
 
 {% if not bash_zsh %}
-export HISTCONTROL="ignorespace"
+export HISTCONTROL="ignoreboth"
 {% endif %}
 export HISTTIMEFORMAT="{{ bash_history_time_format }}"
 export HISTSIZE={{ bash_history_size }}
