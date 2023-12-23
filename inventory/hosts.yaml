@@ -1152,6 +1152,8 @@ all:
               hosts: {}
     other:
       hosts:
+        home:
+          ansible_connection: local
         laptop:
           ansible_connection: local
         wsl:
