@@ -13,12 +13,12 @@
 
     - name: Import host/user vars
       ansible.builtin.include_vars:
-        dir: "vars/host_vars/{{ inventory_hostname }}/{{ config_user }}"
+        dir: "vars/host_vars/{{ config_user }}/{{ inventory_hostname }}"
       failed_when: false
 
     - name: Import group/user vars
       ansible.builtin.include_vars:
-        dir: "vars/group_vars/{{ item }}/{{ config_user }}"
+        dir: "vars/group_vars/{{ config_user }}/{{ item }}"
       loop: "{{ group_names }}"
       failed_when: false
 
