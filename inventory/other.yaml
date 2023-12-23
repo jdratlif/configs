@@ -3,3 +3,5 @@ hosts:
   # other hosts to include in the inventory
   laptop:
     ansible_connection: local
+  wsl:
+    ansible_connection: local
