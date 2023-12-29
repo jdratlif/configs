@@ -4,6 +4,7 @@ bash_exports: {}
 bash_functions: {}
 bash_path_pre: []
 bash_path_post: []
+bash_ssh_agent: false
 bash_sources: []
 
 bash_custom_prompt: true
