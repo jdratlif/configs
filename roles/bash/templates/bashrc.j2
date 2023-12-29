@@ -121,6 +121,7 @@ alias {{ item[0] }}={{ item[1] | quote }}
 # end local aliases
 {% endif %}
 
+{% if ansible_os_family != 'Darwin' %}
 # bash-completion
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -130,12 +131,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+{%endif %}
 {% if bash_sources | length > 0 %}
 # begin source imports
     {%- for item in bash_sources %}
 source {{ item }}
     {%- endfor %}
 # end source imports
+
 {% endif %}
 # User specific aliases and functions
 if [ -d ~/{{ bash_rc_file }}.d ]; then
