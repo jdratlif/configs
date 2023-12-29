@@ -29,10 +29,10 @@ Host {{ host }}
 ################################################################################
 # bastion hosts
 
-Host grnoc leap
+Host {% if ssh_grnoc_leap %}grnoc {% endif %}leap
     HostName leap.grnoc.iu.edu
 
-Host skip
+Host {% if not ssh_grnoc_leap %}grnoc {% endif %}skip
     HostName skip.grnoc.iu.edu
 
 Host i2 i2-bldc
