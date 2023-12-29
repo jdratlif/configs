@@ -172,6 +172,7 @@ all:
                 dridge-dev-ol8.grnoc.iu.edu: {}
                 dridge-dev.grnoc.iu.edu: {}
                 egress1.bldc.k3s.grnoc.iu.edu: {}
+                egress1.ctc.k3s.grnoc.iu.edu: {}
                 ghe-runner-stage.grnoc.iu.edu: {}
                 ghe-runner.grnoc.iu.edu: {}
                 icb7.grnoc.iu.edu: {}
@@ -808,6 +809,8 @@ all:
                 geni-local-datastore.net.internet2.edu: {}
                 grafana.bldc.net.internet2.edu: {}
                 grafana.ctc.net.internet2.edu: {}
+                haproxy.bldc.net.internet2.edu: {}
+                haproxy.ctc.net.internet2.edu: {}
                 international.bldc.net.internet2.edu: {}
                 lcsn-srv.bldc.net.internet2.edu: {}
                 mcp-1.bldc.net.internet2.edu: {}
