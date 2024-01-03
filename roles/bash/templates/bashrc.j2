@@ -121,8 +121,8 @@ alias {{ item[0] }}={{ item[1] | quote }}
 # end local aliases
 {% endif %}
 
+# tab-completion
 {% if ansible_os_family != 'Darwin' %}
-# bash-completion
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -130,8 +130,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+{% else %}
+autoload -Uz compinit && compinit
+{% endif %}
 
-{%endif %}
 {% if bash_sources | length > 0 %}
 # begin source imports
     {%- for item in bash_sources %}
