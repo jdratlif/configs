@@ -1,6 +1,0 @@
----
-bash_functions:
-  config_host:
-    - name=$1
-    - shift
-    - ansible-playbook playbook.yml -e "targets=$name" "$@"

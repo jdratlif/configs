@@ -6,6 +6,10 @@ bash_aliases:
   ipt: "sudo iptables --line-numbers -nvL"
 
 bash_functions:
+  config_host:
+    - name=$1
+    - shift
+    - ansible-playbook playbook.yml -e "targets=$name" "$@"
   del_known_host:
     - LINE_NUMBER=$1
     - "[[ ! -z $LINE_NUMBER ]] && sed -i -e $1d ~/.ssh/known_hosts"
