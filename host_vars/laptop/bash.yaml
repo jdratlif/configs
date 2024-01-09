@@ -21,6 +21,7 @@ vpn_hosts:
 
   # AWX hosts
   - awx.grnoc.iu.edu
+  - awx.test-net.grnoc.iu.edu
   - awx.bldc.nwave.noaa.gov
   - awx.ctc.nwave.noaa.gov
 
