@@ -121,8 +121,17 @@ alias {{ item[0] }}={{ item[1] | quote }}
 # end local aliases
 {% endif %}
 
+# func will show all defined shell function names (similar to alias)
+{% if bash_zsh %}
+alias func="print -l ${(ok)functions[(I)[^_]*]}"
+{% else %}
+alias func="declare -F | grep -v 'declare -f _' | awk '{print \$3}'"
+{% endif %}
+
 # tab-completion
-{% if ansible_os_family != 'Darwin' %}
+{% if bash_zsh %}
+autoload -Uz compinit && compinit
+{% else %}
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -130,8 +139,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-{% else %}
-autoload -Uz compinit && compinit
 {% endif %}
 
 {% if bash_sources | length > 0 %}
