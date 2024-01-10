@@ -2,4 +2,3 @@
 bash_aliases:
   rdp_local: xfreerdp /u:john@technoplaza.net /w:1920 /h:1080 /v:192.168.1.6
   rdp_ssh: xfreerdp /u:john@technoplaza.net /w:1920 /h:1080 /v:localhost:13389
-  ssh_kill: ps aux | grep ssh/cp-jdratlif | awk '{print \$2}' | xargs kill

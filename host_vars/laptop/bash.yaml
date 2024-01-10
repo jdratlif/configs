@@ -1,5 +1,6 @@
 ---
 bash_aliases:
+  ssh_kill: pkill -f .ssh/cp-$(whoami)@
   vpn: >-
     sudo openconnect
     -u {{ config_user }}
