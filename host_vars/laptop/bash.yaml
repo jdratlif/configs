@@ -31,6 +31,10 @@ vpn_hosts:
   # GHE
   - github.nwave.noaa.gov
 
+  # IU IPAM
+  - ipam-bl.uits.iu.edu
+  - ipam-test-bl.uits.iu.edu
+
   # MCNC
   - db.ncren.net
   - db-test.ncren.net
