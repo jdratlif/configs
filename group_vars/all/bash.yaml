@@ -4,6 +4,7 @@ bash_aliases:
   ls: "ls --color=auto"
   ll: "ls -l --color=auto"
   ipt: "sudo iptables --line-numbers -nvL"
+  ssh_kill: pkill -f .ssh/cp-$(whoami)@
 
 bash_functions:
   config_host:
