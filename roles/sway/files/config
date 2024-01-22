@@ -13,8 +13,11 @@
 
 # lock / screen timeouts
 
-    set $lock_timeout 1200 # 20 minutes
-    set $screen_timeout 600 # 10 minutes (after lock timeout)
+    # 20 minute lock timeout
+    set $lock_timeout 1200
+
+    # 10 minutes after lock timeout, turn the displays off
+    set $screen_timeout 600
 
 # Workspace names
 
