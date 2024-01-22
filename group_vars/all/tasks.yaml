@@ -4,6 +4,7 @@ task_list:
   - gitconfig # write .gitconfig
   - perltidy # write .perltidyrc
   - ssh # write ssh config and authorized_keys
+  - sway # write sway wm configs
   - termcap # copy termcap files to ~/.termcap
   - tmux # write .tmux.conf
   - vim # write vimrc and yaml plugin

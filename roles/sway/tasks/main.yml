@@ -1,0 +1,17 @@
+---
+- name: Ensure sway config directory
+  ansible.builtin.file:
+    state: directory
+    path: "{{ config_home_dir }}/.config/sway"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    recurse: true
+
+- name: Copy sway config
+  ansible.builtin.copy:
+    src: config
+    backup: true
+    dest: "{{ config_home_dir }}/.config/sway/config"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
