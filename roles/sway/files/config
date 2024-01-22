@@ -30,7 +30,7 @@
     set $ws7 7:VS Code
     set $ws8 8:VS Code
     set $ws9 9:VS Code
-    set $ws10 10:VS Code
+    set $ws10 10:Zoom
     set $wsF1 F1:Scratch
     set $wsF2 F2:Scratch
     set $wsF3 F3:Scratch
@@ -57,7 +57,7 @@ workspace $ws8 output DP-4
 workspace $ws9 output DP-4
 workspace $ws10 output DP-4
 
-assign [class="^zoom$"] $wsF1
+assign [class="^zoom$"] $ws10
 # probably don't want new terminals auto launching on workspace 4
 # assign [app_id="^foot$"] $ws4
 assign [class="^Slack$"] $ws3
