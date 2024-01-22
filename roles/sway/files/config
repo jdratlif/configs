@@ -26,7 +26,7 @@
     set $ws3 3:Slack | OneNote
     set $ws4 4:Terminal
     set $ws5 5:VPN
-    set $ws6 6:Firefox | Evolution
+    set $ws6 6:Firefox | Mail
     set $ws7 7:VS Code
     set $ws8 8:VS Code
     set $ws9 9:VS Code
@@ -63,6 +63,8 @@ assign [class="^zoom$"] $ws10
 assign [class="^Slack$"] $ws3
 assign [class="^Wfica$"] $ws3
 assign [app_id="^firefox$"] $ws6
+assign [app_id="^evolution$"] $ws6
+assign [class="^thunderbird"] $ws6
 assign [class="^Code$"] $ws7
 
 ### global configuration
