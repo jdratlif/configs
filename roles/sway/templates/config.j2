@@ -19,6 +19,12 @@
     # 10 minutes after lock timeout, turn the displays off
     set $screen_timeout 600
 
+# Displays
+
+    set $laptop eDP-1
+    set $mon1 DP-3
+    set $mon2 DP-4
+
 # Workspace names
 
     set $ws1 1:Scratch
@@ -46,105 +52,100 @@
 
 ### Workspace bindings
 
-workspace $ws1 output DP-3
-workspace $ws2 output DP-3
-workspace $ws3 output DP-3
-workspace $ws4 output DP-3
-workspace $ws5 output DP-3
-workspace $ws6 output DP-4
-workspace $ws7 output DP-4
-workspace $ws8 output DP-4
-workspace $ws9 output DP-4
-workspace $ws10 output DP-4
+    workspace $ws1 output $mon1
+    workspace $ws2 output $mon1
+    workspace $ws3 output $mon1
+    workspace $ws4 output $mon1
+    workspace $ws5 output $mon1
+    workspace $ws6 output $mon2
+    workspace $ws7 output $mon2
+    workspace $ws8 output $mon2
+    workspace $ws9 output $mon2
+    workspace $ws10 output $mon2
 
-assign [class="^zoom$"] $ws10
-# probably don't want new terminals auto launching on workspace 4
-# assign [app_id="^foot$"] $ws4
-assign [class="^Slack$"] $ws3
-assign [class="^Wfica$"] $ws3
-assign [app_id="^firefox$"] $ws6
-assign [app_id="^evolution$"] $ws6
-assign [class="^thunderbird"] $ws6
-assign [class="^Code$"] $ws7
+    assign [class="^zoom$"] $ws10
+    assign [class="^Slack$"] $ws3
+    assign [class="^Wfica$"] $ws3
+    assign [app_id="^firefox$"] $ws6
+    assign [app_id="^evolution$"] $ws6
+    assign [class="^thunderbird"] $ws6
+    assign [class="^Code$"] $ws7
 
 ### global configuration
 
 # default font
-font pango:Source Code Pro Medium 16
+    font pango:Source Code Pro Medium 16
 
 # remove window titlebars
-default_border pixel 2
+    default_border pixel 2
 
 # window gaps
-gaps inner 6
-gaps outer 2
+    gaps inner 6
+    gaps outer 2
 
 ### Output configuration
-output eDP-1 disable
-output eDP-1 scale 1.25
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg
-output * bg /usr/share/backgrounds/default.png fill
+    output * bg /usr/share/backgrounds/default.png fill
+
+# scale laptop's tiny display by 33%
+    output $laptop scale 1.33
+
+# enable clamshell mode
+    bindswitch --reload --locked lid:on output $laptop disable
+    bindswitch --reload --locked lid:off output $laptop enable
+exec_always {{ config_home_dir }}/.local/bin/clamshell.sh
 
 # touchpad config
 # disable while typing / tap to touch / three finger middle click
-input "type:touchpad" {
-    dwt enabled
-    tap enabled
-    middle_emulation enabled
-}
+    input "type:touchpad" {
+        dwt enabled
+        tap enabled
+        middle_emulation enabled
+    }
 
-input "type:keyboard" {
-    xkb_numlock enabled
+    input "type:keyboard" {
+        xkb_numlock enabled
 }
 
 ### Key bindings
 
-#
-# Basics:
-#
-    # Start a terminal
+# Start a terminal
     bindsym $mod+Return exec $term
 
-    # Kill focused window
+# Kill focused window
     bindsym $mod+Shift+q kill
 
-    # Start your launcher
+# Start your launcher
     bindsym $mod+d exec $menu
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
     floating_modifier $mod normal
 
-    # Reload the configuration file
+# Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    # Exit sway (logs you out of your Wayland session)
+# Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-#
-# Moving around:
-#
-    # Move your focus around
+# Move your focus around
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
+# Move the focused window with the same, but add Shift
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
 
-#
-# Workspaces:
-#
-    # Switch to workspace
+# Switch to workspace
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
     bindsym $mod+3 workspace $ws3
@@ -168,7 +169,7 @@ input "type:keyboard" {
     bindsym $mod+F11 workspace $wsF11
     bindsym $mod+F12 workspace $wsF12
 
-    # Move focused container to workspace
+# Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace $ws1
     bindsym $mod+Shift+2 move container to workspace $ws2
     bindsym $mod+Shift+3 move container to workspace $ws3
@@ -192,64 +193,56 @@ input "type:keyboard" {
     bindsym $mod+Shift+F11 move container to workspace $wsF11
     bindsym $mod+Shift+F12 move container to workspace $wsF12
 
-#
-# Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
     bindsym $mod+b splith
     bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
+# Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
-    # Make the current focus fullscreen
+# Make the current focus fullscreen
     bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
+# Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
+# Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
+# Move focus to the parent container
     bindsym $mod+a focus parent
 
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
+# Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 
 #
 # Resizing containers:
 #
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
 
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+    mode "resize" {
+        # left will shrink the containers width
+        # right will grow the containers width
+        # up will shrink the containers height
+        # down will grow the containers height
+        bindsym Left resize shrink width 10px
+        bindsym Down resize grow height 10px
+        bindsym Up resize shrink height 10px
+        bindsym Right resize grow width 10px
 
-bindsym $mod+r mode "resize"
+        # Return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    bindsym $mod+r mode "resize"
 
 #
 # Custom keybinds
@@ -280,4 +273,4 @@ bindsym $mod+r mode "resize"
 # important to make the magic work. And if you want to learn the secret behind
 # the trick, it's all in the `wordexp(3)`.
 #
-include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+    include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
