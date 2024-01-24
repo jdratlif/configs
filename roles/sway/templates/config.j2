@@ -65,11 +65,14 @@
 
     assign [class="^zoom$"] $ws10
     assign [class="^Slack$"] $ws3
+    assign [class="^Slack$" title="^Huddle"] $ws10
     assign [class="^Wfica$"] $ws3
     assign [app_id="^firefox$"] $ws6
     assign [app_id="^evolution$"] $ws6
     assign [class="^thunderbird"] $ws6
     assign [class="^Code$"] $ws7
+
+    for_window [class="^zoom$" title="Settings"] floating enable, border pixel
 
 ### global configuration
 
