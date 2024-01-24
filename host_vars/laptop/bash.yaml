@@ -27,6 +27,7 @@ vpn_hosts:
 
   # Cobbler
   - build.grnoc.iu.edu
+  - cobbler33.grnoc.iu.edu
 
   # GHE
   - github.nwave.noaa.gov
