@@ -1,9 +1,0 @@
----
-# other hosts to include in the inventory
-hosts:
-  home:
-    ansible_connection: local
-  laptop:
-    ansible_connection: local
-  wsl:
-    ansible_connection: local

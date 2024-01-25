@@ -9,14 +9,17 @@ def main():
     teams = ["ics", "mis", "nac", "sea", "sms"]
 
     try:
-        with open("groups.yaml", "r") as f:
-            groups = yaml.safe_load(f)
+        with open("config.yaml", "r") as f:
+            config = yaml.safe_load(f)
     except OSError:
         print(
             "Unable to open groups regex configuration file groups.yaml",
             file=sys.stderr,
         )
         sys.exit(1)
+
+    groups = config.get("groups", {})
+    other_hosts = config.get("other", {})
 
     cloud_hosts = dict()
     cloud_vars = dict()
@@ -44,14 +47,6 @@ def main():
                 cloud_hosts[cloud][team] = {
                     host: {} for host in cloud_children[team]["hosts"]
                 }
-
-    other_hosts = dict()
-
-    try:
-        with open("other.yaml", "r") as f:
-            other_hosts = yaml.safe_load(f)
-    except OSError:
-        print("Cannot read other.yaml. No other hosts will be added to inventory.")
 
     inventory = {
         "all": {
@@ -93,7 +88,9 @@ def main():
                         }
                     }
                 },
-                "other": other_hosts,
+                "other": {
+                    "hosts": other_hosts,
+                },
             }
         }
     }
