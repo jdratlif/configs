@@ -1,6 +1,5 @@
 ---
 bash_aliases:
-  puppet: "sudo /opt/puppetlabs/bin/puppet"
   rpm7: 'rpm --define="_gpg_name globalnoc@iu.edu"'
 
 bash_functions:
