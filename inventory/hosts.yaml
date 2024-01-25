@@ -61,9 +61,8 @@ all:
                 casotelo-dev37.grnoc.iu.edu: {}
                 csacco-dev.grnoc.iu.edu: {}
                 cvkunte-dev.grnoc.iu.edu: {}
-                daripley-dev.grnoc.iu.edu: {}
+                daripley-dev8.grnoc.iu.edu: {}
                 davihard-dev.grnoc.iu.edu: {}
-                davihard-dev1.grnoc.iu.edu: {}
                 drarvese-dev7.grnoc.iu.edu: {}
                 drarvese-dev8.grnoc.iu.edu: {}
                 dridge-dev.grnoc.iu.edu: {}
@@ -74,11 +73,13 @@ all:
                 jdmcnama-dev.grnoc.iu.edu: {}
                 jdratlif-dev7.grnoc.iu.edu: {}
                 jdratlif-dev8.bldc.grnoc.iu.edu: {}
+                jdratlif-dev8.grnoc.iu.edu: {}
                 jonstout-dev.grnoc.iu.edu: {}
                 jonstout-dev7.grnoc.iu.edu: {}
                 jorcbrow-dev.grnoc.iu.edu: {}
-                juslangl-dev8.grnoc.iu.edu: {}
+                juslangl-dev.grnoc.iu.edu: {}
                 ksubram-dev.grnoc.iu.edu: {}
+                ksubram-dev8.grnoc.iu.edu: {}
                 lghanta-dev.grnoc.iu.edu: {}
                 mbalas-dev.grnoc.iu.edu: {}
                 njuers-dev.grnoc.iu.edu: {}
@@ -92,6 +93,7 @@ all:
                 rainier-dev.grnoc.iu.edu: {}
                 saikappa-dev.grnoc.iu.edu: {}
                 saikappa-dev7.grnoc.iu.edu: {}
+                saikappa-dev8.grnoc.iu.edu: {}
                 salapat-dev.grnoc.iu.edu: {}
                 sschonem-dev7.grnoc.iu.edu: {}
                 ttwang-dev8.grnoc.iu.edu: {}
@@ -124,6 +126,7 @@ all:
                 bastion-stage.grnoc.iu.edu: {}
                 build-new.grnoc.iu.edu: {}
                 build-stage.grnoc.iu.edu: {}
+                build.grnoc.iu.edu: {}
                 cobbler3.grnoc.iu.edu: {}
                 cobbler33.grnoc.iu.edu: {}
                 compute.cloud.bldc.grnoc.iu.edu: {}
@@ -157,7 +160,7 @@ all:
                 cpe.desales.light.globalnoc.iu.edu: {}
                 cpe.ivytech.light.globalnoc.iu.edu: {}
                 cpe.sori.light.globalnoc.iu.edu: {}
-                daripley-dev.grnoc.iu.edu: {}
+                daripley-dev8.grnoc.iu.edu: {}
                 deploy.cloud.bldc.grnoc.iu.edu: {}
                 deploy.cloud.ctc.grnoc.iu.edu: {}
                 dev-01-omnisoc.grnoc.iu.edu: {}
@@ -229,7 +232,6 @@ all:
                 ldap.ctc.net.cen.ct.gov: {}
                 ldap.ctc.oshean.org: {}
                 ldap.noc.onenet.net: {}
-                leap-stage.grnoc.iu.edu: {}
                 linkoregon-syslog.grnoc.iu.edu: {}
                 luke-cs.bldc.grnoc.iu.edu: {}
                 luke-cs.ctc.grnoc.iu.edu: {}
@@ -271,6 +273,7 @@ all:
                 otp-dev.grnoc.iu.edu: {}
                 otp.areon.net: {}
                 proxy.grnoc.iu.edu: {}
+                puppet.grnoc.iu.edu: {}
                 puppet7.grnoc.iu.edu: {}
                 radius-dev-ol8.grnoc.iu.edu: {}
                 radius-dev.grnoc.iu.edu: {}
@@ -293,7 +296,6 @@ all:
                 scanner-01.grnoc.iu.edu: {}
                 scanner-noaa.grnoc.iu.edu: {}
                 siem.bldc.grnoc.iu.edu: {}
-                skip-stage.grnoc.iu.edu: {}
                 sms10-dev.grnoc.iu.edu: {}
                 spare12.bldc.grnoc.iu.edu: {}
                 spare13.ctc.grnoc.iu.edu: {}
@@ -383,7 +385,6 @@ all:
                 csacco-dev.grnoc.iu.edu: {}
                 csacco-psbuild-dev.grnoc.iu.edu: {}
                 davihard-dev.grnoc.iu.edu: {}
-                davihard-dev1.grnoc.iu.edu: {}
                 db-01.globalnoc.mcnc.org: {}
                 db-01.grnoc.iu.edu: {}
                 db-02.globalnoc.mcnc.org: {}
@@ -418,7 +419,7 @@ all:
                 dc.ctc.net.uits.iu.edu: {}
                 dc.ctc.oshean.org: {}
                 iumon-new.bldc.grnoc.iu.edu: {}
-                juslangl-dev8.grnoc.iu.edu: {}
+                juslangl-dev.grnoc.iu.edu: {}
                 light-db.light.bldc.globalnoc.iu.edu: {}
                 light-db.light.ctc.globalnoc.iu.edu: {}
                 mon-01.globalnoc.mcnc.org: {}
@@ -465,6 +466,7 @@ all:
                 rancid.noc.onenet.net: {}
                 saikappa-dev.grnoc.iu.edu: {}
                 saikappa-dev7.grnoc.iu.edu: {}
+                saikappa-dev8.grnoc.iu.edu: {}
                 swr.grnoc.iu.edu: {}
                 tick-indy.globalnoc.iu.edu: {}
             nac_grnoc:
@@ -488,6 +490,7 @@ all:
                 bgp-es-dev.grnoc.iu.edu: {}
                 bgp-report-dev.grnoc.iu.edu: {}
                 bsiefers-dev-7.grnoc.iu.edu: {}
+                bsiefers-dev-ol8.grnoc.iu.edu: {}
                 camarend-dev.grnoc.iu.edu: {}
                 carto-01.globalnoc.mcnc.org: {}
                 carto-test-01.globalnoc.mcnc.org: {}
@@ -701,6 +704,7 @@ all:
                 test.star.grnoc.iu.edu: {}
                 tstat.unet.ucar.edu: {}
                 veorlows-dev.grnoc.iu.edu: {}
+                veorlows.grnoc.iu.edu: {}
                 vm.bldc.grnoc.iu.edu: {}
                 worldview.grnoc.iu.edu: {}
                 zckaster-dev.grnoc.iu.edu: {}
@@ -712,6 +716,7 @@ all:
                 cpe.jdratlif.light.globalnoc.iu.edu: {}
                 jdratlif-dev7.grnoc.iu.edu: {}
                 jdratlif-dev8.bldc.grnoc.iu.edu: {}
+                jdratlif-dev8.grnoc.iu.edu: {}
                 light-cpe-test.grnoc.iu.edu: {}
             sms_grnoc:
               hosts:
@@ -726,6 +731,7 @@ all:
                 kpi-metrics-new.bldc.grnoc.iu.edu: {}
                 kpi-metrics.bldc.grnoc.iu.edu: {}
                 ksubram-dev.grnoc.iu.edu: {}
+                ksubram-dev8.grnoc.iu.edu: {}
                 lghanta-dev.grnoc.iu.edu: {}
                 lightweight-db-dev.grnoc.iu.edu: {}
                 nmahade-dev.grnoc.iu.edu: {}
@@ -890,6 +896,7 @@ all:
                 otp.ctc.nwave.noaa.gov: {}
                 puppet.bldc.nwave.noaa.gov: {}
                 puppet7.bldc.nwave.noaa.gov: {}
+                puppet7.nwave.noaa.gov: {}
                 radius.bldc.nwave.noaa.gov: {}
                 radius.boul.nwave.noaa.gov: {}
                 radius.ctc.nwave.noaa.gov: {}
@@ -1096,6 +1103,8 @@ all:
               hosts:
                 build-new.grnoc.iu.edu: {}
                 build-stage.grnoc.iu.edu: {}
+                build.grnoc.iu.edu: {}
+                puppet.grnoc.iu.edu: {}
                 puppet7.grnoc.iu.edu: {}
             puppet_i2:
               hosts: {}
@@ -1103,6 +1112,7 @@ all:
               hosts:
                 puppet.bldc.nwave.noaa.gov: {}
                 puppet7.bldc.nwave.noaa.gov: {}
+                puppet7.nwave.noaa.gov: {}
             puppet_scinet:
               hosts: {}
         scinet:

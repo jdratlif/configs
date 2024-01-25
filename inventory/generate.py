@@ -20,6 +20,7 @@ def main():
 
     groups = config.get("groups", {})
     other_hosts = config.get("other", {})
+    aliases = config.get("aliases", {})
 
     cloud_hosts = dict()
     cloud_vars = dict()
@@ -108,7 +109,12 @@ def main():
 
         # add each team under the cloud in globalnoc hosts
         for team in teams:
-            team_host_list = cloud_hosts[cloud][team].keys()
+            team_host_list = list(cloud_hosts[cloud][team].keys())
+
+            for alias in aliases:
+                if alias in team_host_list:
+                    team_host_list.extend(aliases[alias])
+
             globalnoc_hosts[cloud]["children"][f"{team}_{cloud}"] = {
                 "hosts": {host: {} for host in team_host_list}
             }

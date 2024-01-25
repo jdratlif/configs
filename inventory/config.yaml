@@ -1,4 +1,14 @@
 ---
+# additional names outside the official name in the DB to assign to a host
+aliases:
+  build-new.grnoc.iu.edu:
+    - build.grnoc.iu.edu
+    - puppet.grnoc.iu.edu
+  jdratlif-dev8.bldc.grnoc.iu.edu:
+    - jdratlif-dev8.grnoc.iu.edu
+  puppet7.bldc.nwave.noaa.gov:
+    - puppet7.nwave.noaa.gov
+
 # groups to associate withh host patterns
 groups:
   awx:
