@@ -251,9 +251,18 @@ exec_always {{ config_home_dir }}/.local/bin/clamshell.sh
 # Custom keybinds
 #
 
-# lock screen with mod+l
+    # lock screen with mod+l
     bindsym $mod+l exec swaylock \
         --ignore-empty-password --show-failed-attempts -c 1e1e1e
+
+    # Capture the currently active output to clipboard
+    bindsym Shift+Print exec grimshot copy output
+
+    # Capture the currently active window to clipboard
+    bindsym Shift+Alt+Print exec grimshot copy active
+
+    # Select and capture a custom rectangular area to clipboard
+    bindsym Shift+Ctrl+Print exec grimshot copy area
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
