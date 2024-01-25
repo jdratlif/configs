@@ -104,7 +104,7 @@
 # enable clamshell mode
     bindswitch --reload --locked lid:on output $laptop disable
     bindswitch --reload --locked lid:off output $laptop enable
-exec_always {{ config_home_dir }}/.local/bin/clamshell.sh
+    exec_always {{ config_home_dir }}/.local/bin/clamshell.sh
 
 # touchpad config
 # disable while typing / tap to touch / three finger middle click
@@ -116,7 +116,7 @@ exec_always {{ config_home_dir }}/.local/bin/clamshell.sh
 
     input "type:keyboard" {
         xkb_numlock enabled
-}
+    }
 
 ### Key bindings
 
@@ -258,8 +258,7 @@ exec_always {{ config_home_dir }}/.local/bin/clamshell.sh
 #
 
     # lock screen with mod+l
-    bindsym $mod+l exec swaylock \
-        --ignore-empty-password --show-failed-attempts -c 1e1e1e
+    bindsym --release $mod+Shift+l exec loginctl lock-session
 
     # Capture the currently active output to clipboard
     bindsym Shift+Print exec grimshot copy output
