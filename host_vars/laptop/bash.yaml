@@ -32,6 +32,9 @@ vpn_hosts:
   # GHE
   - github.nwave.noaa.gov
 
+  # Kubernetes
+  - vrrp.k3s.grnoc.iu.edu
+
   # IU IPAM
   - ipam-bl.uits.iu.edu
   - ipam-test-bl.uits.iu.edu
