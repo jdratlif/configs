@@ -3,7 +3,10 @@ ssh_host_configs:
   xaiver:
     Hostname: xaiver.technoplaza.net
     Port: 5122
-    LocalForward: 13389 192.168.1.6:3389
+    LocalForward:
+      - 13389 192.168.1.6:3389
+      - 3128 192.168.1.4:3128
+      - 8006 192.168.1.4:8006
 
 ssh_vscode_hosts:
   jdratlif-dev7.grnoc.iu.edu:
