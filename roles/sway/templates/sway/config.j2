@@ -22,8 +22,14 @@
 # Displays
 
     set $laptop eDP-1
+
+    # home displays
     set $mon1 DP-3
     set $mon2 DP-4
+
+    # work dell monitors
+    # set $mon1 DP-2
+    # set $mon2 DP-3
 
 # Workspace names
 
@@ -100,6 +106,10 @@
 
 # scale laptop's tiny display by 33%
     output $laptop scale 1.33
+
+# set position of Dell work monitors
+    output "Dell Inc. DELL U2722DE 2NR7GH3" pos 0 0
+    output "Dell Inc. DELL U2722DE 4SR7GH3" pos 2560 0
 
 # enable clamshell mode
     bindswitch --reload --locked lid:on output $laptop disable
