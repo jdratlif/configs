@@ -1,4 +1,5 @@
-color=000000
-daemonize
+color=1e1e1e
 ignore-empty-password
+image=/usr/share/backgrounds/default.png
+scaling=fill
 show-failed-attempts
