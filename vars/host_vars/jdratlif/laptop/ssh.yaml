@@ -19,5 +19,3 @@ ssh_vscode_hosts:
     port: 20001
   puppet7.bldc.nwave.noaa.gov:
     port: 20002
-  cobbler.bldc.nwave.noaa.gov:
-    port: 20003
