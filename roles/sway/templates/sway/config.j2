@@ -21,15 +21,16 @@
 
 # Displays
 
+    # laptop display
     set $laptop eDP-1
 
-    # home displays
-    set $mon1 DP-3
-    set $mon2 DP-4
+    # dell displays
+    set $dellMon1 "Dell Inc. DELL U2722DE 2NR7GH3"
+    set $dellMon2 "Dell Inc. DELL U2722DE 4SR7GH3"
 
-    # work dell monitors
-    # set $mon1 DP-2
-    # set $mon2 DP-3
+    # set monitor variables
+    set $mon1 {% if work %}$dellMon1{% else %}DP-3{% endif +%}
+    set $mon2 {% if work %}$dellMon2{% else %}DP-4{% endif +%}
 
 # Workspace names
 
@@ -37,7 +38,7 @@
     set $ws2 2: Scratch
     set $ws3 3: Scratch
     set $ws4 4: Scratch
-    set $ws5 5: Slack / OneNote / Terminals
+    set $ws5 5: Slack / Notes / Terminals
     set $ws6 6: Firefox / Mail
     set $ws7 7: VS Code
     set $ws8 8: Scratch
@@ -69,11 +70,13 @@
     workspace $ws9 output $mon2
     workspace $ws10 output $mon2
 
-    # main left monitor (slack/citrix/terminals)
+    # main left workspace (joplin/remote-viewer/citrix/slack)
+    assign [class="^Joplin$"] $ws5
+    assign [app_id="remote-viewer"] $ws5
     assign [class="^Slack$"] $ws5
     assign [class="^Wfica$"] $ws5
 
-    # main right monitor (firefox/email)
+    # main right workspace (firefox/email)
     assign [app_id="^firefox$"] $ws6
     assign [app_id="^evolution$"] $ws6
     assign [class="^thunderbird"] $ws6
@@ -108,8 +111,8 @@
     output $laptop scale 1.33
 
 # set position of Dell work monitors
-    output "Dell Inc. DELL U2722DE 2NR7GH3" pos 0 0
-    output "Dell Inc. DELL U2722DE 4SR7GH3" pos 2560 0
+    output $dellMon1 pos 0 0
+    output $dellMon2 pos 2560 0
 
 # enable clamshell mode
     bindswitch --reload --locked lid:on output $laptop disable
