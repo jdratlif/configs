@@ -11,12 +11,14 @@ ssh_host_configs:
 ssh_vscode_hosts:
   jdratlif-dev7.grnoc.iu.edu:
     port: 10001
+  jdratlif-dev8.bldc.grnoc.iu.edu:
+    Port: 10002
   awx.grnoc.iu.edu:
-    port: 10002
-  puppet.grnoc.iu.edu:
     port: 10003
-  puppet7.grnoc.iu.edu:
+  puppet.grnoc.iu.edu:
     port: 10004
+  puppet7.grnoc.iu.edu:
+    port: 10005
   awx.bldc.nwave.noaa.gov:
     port: 20001
   puppet.nwave.noaa.gov:
