@@ -1,5 +1,6 @@
 ---
 bash_aliases: {}
+bash_docker: false
 bash_exports: {}
 bash_functions: {}
 bash_path_pre: []

@@ -4,8 +4,8 @@
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
-
 {% if bash_ssh_agent %}
+
 if [ -z "$SSH_AUTH_SOCK" ]; then
     # Check for a currently running instance of the agent
     pgrep -u $(whoami) ssh-agent > /dev/null
@@ -17,4 +17,8 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
 
     eval `cat ~/.ssh/ssh-agent`
 fi
+{% endif %}
+{% if bash_docker %}
+
+exec newgrp docker
 {% endif %}
