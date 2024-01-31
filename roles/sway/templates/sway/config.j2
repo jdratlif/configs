@@ -1,25 +1,79 @@
 ### variable definitions
 
-# Use Alt for mod key
-    set $mod Mod1
+# Set modifier key
+    set $mod {{ modifier }}
 
-# Default terminal = foot
-    set $term foot
+# Set default terminal
+    set $term {{ terminal }}
 
-# sway menu
+# Set menu command
 
     set $rofi_cmd rofi -terminal '$term'
-    set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+    set $menu {{ menu_cmd }}
 
-# lock / screen timeouts
+# Set lock / screen timeouts
 
     # 20 minute lock timeout
-    set $lock_timeout 1200
+    set $lock_timeout {{ lock_timeout }}
 
     # 10 minutes after lock timeout, turn the displays off
-    set $screen_timeout 600
+    set $screen_timeout {{ screen_timeout }}
 
-# Displays
+### global configuration
+
+# default font
+    font pango:{{ font }}
+
+# remove window titlebars
+    default_border {{ border }}
+
+# window gaps
+    gaps inner {{ gaps.inner }}
+    gaps outer {{ gaps.outer }}
+
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+    output * bg /usr/share/backgrounds/default.png fill
+
+### input config
+
+# touchpad config
+    # disable while typing / tap to touch / three finger middle click
+    input "type:touchpad" {
+        dwt enabled
+        tap enabled
+        middle_emulation enabled
+    }
+
+    input "type:keyboard" {
+        xkb_numlock enabled
+    }
+
+# Workspace names
+
+    set $ws1 1: {{ workspaces.1 }}
+    set $ws2 2: {{ workspaces.2 }}
+    set $ws3 3: {{ workspaces.3 }}
+    set $ws4 4: {{ workspaces.4 }}
+    set $ws5 5: {{ workspaces.5 }}
+    set $ws6 6: {{ workspaces.6 }}
+    set $ws7 7: {{ workspaces.7 }}
+    set $ws8 8: {{ workspaces.8 }}
+    set $ws9 9: {{ workspaces.9 }}
+    set $ws10 10: {{ workspaces.10 }}
+    set $wsF1 F1: {{ workspaces.F1 }}
+    set $wsF2 F2: {{ workspaces.F2 }}
+    set $wsF3 F3: {{ workspaces.F3 }}
+    set $wsF4 F4: {{ workspaces.F4 }}
+    set $wsF5 F5: {{ workspaces.F5 }}
+    set $wsF6 F6: {{ workspaces.F6 }}
+    set $wsF7 F7: {{ workspaces.F7 }}
+    set $wsF8 F8: {{ workspaces.F8 }}
+    set $wsF9 F9: {{ workspaces.F9 }}
+    set $wsF10 F10: {{ workspaces.F10 }}
+    set $wsF11 F11: {{ workspaces.F11 }}
+    set $wsF12 F12: {{ workspaces.F12 }}
+
+# Monitors, Workspace, and Application Bindings
 
     # laptop display
     set $laptop eDP-1
@@ -31,33 +85,6 @@
     # set monitor variables
     set $mon1 {% if work %}$dellMon1{% else %}DP-3{% endif +%}
     set $mon2 {% if work %}$dellMon2{% else %}DP-4{% endif +%}
-
-# Workspace names
-
-    set $ws1 1: Scratch
-    set $ws2 2: Scratch
-    set $ws3 3: Scratch
-    set $ws4 4: Scratch
-    set $ws5 5: Slack / Notes / Terminals
-    set $ws6 6: Firefox / Mail
-    set $ws7 7: VS Code
-    set $ws8 8: Scratch
-    set $ws9 9: Scratch
-    set $ws10 10:Meetings
-    set $wsF1 F1: Scratch
-    set $wsF2 F2: Scratch
-    set $wsF3 F3: Scratch
-    set $wsF4 F4: Scratch
-    set $wsF5 F5: Scratch
-    set $wsF6 F6: Scratch
-    set $wsF7 F7: Scratch
-    set $wsF8 F8: Scratch
-    set $wsF9 F9: Scratch
-    set $wsF10 F10: Scratch
-    set $wsF11 F11: Scratch
-    set $wsF12 F12: Scratch
-
-### Workspace bindings
 
     workspace $ws1 output $mon1
     workspace $ws2 output $mon1
@@ -92,24 +119,6 @@
     assign [class="^zoom$"] $ws10
     for_window [class="^zoom$" title="Settings"] floating enable, border pixel
 
-### global configuration
-
-# default font
-    font pango:Source Code Pro Medium 16
-
-# remove window titlebars
-    default_border pixel 2
-
-# window gaps
-    gaps inner 6
-    gaps outer 2
-
-### Output configuration
-
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# Requires: desktop-backgrounds-compat, swaybg
-    output * bg /usr/share/backgrounds/default.png fill
-
 # scale laptop's tiny display by 33%
     output $laptop scale 1.33
 
@@ -121,18 +130,6 @@
     bindswitch --reload --locked lid:on output $laptop disable
     bindswitch --reload --locked lid:off output $laptop enable
     exec_always {{ config_home_dir }}/.local/bin/clamshell.sh
-
-# touchpad config
-# disable while typing / tap to touch / three finger middle click
-    input "type:touchpad" {
-        dwt enabled
-        tap enabled
-        middle_emulation enabled
-    }
-
-    input "type:keyboard" {
-        xkb_numlock enabled
-    }
 
 ### Key bindings
 

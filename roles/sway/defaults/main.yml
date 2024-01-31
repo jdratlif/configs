@@ -1,2 +1,40 @@
 ---
 work: false
+
+modifier: Mod1 # Alt
+terminal: foot
+menu_cmd: $rofi_cmd -show combi -combi-modes drun#run -modes combi
+
+lock_timeout: 1200 # 20 minutes
+screen_timeout: 600 # 10 minutes AFTER lock_timeout
+
+font: Source Code Pro Medium 16
+border: pixel
+
+gaps:
+  inner: 6
+  outer: 2
+
+workspaces:
+  1: &default_workspace_name Scratch
+  2: *default_workspace_name
+  3: *default_workspace_name
+  4: *default_workspace_name
+  5: Slack / Notes / Terminal
+  6: Firefox / E-Mail
+  7: VS Code
+  8: *default_workspace_name
+  9: *default_workspace_name
+  10: Zoom
+  F1: *default_workspace_name
+  F2: *default_workspace_name
+  F3: *default_workspace_name
+  F4: *default_workspace_name
+  F5: *default_workspace_name
+  F6: *default_workspace_name
+  F7: *default_workspace_name
+  F8: *default_workspace_name
+  F9: *default_workspace_name
+  F10: *default_workspace_name
+  F11: *default_workspace_name
+  F12: *default_workspace_name
