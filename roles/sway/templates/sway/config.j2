@@ -307,14 +307,14 @@
 
 ### autostart applications
 
-workspace 7
+workspace $ws7
 exec /usr/share/code/code
 
-workspace 6
+workspace $ws6
 exec evolution
 exec firefox
 
-workspace 5
+workspace $ws5
 exec foot
 exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=com.slack.Slack --file-forwarding com.slack.Slack
 # Don't autostart Joplin -- it really needs pCloud to be initialized first, and we can't guarantee that here
