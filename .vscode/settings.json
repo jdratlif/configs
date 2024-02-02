@@ -1,4 +1,3 @@
 {
-  "ansible.python.interpreterPath": ".venv/bin/python3",
-  "python.defaultInterpreterPath": ".venv/bin/python3"
+  "ansible.python.interpreterPath": "/usr/bin/python3"
 }
