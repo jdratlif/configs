@@ -2,7 +2,15 @@
 - name: Copy clamshell.sh script
   ansible.builtin.copy:
     src: clamshell.sh
-    dest: "{{ config_home_dir }}/.local/bin/clamshell.sh"
+    dest: "{{ config_home_dir }}/.local/bin/"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0755"
+
+- name: Copy i3-toolwait.py script
+  ansible.builtin.copy:
+    src: i3-toolwait.py
+    dest: "{{ config_home_dir }}/.local/bin/"
     owner: "{{ config_user }}"
     group: "{{ config_group }}"
     mode: "0755"
