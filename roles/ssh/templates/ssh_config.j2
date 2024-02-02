@@ -29,28 +29,31 @@ Host {{ host }}
 ################################################################################
 # bastion hosts
 
-Host {% if ssh_grnoc_leap %}grnoc {% endif %}leap
+Host {% if ssh_bastion_primary.grnoc == 'leap' %}grnoc {% endif %}leap
     HostName leap.grnoc.iu.edu
 
-Host {% if not ssh_grnoc_leap %}grnoc {% endif %}skip
+Host {% if ssh_bastion_primary.grnoc == 'skip' %}grnoc {% endif %}skip
     HostName skip.grnoc.iu.edu
 
-Host i2 i2-bldc
+Host {% if ssh_bastion_primary.grnoc == 'jump' %}grnoc {% endif %}jump
+    HostName jump.grnoc.iu.edu
+
+Host {% if ssh_bastion_primary.i2 == 'bldc' %}i2 {% endif %}i2-bldc
     HostName bastion.bldc.net.internet2.edu
 
-Host i2-ctc
+Host {% if ssh_bastion_primary.i2 == 'ctc' %}i2 {% endif %}i2-ctc
     HostName bastion.ctc.net.internet2.edu
 
-Host noaa noaa-bldc
+Host {% if ssh_bastion_primary.noaa == 'bldc' %}noaa {% endif %} noaa-bldc
     HostName bastion.bldc.nwave.noaa.gov
 
-Host noaa-ctc
+Host {% if ssh_bastion_primary.noaa == 'ctc' %}noaa {% endif %}noaa-ctc
     HostName bastion.ctc.nwave.noaa.gov
 
-Host scinet scinet-bldc
+Host {% if ssh_bastion_primary.scinet == 'bldc' %}scinet {% endif %}scinet-bldc
     HostName bastion.bldc.scinet.usda.gov
 
-Host scinet-ctc
+Host {% if ssh_bastion_primary.scinet == 'ctc' %}scinet {% endif %}scinet-ctc
     HostName bastion.ctc.scinet.usda.gov
 
 ################################################################################
@@ -67,9 +70,16 @@ Host grnoc leap skip
 ################################################################################
 # Port forwarding for VS Code on Windows
 
-Host grnoc leap skip
+Host grnoc leap skip jump
         {%- for host in ssh_vscode_hosts %}
-            {%- if not host.endswith('.nwave.noaa.gov') +%}
+            {%- if host.endswith('.iu.edu') +%}
+    LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
+            {%- endif %}
+        {% endfor +%}
+
+Host i2 i2-bldc i2-ctc
+        {%- for host in ssh_vscode_hosts %}
+            {%- if host.endswith('.net.internet2.edu') +%}
     LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
             {%- endif %}
         {% endfor +%}
@@ -80,12 +90,19 @@ Host noaa noaa-bldc noaa-ctc
     LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
             {%- endif %}
         {% endfor +%}
+
+Host scinet scinet-bldc scinet-ctc
+        {%- for host in ssh_vscode_hosts %}
+            {%- if host.endswith('.scinet.usda.gov') +%}
+    LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
+            {%- endif %}
+        {% endfor +%}
     {% else +%}
 
 ################################################################################
 # SSH Session Multiplexing for bastion hosts
 
-Host grnoc leap skip i2 i2-bldc i2-ctc noaa noaa-bldc noaa-ctc scinet scinet-bldc scinet-ctc
+Host grnoc leap skip jump i2 i2-bldc i2-ctc noaa noaa-bldc noaa-ctc scinet scinet-bldc scinet-ctc
     ControlMaster auto
     ControlPath ~/.ssh/cp-%r@%h:%p
     ControlPersist 5m
@@ -93,7 +110,7 @@ Host grnoc leap skip i2 i2-bldc i2-ctc noaa noaa-bldc noaa-ctc scinet scinet-bld
 ################################################################################
 # Bastion proxying by hostname
 
-Match originalhost "*.grnoc.iu.edu,*.globalnoc.iu.edu,!leap.grnoc.iu.edu,!skip.grnoc.iu.edu"
+Match originalhost "*.grnoc.iu.edu,*.globalnoc.iu.edu,!leap.grnoc.iu.edu,!skip.grnoc.iu.edu,!jump.grnoc.iu.edu"
     ProxyJump grnoc
 
 Match originalhost "*.net.internet2.edu,!bastion.bldc.net.internet2.edu,!bastion.ctc.net.internet2.edu"
@@ -109,7 +126,7 @@ Match originalhost "*.scinet.usda.gov,!bastion.*.scinet.usda.gov"
 ################################################################################
 # SOCKS proxies
 
-Host grnoc leap skip
+Host grnoc leap skip jump
     DynamicForward 8080
 
 Host i2 i2-bldc i2-ctc

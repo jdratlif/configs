@@ -1,8 +1,13 @@
 ---
 ssh_authorized_keys: []
 ssh_bastion_config: false
+ssh_bastion_primary:
+  grnoc: jump
+  i2: bldc
+  noaa: bldc
+  scinet: bldc
 ssh_canonical_dots: 2
-ssh_grnoc_leap: true
+
 ssh_host_configs: {}
 
 ssh_host_common_configs:
