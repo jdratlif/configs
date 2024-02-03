@@ -1,0 +1,39 @@
+---
+file_manager: thunar
+idle_timeout:
+  lock: 600 # 10 minutes
+  screen: 1200 # 20 minutes AFTER lock_timeout
+menu: rofi -terminal '$term' -show combi -combi-modes drun#run -modes combi
+modifier: Alt
+monitors:
+  home:
+    - DP-3
+    - DP-4
+  work:
+    - Dell Inc. DELL U2722DE 2NR7GH3
+    - Dell Inc. DELL U2722DE 4SR7GH3
+terminal: foot
+work: false
+workspaces:
+  - "1: Scratch"
+  - "2: Scratch"
+  - "3: Scratch"
+  - "4: Scratch"
+  - "5: Slack - Notes - Terminal"
+  - "6: Firefox - E-Mail"
+  - "7: VS Code"
+  - "8: Scratch"
+  - "9: Scratch"
+  - "10: Zoom"
+  - "F1: Scratch"
+  - "F2: Scratch"
+  - "F3: Scratch"
+  - "F4: Scratch"
+  - "F5: Scratch"
+  - "F6: Scratch"
+  - "F7: Scratch"
+  - "F8: Scratch"
+  - "F9: Scratch"
+  - "F10: Scratch"
+  - "F11: Scratch"
+  - "F12: Scratch"

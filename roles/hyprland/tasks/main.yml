@@ -1,0 +1,44 @@
+---
+- name: Create config directories
+  ansible.builtin.file:
+    state: directory
+    path: "{{ config_home_dir }}/.config/{{ item }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    recurse: true
+  loop:
+    - hypr
+    - swaylock
+    - waybar
+
+- name: Copy waybar configs
+  ansible.builtin.copy:
+    src: "waybar/{{ item }}"
+    dest: "{{ config_home_dir }}/.config/waybar/{{ item }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
+  loop:
+    - config
+    - style.css
+
+- name: Template idle.sh
+  ansible.builtin.template:
+    src: hypridle.sh
+    dest: "{{ config_home_dir }}/.local/bin/hypridle.sh"
+    mode: "0755"
+
+- name: Copy swaylock config
+  ansible.builtin.copy:
+    src: swaylock/config
+    dest: "{{ config_home_dir }}/.config/swaylock/config"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
+
+- name: Template hyprland.conf
+  ansible.builtin.template:
+    src: hyprland.conf
+    dest: "{{ config_home_dir }}/.config/hypr/hyprland.conf"
+    backup: true
+    mode: "0644"
