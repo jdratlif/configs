@@ -62,6 +62,14 @@
             - use_sway | default(false)
             - config_os_family != "Darwin"
 
+        - name: Setup hyprland config
+          ansible.builtin.include_role:
+            name: hyprland
+          when:
+            - '"hyprland" in task_list'
+            - use_hyprland | default(false)
+            - config_os_family != "Darwin"
+
         - name: Add termcap files
           ansible.builtin.include_role:
             name: termcap
