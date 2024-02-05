@@ -10,8 +10,8 @@ monitors:
     - DP-3
     - DP-4
   work:
-    - Dell Inc. DELL U2722DE 2NR7GH3
-    - Dell Inc. DELL U2722DE 4SR7GH3
+    - desc:Dell Inc. DELL U2722DE 2NR7GH3
+    - desc:Dell Inc. DELL U2722DE 4SR7GH3
 terminal: foot
 work: false
 workspaces:
