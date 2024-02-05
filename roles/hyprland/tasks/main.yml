@@ -22,10 +22,20 @@
     - config
     - style.css
 
+- name: Copy clamshell.sh script
+  ansible.builtin.copy:
+    src: clamshell.sh
+    dest: "{{ config_home_dir }}/.local/bin"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0755"
+
 - name: Template idle.sh
   ansible.builtin.template:
     src: hypridle.sh
     dest: "{{ config_home_dir }}/.local/bin/hypridle.sh"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
     mode: "0755"
 
 - name: Copy swaylock config
@@ -40,5 +50,7 @@
   ansible.builtin.template:
     src: hyprland.conf
     dest: "{{ config_home_dir }}/.config/hypr/hyprland.conf"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
     backup: true
     mode: "0644"
