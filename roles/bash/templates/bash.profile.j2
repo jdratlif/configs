@@ -18,7 +18,3 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
     eval `cat ~/.ssh/ssh-agent`
 fi
 {% endif %}
-{% if bash_docker %}
-
-exec newgrp docker
-{% endif %}
