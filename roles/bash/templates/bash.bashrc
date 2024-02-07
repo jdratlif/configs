@@ -45,7 +45,7 @@ my_prompt() {
         PS1="(${GREEN}"
     fi
 
-    PS1="${PS1}${exit_code}${RESET}) ${YELLOW}\H${RESET} [${BLUE}\w${RESET}]"
+    PS1="${PS1}${exit_code}${RESET}) ${YELLOW}$(hostname -f)${RESET} [${BLUE}\w${RESET}]"
 
     if [[ ! -z $GIT_BRANCH ]]; then
         PS1="${PS1} (${CYAN}${GIT_BRANCH}${RESET})"

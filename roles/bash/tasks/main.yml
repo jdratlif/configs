@@ -1,7 +1,7 @@
 ---
 - name: Template bash_profile
   ansible.builtin.template:
-    src: bash.profile.j2
+    src: bash.profile
     backup: true
     dest: "{{ config_home_dir }}/.bash_profile"
     owner: "{{ config_user }}"
@@ -11,7 +11,7 @@
 
 - name: Template bashrc/zshrc
   ansible.builtin.template:
-    src: bashrc.j2
+    src: bash.bashrc
     backup: true
     dest: "{{ config_home_dir }}/{{ bash_rc_file }}"
     owner: "{{ config_user }}"
