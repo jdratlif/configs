@@ -30,14 +30,6 @@
     group: "{{ config_group }}"
     mode: "0755"
 
-- name: Template idle.sh
-  ansible.builtin.template:
-    src: hypridle.sh
-    dest: "{{ config_home_dir }}/.local/bin/hypridle.sh"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0755"
-
 - name: Copy swaylock config
   ansible.builtin.copy:
     src: swaylock/config
@@ -46,9 +38,17 @@
     group: "{{ config_group }}"
     mode: "0644"
 
+- name: Template idle.sh
+  ansible.builtin.template:
+    src: hypridle.sh.j2
+    dest: "{{ config_home_dir }}/.local/bin/hypridle.sh"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0755"
+
 - name: Template hyprland.conf
   ansible.builtin.template:
-    src: hyprland.conf
+    src: hyprland.conf.j2
     dest: "{{ config_home_dir }}/.config/hypr/hyprland.conf"
     owner: "{{ config_user }}"
     group: "{{ config_group }}"
