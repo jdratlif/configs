@@ -22,6 +22,7 @@
       "extensions": [
         "redhat.ansible",
         "dhoeric.ansible-vault",
+        "samuelcolvin.jinjahtml",
         "mhutchie.git-graph",
         "eamodio.gitlens",
         "oderwat.indent-rainbow",
