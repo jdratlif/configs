@@ -100,14 +100,6 @@ Host scinet scinet-bldc scinet-ctc
     {% else +%}
 
 ################################################################################
-# SSH Session Multiplexing for bastion hosts
-
-Host grnoc leap skip jump i2 i2-bldc i2-ctc noaa noaa-bldc noaa-ctc scinet scinet-bldc scinet-ctc
-    ControlMaster auto
-    ControlPath ~/.ssh/cp-%r@%h:%p
-    ControlPersist 5m
-
-################################################################################
 # Bastion proxying by hostname
 
 Match originalhost "*.grnoc.iu.edu,*.globalnoc.iu.edu,!leap.grnoc.iu.edu,!skip.grnoc.iu.edu,!jump.grnoc.iu.edu"
