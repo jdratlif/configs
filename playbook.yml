@@ -75,7 +75,7 @@
             name: termcap
           when:
             - '"termcap" in task_list'
-            - use_termcap | default(false)
+            - use_termcap | default(true)
 
         - name: Setup tmux config
           ansible.builtin.include_role:

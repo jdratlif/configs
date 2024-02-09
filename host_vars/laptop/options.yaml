@@ -1,2 +1,3 @@
 ---
+use_termcap: false
 use_tmux: true
