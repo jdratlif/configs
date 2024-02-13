@@ -165,17 +165,18 @@
   bindsym Ctrl+Print exec --no-startup-id "maim -i $(xdotool getactivewindow) ~/Pictures/$(date +%s).png"
   bindsym Ctrl+Shift+Print exec --no-startup-id "maim -s ~/Pictures/$(date +%s).png"
 
+### Status Bar Config
 
-bar {
-  colors {
-    background #181818
+  bar {
+    colors {
+      background #181818
+    }
+
+    position top
+    status_command ~/venvs/bumblebee/bin/bumblebee-status \
+      -m title pulseout indicator cpu load memory battery datetime \
+      -p pulseout.percent_change="5%" \
+      -p pulseout.right-click="pavucontrol" \
+      -p datetime.format="%a %b %d %I:%M %p" \
+      -t moonlight-powerline
   }
-
-  position top
-  status_command ~/venvs/bumblebee/bin/bumblebee-status \
-    -m title pulseout indicator cpu load memory battery datetime \
-    -p pulseout.percent_change="5%" \
-    -p pulseout.right-click="pavucontrol" \
-    -p datetime.format="%a %b %d %I:%M %p" \
-    -t moonlight-powerline
-}
