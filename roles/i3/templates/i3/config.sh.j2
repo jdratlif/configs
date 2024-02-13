@@ -61,7 +61,7 @@
   exec --no-startup-id nm-applet
   exec --no-startup-id volumeicon
   exec --no-startup-id ~/.screenlayout/laptop.sh
-  exec --no-startup-id feh --bg-fill /usr/share/backgrounds/default.png
+  exec --no-startup-id feh --bg-fill {{ i3_background }}
   exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
   exec --no-startup-id numlockx on
   exec_always --no-startup-id ~/.local/bin/autotiling
@@ -77,9 +77,12 @@
 
   assign [class="^Code$"] $ws7
 
+  assign [class="^zoom$"] $ws10
+
   for_window [class="^Pavucontrol$"] floating enable
   for_window [class="^Nm-connection-editor$"] floating enable
   for_window [class="^Evolution$" title="^Compose Message$"] floating enable
+  for_window [class="^zoom$" title="^Settings$"] floating enable
 
 ### Keybindings
 

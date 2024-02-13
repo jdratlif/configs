@@ -1,18 +1,20 @@
 ---
-i3_modifier: Mod1 # Alt
-i3_file_manager: thunar
-i3_terminal: i3-sensible-terminal
-
-i3_font: Source Code Pro Medium 12
+i3_background: ~/Pictures/bellagio1.jpg
 i3_border: pixel 2
+i3_font: Source Code Pro Medium 12
 
 i3_gaps:
   inner: 6
   outer: 2
 
+i3_modifier: Mod1 # Alt
+
 i3_monitors:
   - DP-1-1
   - DP-1-2
+
+i3_file_manager: thunar
+i3_terminal: i3-sensible-terminal
 
 i3_workspaces:
   - "1: Scratch"
