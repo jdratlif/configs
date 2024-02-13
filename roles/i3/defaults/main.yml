@@ -1,0 +1,39 @@
+---
+i3_modifier: Mod1 # Alt
+i3_file_manager: thunar
+i3_terminal: i3-sensible-terminal
+
+i3_font: Source Code Pro Medium 12
+i3_border: pixel 2
+
+i3_gaps:
+  inner: 6
+  outer: 2
+
+i3_monitors:
+  - DP-1-1
+  - DP-1-2
+
+i3_workspaces:
+  - "1: Scratch"
+  - "2: Scratch"
+  - "3: Scratch"
+  - "4: Scratch"
+  - "5: Slack | Notes | Terminal"
+  - "6: Firefox | E-Mail"
+  - "7: VS Code"
+  - "8: Scratch"
+  - "9: Scratch"
+  - "0: Zoom"
+  - "F1: Scratch"
+  - "F2: Scratch"
+  - "F3: Scratch"
+  - "F4: Scratch"
+  - "F5: Scratch"
+  - "F6: Scratch"
+  - "F7: Scratch"
+  - "F8: Scratch"
+  - "F9: Scratch"
+  - "F10: Scratch"
+  - "F11: Scratch"
+  - "F12: Scratch"

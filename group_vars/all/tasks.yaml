@@ -3,6 +3,7 @@ task_list:
   - bash # write bashrc/bash_profile
   - gitconfig # write .gitconfig
   - hyprland # write hyprland configs
+  - i3 # write i3 configs
   - perltidy # write .perltidyrc
   - ssh # write ssh config and authorized_keys
   - sway # write sway wm configs

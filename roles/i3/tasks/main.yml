@@ -1,0 +1,28 @@
+---
+- name: Ensure config directories
+  ansible.builtin.file:
+    state: directory
+    path: "{{ config_home_dir }}/.config/{{ item }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    recurse: true
+  loop:
+    - i3
+    - polybar
+
+- name: Template i3 config
+  ansible.builtin.template:
+    src: i3/config.j2
+    backup: true
+    dest: "{{ config_home_dir }}/.config/i3/config"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
+
+- name: Copy polybar config
+  ansible.builtin.copy:
+    src: polybar/config.ini
+    dest: "{{ config_home_dir }}/.config/polybar/config.ini"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"

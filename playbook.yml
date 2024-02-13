@@ -54,20 +54,28 @@
             name: perltidy
           when: '"perltidy" in task_list'
 
-        - name: Setup sway wm config
-          ansible.builtin.include_role:
-            name: sway
-          when:
-            - '"sway" in task_list'
-            - use_sway | default(false)
-            - config_os_family != "Darwin"
-
         - name: Setup hyprland config
           ansible.builtin.include_role:
             name: hyprland
           when:
             - '"hyprland" in task_list'
             - use_hyprland | default(false)
+            - config_os_family != "Darwin"
+
+        - name: Setup i3 config
+          ansible.builtin.include_role:
+            name: i3
+          when:
+            - '"i3" in task_list'
+            - use_i3 | default(false)
+            - config_os_family != "Darwin"
+
+        - name: Setup sway wm config
+          ansible.builtin.include_role:
+            name: sway
+          when:
+            - '"sway" in task_list'
+            - use_sway | default(false)
             - config_os_family != "Darwin"
 
         - name: Add termcap files
