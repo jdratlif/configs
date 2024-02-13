@@ -15,7 +15,7 @@ ssh_host_configs:
 ssh_vscode_hosts:
   jdratlif-dev7.grnoc.iu.edu:
     port: 10001
-  jdratlif-dev8.bldc.grnoc.iu.edu:
+  jdratlif-dev8.grnoc.iu.edu:
     Port: 10002
   awx.grnoc.iu.edu:
     port: 10003
