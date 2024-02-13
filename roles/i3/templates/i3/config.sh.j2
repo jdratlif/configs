@@ -8,7 +8,7 @@
   set $term {{ i3_terminal }}
   set $file_manager {{ i3_file_manager }}
 
-{% for monitor in i3_monitors %}
+{% for monitor in i3_monitors['office' if i3_office else 'home'] %}
   set $mon{{ loop.index }} {{ monitor }}
 {% endfor %}
 
@@ -59,7 +59,7 @@
   exec --no-startup-id dex-autostart --autostart --environment i3
   exec --no-startup-id blueman-applet
   exec --no-startup-id nm-applet
-  exec --no-startup-id ~/.screenlayout/laptop.sh
+  exec --no-startup-id ~/.screenlayout/{% if i3_office %}office{% else %}home{% endif %}.sh
   exec --no-startup-id feh --bg-fill {{ i3_background }}
   exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
   exec --no-startup-id numlockx on
