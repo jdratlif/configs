@@ -59,13 +59,11 @@
   exec --no-startup-id dex-autostart --autostart --environment i3
   exec --no-startup-id blueman-applet
   exec --no-startup-id nm-applet
-  exec --no-startup-id volumeicon
   exec --no-startup-id ~/.screenlayout/laptop.sh
   exec --no-startup-id feh --bg-fill {{ i3_background }}
   exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
   exec --no-startup-id numlockx on
   exec_always --no-startup-id ~/.local/bin/autotiling
-  exec_always --no-startup-id $HOME/.local/bin/polybar.sh
 
 ### Window Settings
 
@@ -158,3 +156,13 @@
   bindsym $mod+{{ keybind }} workspace $ws{{ n }}
   bindsym $mod+Shift+{{ keybind }} move container to workspace $ws{{ n }}
 {% endfor %}
+
+bar {
+  position top
+  status_command ~/venvs/bumblebee/bin/bumblebee-status \
+    -m title pulseout indicator cpu load memory battery datetime \
+    -p pulseout.percent_change="5%" \
+    -p pulseout.right-click="pavucontrol" \
+    -p datetime.format="%a %b %d %I:%M %p" \
+    -t moonlight-powerline
+}
