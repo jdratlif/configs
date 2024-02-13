@@ -12,7 +12,7 @@
 
 - name: Template i3 config
   ansible.builtin.template:
-    src: i3/config.j2
+    src: i3/config.sh.j2
     backup: true
     dest: "{{ config_home_dir }}/.config/i3/config"
     owner: "{{ config_user }}"
