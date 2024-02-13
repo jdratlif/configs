@@ -157,6 +157,15 @@
   bindsym $mod+Shift+{{ keybind }} move container to workspace "$ws{{ n }}"
 {% endfor %}
 
+  # Screenshot window/selection to clipboard
+  bindsym Print exec --no-startup-id "maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png"
+  bindsym Shift+Print exec --no-startup-id "maim -s | xclip -selection clipboard -t image/png"
+
+  # Screenshot window or selection to file
+  bindsym Ctrl+Print exec --no-startup-id "maim -i $(xdotool getactivewindow) ~/Pictures/$(date +%s).png"
+  bindsym Ctrl+Shift+Print exec --no-startup-id "maim -s ~/Pictures/$(date +%s).png"
+
+
 bar {
   colors {
     background #181818
