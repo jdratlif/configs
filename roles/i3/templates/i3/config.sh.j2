@@ -67,15 +67,15 @@
 
 ### Window Settings
 
-  assign [class="^Joplin$"] $ws5
-  assign [class="^Slack$"] $ws5
+  assign [class="^Joplin$"] "$ws5"
+  assign [class="^Slack$"] "$ws5"
 
-  assign [class="^firefox$"] $ws6
-  assign [class="^Evolution$"] $ws6
+  assign [class="^firefox$"] "$ws6"
+  assign [class="^Evolution$"] "$ws6"
 
-  assign [class="^Code$"] $ws7
+  assign [class="^Code$"] "$ws7"
 
-  assign [class="^zoom$"] $ws10
+  assign [class="^zoom$"] "$ws10"
 
   for_window [class="^Pavucontrol$"] floating enable
   for_window [class="^Pavucontrol$"] resize set 1440 900
@@ -153,8 +153,8 @@
     {%- else %}
         {%- set keybind = 0 %}
     {%- endif %}
-  bindsym $mod+{{ keybind }} workspace $ws{{ n }}
-  bindsym $mod+Shift+{{ keybind }} move container to workspace $ws{{ n }}
+  bindsym $mod+{{ keybind }} workspace "$ws{{ n }}"
+  bindsym $mod+Shift+{{ keybind }} move container to workspace "$ws{{ n }}"
 {% endfor %}
 
 bar {
