@@ -10,6 +10,7 @@ i3_gaps:
 
 i3_modifier: Mod1 # Alt
 
+i3_monitor_blank: 1800 # 30 minutes
 i3_monitors:
   home:
     - DP-1-1

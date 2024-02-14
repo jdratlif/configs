@@ -63,6 +63,7 @@
   exec --no-startup-id feh --bg-fill {{ i3_background }}
   exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
   exec --no-startup-id numlockx on
+  exec --no-startup-id xset-pm.sh
   exec_always --no-startup-id ~/.local/bin/autotiling
 
 ### Window Settings
