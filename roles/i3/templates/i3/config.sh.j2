@@ -59,7 +59,7 @@
   exec --no-startup-id dex-autostart --autostart --environment i3
   exec --no-startup-id blueman-applet
   exec --no-startup-id nm-applet
-  exec --no-startup-id ~/.screenlayout/{% if i3_office %}office{% else %}home{% endif %}.sh
+  exec --no-startup-id screenlayout.sh
   exec --no-startup-id feh --bg-fill {{ i3_background }}
   exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
   exec --no-startup-id numlockx on
