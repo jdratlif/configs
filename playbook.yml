@@ -41,42 +41,54 @@
           ansible.builtin.set_fact:
             config_group: "{{ output.stdout }}"
 
-    - name: Ignore tasks on Windows
+    - name: Non-Windows tasks
       when: config_os_family != "Windows"
       block:
+        - name: Linux Only tasks
+          when: config_os_family != "Darwin"
+          block:
+            - name: Setup perltidy
+              ansible.builtin.include_role:
+                name: perltidy
+              when: '"perltidy" in task_list'
+
+            - name: Setup hyprland config
+              ansible.builtin.include_role:
+                name: hyprland
+              when:
+                - '"hyprland" in task_list'
+                - use_hyprland | default(false)
+
+            - name: Setup i3 config
+              ansible.builtin.include_role:
+                name: i3
+              when:
+                - '"i3" in task_list'
+                - use_i3 | default(false)
+
+            - name: Setup sway wm config
+              ansible.builtin.include_role:
+                name: sway
+              when:
+                - '"sway" in task_list'
+                - use_sway | default(false)
+
+            - name: Rescue this task if we cannot become
+              when:
+                - '"sysctl" in task_list'
+                - use_sysctl | default(false)
+              block:
+                - name: Add sysctl.d files
+                  ansible.builtin.include_role:
+                    name: sysctl
+              rescue:
+                - name: Display rescue message
+                  ansible.builtin.debug:
+                    msg: "Unable to run sysctl tasks. Did you supply a become password?"
         - name: Setup bash profile
           ansible.builtin.include_role:
             name: bash
           when: '"bash" in task_list'
-
-        - name: Setup perltidy
-          ansible.builtin.include_role:
-            name: perltidy
-          when: '"perltidy" in task_list'
-
-        - name: Setup hyprland config
-          ansible.builtin.include_role:
-            name: hyprland
-          when:
-            - '"hyprland" in task_list'
-            - use_hyprland | default(false)
-            - config_os_family != "Darwin"
-
-        - name: Setup i3 config
-          ansible.builtin.include_role:
-            name: i3
-          when:
-            - '"i3" in task_list'
-            - use_i3 | default(false)
-            - config_os_family != "Darwin"
-
-        - name: Setup sway wm config
-          ansible.builtin.include_role:
-            name: sway
-          when:
-            - '"sway" in task_list'
-            - use_sway | default(false)
-            - config_os_family != "Darwin"
 
         - name: Add termcap files
           ansible.builtin.include_role:

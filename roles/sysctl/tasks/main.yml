@@ -1,0 +1,7 @@
+---
+- name: Copy sysctl.d files
+  ansible.builtin.copy:
+    src: sysctl.d/
+    dest: /etc/sysctl.d/
+    mode: "0644"
+  become: true
