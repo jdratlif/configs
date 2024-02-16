@@ -9,156 +9,156 @@ CanonicalizeMaxDots {{ ssh_canonical_dots }}
 CanonicalDomains {{ ssh_canonical_domains | join(' ') }}
 {% endif %}
 {% if ssh_bastion_config %}
-    {%- if ssh_vscode_hosts %}
+{%- if ssh_vscode_hosts %}
 
 ################################################################################
 # VS Code Hosts
-        {%- if config_os_family == "Windows" +%}
-            {% for host in ssh_vscode_hosts +%}
+{%- if config_os_family == "Windows" +%}
+{% for host in ssh_vscode_hosts +%}
 Host {{ host }}
-    HostName localhost
-    Port {{ ssh_vscode_hosts[host]['port'] }}
-            {%- endfor %}
-        {%- else +%}
-            {% for host in ssh_vscode_hosts +%}
+HostName localhost
+Port {{ ssh_vscode_hosts[host]['port'] }}
+{%- endfor %}
+{%- else +%}
+{% for host in ssh_vscode_hosts +%}
 Host {{ host }}
-            {%- endfor %}
-        {% endif +%}
-    {% endif %}
+{%- endfor %}
+{% endif +%}
+{% endif %}
 
 ################################################################################
 # bastion hosts
 
 Host {% if ssh_bastion_primary.grnoc == 'leap' %}grnoc {% endif %}leap
-    HostName leap.grnoc.iu.edu
+HostName leap.grnoc.iu.edu
 
 Host {% if ssh_bastion_primary.grnoc == 'skip' %}grnoc {% endif %}skip
-    HostName skip.grnoc.iu.edu
+HostName skip.grnoc.iu.edu
 
 Host {% if ssh_bastion_primary.grnoc == 'jump' %}grnoc {% endif %}jump
-    HostName jump.grnoc.iu.edu
+HostName jump.grnoc.iu.edu
 
 Host {% if ssh_bastion_primary.i2 == 'bldc' %}i2 {% endif %}i2-bldc
-    HostName bastion.bldc.net.internet2.edu
+HostName bastion.bldc.net.internet2.edu
 
 Host {% if ssh_bastion_primary.i2 == 'ctc' %}i2 {% endif %}i2-ctc
-    HostName bastion.ctc.net.internet2.edu
+HostName bastion.ctc.net.internet2.edu
 
 Host {% if ssh_bastion_primary.noaa == 'bldc' %}noaa {% endif %} noaa-bldc
-    HostName bastion.bldc.nwave.noaa.gov
+HostName bastion.bldc.nwave.noaa.gov
 
 Host {% if ssh_bastion_primary.noaa == 'ctc' %}noaa {% endif %}noaa-ctc
-    HostName bastion.ctc.nwave.noaa.gov
+HostName bastion.ctc.nwave.noaa.gov
 
 Host {% if ssh_bastion_primary.scinet == 'bldc' %}scinet {% endif %}scinet-bldc
-    HostName bastion.bldc.scinet.usda.gov
+HostName bastion.bldc.scinet.usda.gov
 
 Host {% if ssh_bastion_primary.scinet == 'ctc' %}scinet {% endif %}scinet-ctc
-    HostName bastion.ctc.scinet.usda.gov
+HostName bastion.ctc.scinet.usda.gov
 
 ################################################################################
 # el6 openssh bastion options
 
-Host grnoc leap skip
-    HostKeyAlgorithms +ssh-rsa
-    KexAlgorithms +diffie-hellman-group14-sha1
-    {%- if inventory_hostname == "laptop" +%}
-    PubkeyAcceptedAlgorithms +ssh-rsa
-    {%- endif %}
-    {%- if config_os_family == "Windows" +%}
+Host grnoc leap
+HostKeyAlgorithms +ssh-rsa
+KexAlgorithms +diffie-hellman-group14-sha1
+{%- if inventory_hostname == "laptop" +%}
+PubkeyAcceptedAlgorithms +ssh-rsa
+{%- endif %}
+{%- if config_os_family == "Windows" +%}
 
 ################################################################################
 # Port forwarding for VS Code on Windows
 
 Host grnoc leap skip jump
-        {%- for host in ssh_vscode_hosts %}
-            {%- if host.endswith('.iu.edu') +%}
-    LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
-            {%- endif %}
-        {% endfor +%}
+{%- for host in ssh_vscode_hosts %}
+{%- if host.endswith('.iu.edu') +%}
+LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
+{%- endif %}
+{% endfor +%}
 
 Host i2 i2-bldc i2-ctc
-        {%- for host in ssh_vscode_hosts %}
-            {%- if host.endswith('.net.internet2.edu') +%}
-    LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
-            {%- endif %}
-        {% endfor +%}
+{%- for host in ssh_vscode_hosts %}
+{%- if host.endswith('.net.internet2.edu') +%}
+LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
+{%- endif %}
+{% endfor +%}
 
 Host noaa noaa-bldc noaa-ctc
-        {%- for host in ssh_vscode_hosts %}
-            {%- if host.endswith('.nwave.noaa.gov') +%}
-    LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
-            {%- endif %}
-        {% endfor +%}
+{%- for host in ssh_vscode_hosts %}
+{%- if host.endswith('.nwave.noaa.gov') +%}
+LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
+{%- endif %}
+{% endfor +%}
 
 Host scinet scinet-bldc scinet-ctc
-        {%- for host in ssh_vscode_hosts %}
-            {%- if host.endswith('.scinet.usda.gov') +%}
-    LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
-            {%- endif %}
-        {% endfor +%}
-    {% else +%}
+{%- for host in ssh_vscode_hosts %}
+{%- if host.endswith('.scinet.usda.gov') +%}
+LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
+{%- endif %}
+{% endfor +%}
+{% else +%}
 
 ################################################################################
 # Bastion proxying by hostname
 
 Match originalhost "*.grnoc.iu.edu,*.globalnoc.iu.edu,!leap.grnoc.iu.edu,!skip.grnoc.iu.edu,!jump.grnoc.iu.edu"
-    ProxyJump grnoc
+ProxyJump grnoc
 
 Match originalhost "*.net.internet2.edu,!bastion.bldc.net.internet2.edu,!bastion.ctc.net.internet2.edu"
-    ProxyJump i2
+ProxyJump i2
 
 Match originalhost "*.nwave.noaa.gov,!bastion.*.nwave.noaa.gov"
-    ProxyJump noaa
+ProxyJump noaa
 
 Match originalhost "*.scinet.usda.gov,!bastion.*.scinet.usda.gov"
-    ProxyJump scinet
-    {% endif %}
-    {% if inventory_hostname == "laptop" +%}
+ProxyJump scinet
+{% endif %}
+{% if inventory_hostname == "laptop" +%}
 ################################################################################
 # SOCKS proxies
 
 Host grnoc leap skip jump
-    DynamicForward 8080
+DynamicForward 8080
 
 Host i2 i2-bldc i2-ctc
-    DynamicForward 8082
+DynamicForward 8082
 
 Host noaa noaa-bldc noaa-ctc
-    DynamicForward 8081
+DynamicForward 8081
 
 Host scinet scinet-bldc scinet-ctc
-    DynamicForward 8083
+DynamicForward 8083
 
 ################################################################################
 # PKCS11 for CAC bastions
 
 Host noaa noaa-bldc noaa-ctc scinet scinet-bldc scinet-ctc
-        {%- if config_os_family == "Darwin" +%}
-    PKCS11Provider /usr/lib/ssh-keychain.dylib
-        {%- elif config_os_family == "Windows" +%}
-    PKCS11Provider "C:\\Program Files\\OpenSC Project\\OpenSC\\pkcs11\\opensc-pkcs11.dll"
-        {%- else +%}
-    PKCS11Provider /usr/lib64/pkcs11/opensc-pkcs11.so
-        {%- endif +%}
-    {% endif %}
+{%- if config_os_family == "Darwin" +%}
+PKCS11Provider /usr/lib/ssh-keychain.dylib
+{%- elif config_os_family == "Windows" +%}
+PKCS11Provider "C:\\Program Files\\OpenSC Project\\OpenSC\\pkcs11\\opensc-pkcs11.dll"
+{%- else +%}
+PKCS11Provider /usr/lib64/pkcs11/opensc-pkcs11.so
+{%- endif +%}
+{% endif %}
 {% endif +%}
 {% if ssh_host_configs %}
 ################################################################################
 # host configs
-    {% for host in ssh_host_configs | dictsort %}
+{% for host in ssh_host_configs | dictsort %}
 
 Host {{ host[0] }}
-        {%- for name, value in host[1].items() %}
-            {%- if value is string or value is number +%}
-    {{ name }} {{ value }}
-            {%- else +%}
-                {%- for v in value +%}
-    {{ name }} {{ v }}
-                {%- endfor %}
-            {% endif %}
-        {% endfor +%}
-    {% endfor %}
+{%- for name, value in host[1].items() %}
+{%- if value is string or value is number +%}
+{{ name }} {{ value }}
+{%- else +%}
+{%- for v in value +%}
+{{ name }} {{ v }}
+{%- endfor %}
+{% endif %}
+{% endfor +%}
+{% endfor %}
 
 {% endif %}
 ################################################################################
@@ -166,5 +166,5 @@ Host {{ host[0] }}
 
 Host *
 {% for name, value in ssh_host_common_configs.items() %}
-    {{ name }} {{ value }}
+{{ name }} {{ value }}
 {% endfor %}
