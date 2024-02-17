@@ -12,7 +12,7 @@ monitors:
   work:
     - desc:Dell Inc. DELL U2722DE 2NR7GH3
     - desc:Dell Inc. DELL U2722DE 4SR7GH3
-terminal: foot
+terminal: i3-sensible-terminal
 work: false
 workspaces:
   - "1: Scratch"
