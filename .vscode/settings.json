@@ -1,6 +1,7 @@
 {
   "ansible.python.interpreterPath": "/usr/bin/python3",
   "files.associations": {
-    "*config.j2": "jinja-shell"
+    "*config.j2": "jinja-shell",
+    "hyprland.conf.j2": "jinja-shell"
   }
 }
