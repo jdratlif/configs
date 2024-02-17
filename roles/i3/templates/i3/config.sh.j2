@@ -6,6 +6,7 @@
 
   set $mod {{ i3_modifier }}
   set $term {{ i3_terminal }}
+  set $term_dropdown ~/.local/run-one/run-one xfce4-terminal --disable-server --role dropdown
   set $file_manager {{ i3_file_manager }}
 
 {% for monitor in i3_monitors['office' if i3_office else 'home'] %}
@@ -64,6 +65,7 @@
   exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
   exec --no-startup-id numlockx on
   exec --no-startup-id xset-pm.sh
+  exec --no-startup-id $term_dropdown
   exec_always --no-startup-id ~/.local/bin/autotiling
 
 ### Window Settings
@@ -83,6 +85,11 @@
   for_window [class="^Nm-connection-editor$"] floating enable
   for_window [class="^Evolution$" title="^Compose Message$"] floating enable
   for_window [class="^zoom$" title="^Settings$"] floating enable
+
+  for_window [class="Xfce4-terminal" window_role="dropdown"] floating enable
+  for_window [class="Xfce4-terminal" window_role="dropdown"] resize set 1920 1080
+  for_window [class="Xfce4-terminal" window_role="dropdown"] move scratchpad
+  for_window [class="Xfce4-terminal" window_role="dropdown"] border pixel 5
 
 ### Keybindings
 
@@ -105,6 +112,9 @@
 
   # launch file manager
   bindsym $mod+e exec $file_manager
+
+  # scratchpad terminal
+  bindsym $mod+x exec --no-startup-id $term_dropdown; [class="Xfce4-terminal" window_role="dropdown"] scratchpad show; [class="Xfce4-terminal" window_role="dropdown"] move position center
 
   # alternatively, you can use the cursor keys:
   bindsym $mod+Left focus left
