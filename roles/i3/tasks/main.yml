@@ -37,13 +37,16 @@
     src: "{{ config_home_dir }}/venvs/bumblebee/share/bumblebee-status/themes"
     dest: "{{ config_home_dir }}/.config/bumblebee-status/themes"
 
-- name: Add screenlayout function
+- name: Add local scripts
   ansible.builtin.copy:
-    src: screenlayout.sh
+    src: "scripts/{{ item }}"
     dest: "{{ config_home_dir }}/.local/bin/"
     owner: "{{ config_user }}"
     group: "{{ config_group }}"
     mode: "0755"
+  loop:
+    - run-one
+    - screenlayout.sh
 
 - name: Create xset-pm.sh
   ansible.builtin.template:

@@ -6,7 +6,7 @@
 
   set $mod {{ i3_modifier }}
   set $term {{ i3_terminal }}
-  set $term_dropdown ~/.local/run-one/run-one xfce4-terminal --disable-server --role dropdown
+  set $term_dropdown run-one xfce4-terminal --disable-server --role dropdown
   set $file_manager {{ i3_file_manager }}
 
 {% for monitor in i3_monitors['office' if i3_office else 'home'] %}
