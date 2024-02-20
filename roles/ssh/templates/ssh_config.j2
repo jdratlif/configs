@@ -119,16 +119,16 @@ Match originalhost "*.scinet.usda.gov,!bastion.*.scinet.usda.gov"
 # SOCKS proxies
 
 Host grnoc leap skip jump
-    DynamicForward 8080
+    DynamicForward {{ ssh_socks['grnoc'] }}
 
 Host i2 i2-bldc i2-ctc
-    DynamicForward 8082
+    DynamicForward {{ ssh_socks['i2'] }}
 
 Host noaa noaa-bldc noaa-ctc
-    DynamicForward 8081
+    DynamicForward {{ ssh_socks['nwave'] }}
 
 Host scinet scinet-bldc scinet-ctc
-    DynamicForward 8083
+    DynamicForward {{ ssh_socks['scinet'] }}
 
 ################################################################################
 # PKCS11 for CAC bastions

@@ -2,8 +2,10 @@
 ssh_host_configs:
   jdratlif-dev8.grnoc.iu.edu:
     RemoteForward:
-      - '*:8080 localhost:8080'
-      - '*:8081 localhost:8081'
+      - '*:1080 localhost:8080'
+      - '*:1081 localhost:8081'
+      - '*:1082 localhost:8082'
+      - '*:1083 localhost:8083'
   xaiver:
     Hostname: xaiver.technoplaza.net
     Port: 5122

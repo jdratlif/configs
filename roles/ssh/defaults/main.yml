@@ -15,4 +15,10 @@ ssh_host_common_configs:
   ServerAliveInterval: 30
   User: "{{ config_user }}"
 
+ssh_socks:
+  grnoc: 1080
+  i2: 1082
+  nwave: 1081
+  scinet: 1083
+
 ssh_vscode_hosts: {}
