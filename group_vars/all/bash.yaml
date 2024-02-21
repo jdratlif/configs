@@ -16,3 +16,5 @@ bash_functions:
   del_known_host:
     - LINE_NUMBER=$1
     - "[[ ! -z $LINE_NUMBER ]] && sed -i -e $1d ~/.ssh/known_hosts"
+  ssl_cert_expire:
+    - openssl s_client -showcerts -connect $1:443 2>/dev/null </dev/null | awk '/BEGIN CERTIFICATE/ {p=1}; p==1; /END CERTIFICATE/ {p=0}' | openssl x509 -text -noout | grep 'Not'
