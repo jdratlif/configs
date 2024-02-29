@@ -1,4 +1,15 @@
 ---
+- name: Check tmux version
+  ansible.builtin.shell:
+    cmd: tmux -V | grep -qE '^tmux 2.'
+  changed_when: false
+  failed_when: false
+  register: result
+
+- name: Register tmux version
+  ansible.builtin.set_fact:
+    tmux_version: "{{ 2 if result.rc == 0 else 3 }}"
+
 - name: Template tmux.conf
   ansible.builtin.template:
     src: tmux.conf.j2

@@ -5,8 +5,13 @@ unbind '"'
 unbind %
 
 # move window left or right
+{% if tmux_version | int == 2 %}
 bind -n C-Left swap-window -t -1
 bind -n C-Right swap-window -t +1
+{% else %}
+bind -n C-Left swap-window -d -t -1
+bind -n C-Right swap-window -d -t +1
+{% endif %}
 
 # switch windows using Ctrl-arrow without prefix
 bind -n C-n next-window
