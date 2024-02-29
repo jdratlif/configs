@@ -18,3 +18,5 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
     eval `cat ~/.ssh/ssh-agent`
 fi
 {% endif %}
+
+umask 0022
