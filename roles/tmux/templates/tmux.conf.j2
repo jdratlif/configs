@@ -1,8 +1,21 @@
+# put tmux status at top
+set -g status-position top
+
+# don't rename windows automatically
+set -g allow-rename off
+
+# start window/pane numbering at 1
+set -g base-index 1
+set -gw pane-base-index 1
+
+# auto-renumber windows
+set -g renumber-windows on
+
 # split panes using | and -
-bind | split-window -h
-bind - split-window -v
 unbind '"'
 unbind %
+bind | split-window -h
+bind - split-window -v
 
 # move window left or right
 {% if tmux_version | int == 2 %}
@@ -19,51 +32,21 @@ bind -n C-p previous-window
 
 # swap panes
 bind -n C-k last-pane
-
-# don't rename windows automatically
-set -g allow-rename off
-
-# start window/pane numbering at 1
-set -g base-index 1
-set -wg pane-base-index 1
-
-# auto-renumber windows
-set -g renumber-windows on
-
-# set default terminal
-set -g default-terminal "screen-256color"
-
-# raise scrollback buffer to 20000
-set -g history-limit 20000
-
-################################################################################
-# display customizations
-################################################################################
-
-# command entry line
-set -g message-style "fg=white,bg=black"
-
-# status bar
-set -g status-style "fg=colour15,bg=colour21"
-set -g status-justify "centre"
-
-# left of active window display
-set -g status-left " #h "
-set -g status-left-style "fg=green,bg=black"
-
-# right of active window display
-set -g status-right " %a %b %e @ %H:%M UTC "
-set -g status-right-style "fg=green,bg=black"
-
-# how window status messages will appear (I = window #, W is window name)
-set -g window-status-format " #I: #W "
-
-# how the active window will be styled
-set -g window-status-current-format "[ #I: #W ]#{?window_zoomed_flag,#[fg=yellow] (zoom),}"
-set -g window-status-current-style "fg=colour190,bg=colour16"
-
-# begin local customizations
 {% if tmux_local is defined %}
+# begin local customizations
 {{ tmux_local }}
-{% endif %}
 # end local customizations
+{% endif %}
+
+# List of plugins
+{% for plugin in tmux_plugins %}
+set -g @plugin '{{ plugin }}'
+{% endfor %}
+
+# Plugin options
+{% for option in tmux_plugin_options %}
+set -g @{{ option }}
+{% endfor %}
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

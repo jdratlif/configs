@@ -1,0 +1,14 @@
+---
+tmux_plugin_dir: "{{ config_home_dir }}/.tmux/plugins"
+
+tmux_plugins:
+  - tmux-plugins/tpm
+  - tmux-plugins/tmux-sensible
+  - dracula/tmux
+
+tmux_plugin_options:
+  - dracula-military-time false
+  - dracula-plugins "git time"
+  - dracula-show-flags true
+  - dracula-show-left-icon hostname
+  - dracula-show-powerline true

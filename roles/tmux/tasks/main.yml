@@ -10,6 +10,23 @@
   ansible.builtin.set_fact:
     tmux_version: "{{ 2 if result.rc == 0 else 3 }}"
 
+- name: Ensure tmux directory exists
+  ansible.builtin.file:
+    state: directory
+    dest: "{{ tmux_plugin_dir }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    recurse: true
+
+- name: Install plugins # noqa: latest
+  ansible.builtin.git:
+    repo: "https://github.com/{{ plugin }}.git"
+    dest: "{{ tmux_plugin_dir }}/{{ plugin.split('/')[1] }}"
+    umask: "0022"
+  loop: "{{ tmux_plugins }}"
+  loop_control:
+    loop_var: plugin
+
 - name: Template tmux.conf
   ansible.builtin.template:
     src: tmux.conf.j2
