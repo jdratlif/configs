@@ -1,35 +1,31 @@
-### variable definitions
+### Global definitions
 
-# Set modifier key
-    set $mod {{ modifier }}
+    set $mod {{ sway_modifier }}
+    set $file_manager {{ sway_file_manager }}
+    set $menu {{ sway_menu }}
+    set $term {{ sway_terminal }}
+    set $term_dropdown run-one xfce4-terminal --disable-server --role dropdown -T grnoc
 
-# Set default terminal
-    set $term {{ terminal }}
+    set $laptop eDP-1
+{% for monitor in sway_monitors['office' if sway_office else 'home'] %}
+    set $mon{{ loop.index }} {{ monitor }}
+{% endfor %}
 
-# Set menu command
-
-    set $rofi_cmd rofi -terminal '$term'
-    set $menu {{ menu_cmd }}
-
-# Set lock / screen timeouts
-
-    # 20 minute lock timeout
-    set $lock_timeout {{ lock_timeout }}
-
-    # 10 minutes after lock timeout, turn the displays off
-    set $screen_timeout {{ screen_timeout }}
+{% for workspace in sway_workspaces %}
+    set $ws{{ loop.index }} {{ workspace }}
+{% endfor %}
 
 ### global configuration
 
 # default font
-    font pango:{{ font }}
+    font pango:{{ sway_font }}
 
 # remove window titlebars
-    default_border {{ border }}
+    default_border {{ sway_border }}
 
 # window gaps
-    gaps inner {{ gaps.inner }}
-    gaps outer {{ gaps.outer }}
+    gaps inner {{ sway_gaps.inner }}
+    gaps outer {{ sway_gaps.outer }}
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
     output * bg /usr/share/backgrounds/default.png fill
@@ -48,43 +44,7 @@
         xkb_numlock enabled
     }
 
-# Workspace names
-
-    set $ws1 1: {{ workspaces.1 }}
-    set $ws2 2: {{ workspaces.2 }}
-    set $ws3 3: {{ workspaces.3 }}
-    set $ws4 4: {{ workspaces.4 }}
-    set $ws5 5: {{ workspaces.5 }}
-    set $ws6 6: {{ workspaces.6 }}
-    set $ws7 7: {{ workspaces.7 }}
-    set $ws8 8: {{ workspaces.8 }}
-    set $ws9 9: {{ workspaces.9 }}
-    set $ws10 10: {{ workspaces.10 }}
-    set $wsF1 F1: {{ workspaces.F1 }}
-    set $wsF2 F2: {{ workspaces.F2 }}
-    set $wsF3 F3: {{ workspaces.F3 }}
-    set $wsF4 F4: {{ workspaces.F4 }}
-    set $wsF5 F5: {{ workspaces.F5 }}
-    set $wsF6 F6: {{ workspaces.F6 }}
-    set $wsF7 F7: {{ workspaces.F7 }}
-    set $wsF8 F8: {{ workspaces.F8 }}
-    set $wsF9 F9: {{ workspaces.F9 }}
-    set $wsF10 F10: {{ workspaces.F10 }}
-    set $wsF11 F11: {{ workspaces.F11 }}
-    set $wsF12 F12: {{ workspaces.F12 }}
-
-# Monitors, Workspace, and Application Bindings
-
-    # laptop display
-    set $laptop eDP-1
-
-    # dell displays
-    set $dellMon1 "Dell Inc. DELL U2722DE 2NR7GH3"
-    set $dellMon2 "Dell Inc. DELL U2722DE 4SR7GH3"
-
-    # set monitor variables
-    set $mon1 {% if work %}$dellMon1{% else %}DP-3{% endif +%}
-    set $mon2 {% if work %}$dellMon2{% else %}DP-4{% endif +%}
+# Workspaces
 
     workspace $ws1 output $mon1
     workspace $ws2 output $mon1
@@ -97,25 +57,23 @@
     workspace $ws9 output $mon2
     workspace $ws10 output $mon2
 
-    # main left workspace (joplin/remote-viewer/citrix/slack)
-    assign [class="^Joplin$"] $ws5
-    assign [app_id="remote-viewer"] $ws5
-    assign [class="^Slack$"] $ws5
-    assign [class="^Wfica$"] $ws5
+# Application Workspace Associations
 
-    # main right workspace (firefox/email)
+    # main left workspace (joplin/slack)
+    assign [class="^Joplin$"] $ws1
+    assign [class="^Slack$"] $ws1
+
+    # main right workspace (firefox/evolution)
     assign [app_id="^firefox$"] $ws6
     assign [app_id="^evolution$"] $ws6
-    assign [class="^thunderbird"] $ws6
 
-    # VS code to right monitor
+    # VS code
     assign [class="^Code$"] $ws7
 
     # Make VS Code 1920x1080 for OBS
     # for_window [class="^Code$"] floating enable, resize set width 1920px, resize set height 1080px
 
     # zoom/slack huddles
-    assign [class="^Slack$" title="^Huddle"] $ws10
     assign [class="^zoom$"] $ws10
     for_window [class="^zoom$" title="Settings"] floating enable, border pixel
 
@@ -123,8 +81,8 @@
     output $laptop scale 1.33
 
 # set position of Dell work monitors
-    output $dellMon1 pos 0 0
-    output $dellMon2 pos 2560 0
+    output "$mon1" pos 0 0
+    output "$mon2" pos 2560 0
 
 # enable clamshell mode
     bindswitch --reload --locked lid:on output $laptop disable
@@ -137,7 +95,7 @@
     bindsym $mod+Return exec $term
 
 # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
 # Start your launcher
     bindsym $mod+d exec $menu
@@ -150,7 +108,7 @@
     floating_modifier $mod normal
 
 # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+r reload
 
 # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -167,64 +125,25 @@
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
 
-# Switch to workspace
-    bindsym $mod+1 workspace $ws1
-    bindsym $mod+2 workspace $ws2
-    bindsym $mod+3 workspace $ws3
-    bindsym $mod+4 workspace $ws4
-    bindsym $mod+5 workspace $ws5
-    bindsym $mod+6 workspace $ws6
-    bindsym $mod+7 workspace $ws7
-    bindsym $mod+8 workspace $ws8
-    bindsym $mod+9 workspace $ws9
-    bindsym $mod+0 workspace $ws10
-    bindsym $mod+F1 workspace $wsF1
-    bindsym $mod+F2 workspace $wsF2
-    bindsym $mod+F3 workspace $wsF3
-    bindsym $mod+F4 workspace $wsF4
-    bindsym $mod+F5 workspace $wsF5
-    bindsym $mod+F6 workspace $wsF6
-    bindsym $mod+F7 workspace $wsF7
-    bindsym $mod+F8 workspace $wsF8
-    bindsym $mod+F9 workspace $wsF9
-    bindsym $mod+F10 workspace $wsF10
-    bindsym $mod+F11 workspace $wsF11
-    bindsym $mod+F12 workspace $wsF12
+# Switch workspaces or move active window to workspace
+{% for n in range(1, 23) %}
+    {%- if n < 10 %}
+        {%- set keybind = n %}
+    {%- elif n > 10 %}
+        {%- set keybind = "F" ~ (n - 10) %}
+    {%- else %}
+        {%- set keybind = 0 %}
+    {%- endif %}
+    bindsym $mod+{{ keybind }} workspace "$ws{{ n }}"
+    bindsym $mod+Shift+{{ keybind }} move container to workspace "$ws{{ n }}"
+{% endfor %}
 
-# Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace $ws1
-    bindsym $mod+Shift+2 move container to workspace $ws2
-    bindsym $mod+Shift+3 move container to workspace $ws3
-    bindsym $mod+Shift+4 move container to workspace $ws4
-    bindsym $mod+Shift+5 move container to workspace $ws5
-    bindsym $mod+Shift+6 move container to workspace $ws6
-    bindsym $mod+Shift+7 move container to workspace $ws7
-    bindsym $mod+Shift+8 move container to workspace $ws8
-    bindsym $mod+Shift+9 move container to workspace $ws9
-    bindsym $mod+Shift+0 move container to workspace $ws10
-    bindsym $mod+Shift+F1 move container to workspace $wsF1
-    bindsym $mod+Shift+F2 move container to workspace $wsF2
-    bindsym $mod+Shift+F3 move container to workspace $wsF3
-    bindsym $mod+Shift+F4 move container to workspace $wsF4
-    bindsym $mod+Shift+F5 move container to workspace $wsF5
-    bindsym $mod+Shift+F6 move container to workspace $wsF6
-    bindsym $mod+Shift+F7 move container to workspace $wsF7
-    bindsym $mod+Shift+F8 move container to workspace $wsF8
-    bindsym $mod+Shift+F9 move container to workspace $wsF9
-    bindsym $mod+Shift+F10 move container to workspace $wsF10
-    bindsym $mod+Shift+F11 move container to workspace $wsF11
-    bindsym $mod+Shift+F12 move container to workspace $wsF12
+# launch file manager
+    bindsym $mod+e exec $file_manager
 
-# You can "split" the current object of your focus with
-# $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
-    bindsym $mod+b splith
+# change window split
+    bindsym $mod+h splith
     bindsym $mod+v splitv
-
-# Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
 
 # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -245,33 +164,8 @@
 # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 
-#
-# Resizing containers:
-#
-
-    mode "resize" {
-        # left will shrink the containers width
-        # right will grow the containers width
-        # up will shrink the containers height
-        # down will grow the containers height
-        bindsym Left resize shrink width 10px
-        bindsym Down resize grow height 10px
-        bindsym Up resize shrink height 10px
-        bindsym Right resize grow width 10px
-
-        # Return to default mode
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-    }
-
-    bindsym $mod+r mode "resize"
-
-#
-# Custom keybinds
-#
-
     # lock screen with mod+l
-    bindsym --release $mod+Shift+l exec loginctl lock-session
+    bindsym --release $mod+l exec loginctl lock-session
 
     # Capture the currently active output to clipboard
     bindsym Shift+Print exec grimshot copy output
@@ -304,17 +198,3 @@
 # the trick, it's all in the `wordexp(3)`.
 #
     include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
-
-### autostart applications
-
-workspace $ws7
-exec /usr/share/code/code
-
-workspace $ws6
-exec evolution
-exec firefox
-
-workspace $ws5
-exec foot
-exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=com.slack.Slack --file-forwarding com.slack.Slack
-# Don't autostart Joplin -- it really needs pCloud to be initialized first, and we can't guarantee that here

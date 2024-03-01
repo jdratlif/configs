@@ -3,7 +3,7 @@
 # https://github.com/swaywm/sway/wiki#clamshell-mode
 
 if grep -q open /proc/acpi/button/lid/LID/state; then
-    swaymsg output <LAPTOP> enable
+    swaymsg output eDP-1 enable
 else
-    swaymsg output <LAPTOP> disable
+    swaymsg output eDP-1 disable
 fi
