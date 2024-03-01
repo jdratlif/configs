@@ -1,11 +1,10 @@
 ---
 ssh_authorized_keys: []
 ssh_bastion_config: false
-ssh_bastion_primary:
-  grnoc: skip
-  i2: bldc
-  noaa: bldc
-  scinet: bldc
+ssh_bastion_grnoc: leap
+ssh_bastion_i2: bldc
+ssh_bastion_noaa: bldc
+ssh_bastion_scinet: bldc
 ssh_canonical_dots: 2
 
 ssh_host_configs: {}
