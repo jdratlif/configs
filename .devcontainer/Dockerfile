@@ -1,10 +1,7 @@
-FROM python:3.12
+FROM mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
 
-RUN apt update -y && apt install -y ansible-core ansible-lint bash-completion
+# install python packages
+RUN python3 -m pip install 'ansible-core<2.17' ansible-lint pyyaml
 
-# Create the docker user
-RUN useradd -m -s /bin/bash docker
-
-# add prompt
-COPY prompt.sh /etc/profile.d
-RUN echo ". /etc/profile.d/prompt.sh" >> /home/docker/.bashrc
+# enable git bash completion and preserve bash history
+RUN su vscode -c "echo 'source /usr/share/bash-completion/completions/git' >> ~/.bashrc"

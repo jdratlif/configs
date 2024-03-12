@@ -1,1 +1,0 @@
-PS1="[\e[35m\]\u@devcontainer \e[34m\]\w\e[00m\]] (\e[33m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')\e[00m\])\n\$ "
