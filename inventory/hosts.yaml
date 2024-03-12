@@ -71,7 +71,6 @@ all:
                 grigutis-dev3.grnoc.iu.edu: {}
                 hbilige-dev.grnoc.iu.edu: {}
                 jdmcnama-dev.grnoc.iu.edu: {}
-                jdratlif-dev7.grnoc.iu.edu: {}
                 jdratlif-dev8.bldc.grnoc.iu.edu: {}
                 jdratlif-dev8.grnoc.iu.edu: {}
                 jonstout-dev.grnoc.iu.edu: {}
@@ -90,12 +89,14 @@ all:
                 pauchamb-dev01.grnoc.iu.edu: {}
                 pauchamb-dev02.grnoc.iu.edu: {}
                 prattadi-dev.grnoc.iu.edu: {}
+                prattadi-dev8.grnoc.iu.edu: {}
                 rainier-dev.grnoc.iu.edu: {}
                 saikappa-dev.grnoc.iu.edu: {}
                 saikappa-dev7.grnoc.iu.edu: {}
                 saikappa-dev8.grnoc.iu.edu: {}
                 salapat-dev.grnoc.iu.edu: {}
                 sschonem-dev7.grnoc.iu.edu: {}
+                thompsbp-dev.grnoc.iu.edu: {}
                 ttwang-dev8.grnoc.iu.edu: {}
                 tyabell-dev.grnoc.iu.edu: {}
                 tyabell-dev2.grnoc.iu.edu: {}
@@ -120,6 +121,7 @@ all:
                 agent.nc7.proj.icb.grnoc.iu.edu: {}
                 asterisk-dev1.grnoc.iu.edu: {}
                 asterisk-dev2.grnoc.iu.edu: {}
+                augustus.noc.iu.edu: {}
                 backup.ctc.grnoc.iu.edu: {}
                 backup.grnoc.iu.edu: {}
                 backup.ictc.ilight.net: {}
@@ -127,6 +129,7 @@ all:
                 build-new.grnoc.iu.edu: {}
                 build-stage.grnoc.iu.edu: {}
                 build.grnoc.iu.edu: {}
+                cni-mapper.grnoc.iu.edu: {}
                 cobbler3.grnoc.iu.edu: {}
                 cobbler33.grnoc.iu.edu: {}
                 compute.cloud.bldc.grnoc.iu.edu: {}
@@ -176,10 +179,12 @@ all:
                 dridge-dev-6.grnoc.iu.edu: {}
                 dridge-dev-ol8.grnoc.iu.edu: {}
                 dridge-dev.grnoc.iu.edu: {}
+                egress.sea.grnoc.iu.edu: {}
                 egress1.bldc.k3s.grnoc.iu.edu: {}
                 egress1.ctc.k3s.grnoc.iu.edu: {}
                 ghe-runner-stage.grnoc.iu.edu: {}
                 ghe-runner.grnoc.iu.edu: {}
+                haproxy.sea.grnoc.iu.edu: {}
                 icb7.grnoc.iu.edu: {}
                 icb8.grnoc.iu.edu: {}
                 idp-dev.grnoc.iu.edu: {}
@@ -193,6 +198,7 @@ all:
                 idp.ctc.grnoc.iu.edu: {}
                 idp.ctc.net.cen.ct.gov: {}
                 idp.ctc.oshean.org: {}
+                idp.icb.grnoc.iu.edu: {}
                 idp.noc.onenet.net: {}
                 island.onenet.net: {}
                 jefferson.ind.net: {}
@@ -207,9 +213,6 @@ all:
                 jenkins-worker-01.grnoc.iu.edu: {}
                 jenkins-worker-02.grnoc.iu.edu: {}
                 jenkins.grnoc.iu.edu: {}
-                k3s-1.icb.grnoc.iu.edu: {}
-                k3s-2.icb.grnoc.iu.edu: {}
-                k3s-3.icb.grnoc.iu.edu: {}
                 kerb-dev.grnoc.iu.edu: {}
                 kerb.areon.net: {}
                 kerb.bldc.grnoc.iu.edu: {}
@@ -239,6 +242,7 @@ all:
                 m.bldc.k8s.test.grnoc.iu.edu: {}
                 m.ctc.k3s.grnoc.iu.edu: {}
                 m.ctc.k8s.test.grnoc.iu.edu: {}
+                m.sea.grnoc.iu.edu: {}
                 m2.ctc.k8s.test.grnoc.iu.edu: {}
                 maas.grnoc.iu.edu: {}
                 mail.bldc.grnoc.iu.edu: {}
@@ -272,6 +276,7 @@ all:
                 otp-dev-ol8.grnoc.iu.edu: {}
                 otp-dev.grnoc.iu.edu: {}
                 otp.areon.net: {}
+                otp.icb.grnoc.iu.edu: {}
                 proxy.grnoc.iu.edu: {}
                 puppet.grnoc.iu.edu: {}
                 puppet7.grnoc.iu.edu: {}
@@ -350,6 +355,7 @@ all:
                 v.icb.grnoc.iu.edu: {}
                 vmwest-01.globalnoc.mcnc.org: {}
                 vpn.light.globalnoc.iu.edu: {}
+                w.sea.grnoc.iu.edu: {}
                 w1.bldc.k3s.grnoc.iu.edu: {}
                 w1.bldc.k8s.test.grnoc.iu.edu: {}
                 w1.ctc.k3s.grnoc.iu.edu: {}
@@ -460,6 +466,8 @@ all:
                 percona-dev.grnoc.iu.edu: {}
                 percona-dev2.grnoc.iu.edu: {}
                 prattadi-dev.grnoc.iu.edu: {}
+                prattadi-dev8.grnoc.iu.edu: {}
+                probe.networkmaine.grnoc.iu.edu: {}
                 radb-populator-gpn.grnoc.iu.edu: {}
                 radb-populator.areon.net: {}
                 radb-populator.oshean.org: {}
@@ -477,7 +485,6 @@ all:
                 ani.bldc.grnoc.iu.edu: {}
                 ansible-test.ctc.grnoc.iu.edu: {}
                 aragusa-dev6.grnoc.iu.edu: {}
-                augustus.noc.iu.edu: {}
                 awx-stage.bldc.grnoc.iu.edu: {}
                 awx-stage.ctc.grnoc.iu.edu: {}
                 awx-test.bldc.grnoc.iu.edu: {}
@@ -502,7 +509,6 @@ all:
                 carto.noc.onenet.net: {}
                 carto.oshean.org: {}
                 casotelo-dev37.grnoc.iu.edu: {}
-                cni-mapper.grnoc.iu.edu: {}
                 cni-syslog-01.grnoc.iu.edu: {}
                 cnp-dev.grnoc.iu.edu: {}
                 cnp-stage.grnoc.iu.edu: {}
@@ -519,6 +525,7 @@ all:
                 gnat.net.cen.ct.gov: {}
                 gnit.grnoc.iu.edu: {}
                 grafana-stage.grnoc.iu.edu: {}
+                grafana-test.grnoc.iu.edu: {}
                 grafana.areon.net: {}
                 grafana.caaren.grnoc.iu.edu: {}
                 grafana.campuses.grnoc.iu.edu: {}
@@ -574,7 +581,6 @@ all:
                 mongo-dev.bldc.grnoc.iu.edu: {}
                 mongo-shard.lwp.bldc.grnoc.iu.edu: {}
                 mongo-shard.lwp.ctc.grnoc.iu.edu: {}
-                mongo-u.grnoc.iu.edu: {}
                 mongo1.tsds.bldc.grnoc.iu.edu: {}
                 mongo2.tsds.ctc.grnoc.iu.edu: {}
                 mongo3.tsds.grnoc.iu.edu: {}
@@ -667,6 +673,7 @@ all:
                 services.tsds.bldc.grnoc.iu.edu: {}
                 services.tsds.ctc.grnoc.iu.edu: {}
                 simp-poller.bldc.grnoc.iu.edu: {}
+                simp.bldc.net.cen.ct.gov: {}
                 simp.grnoc.iu.edu: {}
                 snapp-01.globalnoc.mcnc.org: {}
                 snapp-02.globalnoc.mcnc.org: {}
@@ -702,6 +709,7 @@ all:
                 snapp.noc.onenet.net: {}
                 ssh-collector.bldc.grnoc.iu.edu: {}
                 test.star.grnoc.iu.edu: {}
+                thompsbp-dev.grnoc.iu.edu: {}
                 tstat.unet.ucar.edu: {}
                 veorlows-dev.grnoc.iu.edu: {}
                 veorlows.grnoc.iu.edu: {}
@@ -714,10 +722,13 @@ all:
                 araje-oel8.grnoc.iu.edu: {}
                 awx-frontend.ctc.grnoc.iu.edu: {}
                 cpe.jdratlif.light.globalnoc.iu.edu: {}
-                jdratlif-dev7.grnoc.iu.edu: {}
                 jdratlif-dev8.bldc.grnoc.iu.edu: {}
                 jdratlif-dev8.grnoc.iu.edu: {}
+                k1.jdr.grnoc.iu.edu: {}
+                k2.jdr.grnoc.iu.edu: {}
+                k3.jdr.grnoc.iu.edu: {}
                 light-cpe-test.grnoc.iu.edu: {}
+                zz-araje-test-0307.grnoc.iu.edu: {}
             sms_grnoc:
               hosts:
                 adeora-dev.grnoc.iu.edu: {}
@@ -755,11 +766,8 @@ all:
                 account.wash2.net.internet2.edu: {}
                 backup.ctc.net.internet2.edu: {}
                 compute.os.bldc.net.internet2.edu: {}
-                compute.os.wash2.net.internet2.edu: {}
                 compute2.os.bldc.net.internet2.edu: {}
-                compute2.os.wash2.net.internet2.edu: {}
                 compute3.os.bldc.net.internet2.edu: {}
-                compute3.os.wash2.net.internet2.edu: {}
                 dashboard.bldc.net.internet2.edu: {}
                 idp.bldc.net.internet2.edu: {}
                 idp.wash2.net.internet2.edu: {}
@@ -772,7 +780,6 @@ all:
                 otp.wash2.net.internet2.edu: {}
                 radius.bldc.net.internet2.edu: {}
                 radius.wash2.net.internet2.edu: {}
-                route-collector.bldc.net.internet2.edu: {}
                 sandbox.bldc.net.internet2.edu: {}
                 sandbox.wash2.net.internet2.edu: {}
                 spare.bldc.net.internet2.edu: {}
@@ -781,11 +788,8 @@ all:
                 spare2.bldc.net.internet2.edu: {}
                 spare3.bldc.net.internet2.edu: {}
                 storage.os.bldc.net.internet2.edu: {}
-                storage.os.wash2.net.internet2.edu: {}
                 storage2.os.bldc.net.internet2.edu: {}
-                storage2.os.wash2.net.internet2.edu: {}
                 storage3.os.bldc.net.internet2.edu: {}
-                storage3.os.wash2.net.internet2.edu: {}
                 syslog.bldc.net.internet2.edu: {}
                 syslog.ctc.net.internet2.edu: {}
             mis_i2:
@@ -802,20 +806,14 @@ all:
                 scanner.bldc.net.internet2.edu: {}
             nac_i2:
               hosts:
-                bgp.wash2.net.internet2.edu: {}
                 carto.net.internet2.edu: {}
-                firmware.bldc.net.internet2.edu: {}
-                flowspec.bldc.net.internet2.edu: {}
                 frontend.tsds.bldc.net.internet2.edu: {}
                 frontend.tsds.ctc.net.internet2.edu: {}
                 ftp.bldc.net.internet2.edu: {}
-                geni-local-datastore.net.internet2.edu: {}
                 grafana.bldc.net.internet2.edu: {}
                 grafana.ctc.net.internet2.edu: {}
                 haproxy.bldc.net.internet2.edu: {}
                 haproxy.ctc.net.internet2.edu: {}
-                international.bldc.net.internet2.edu: {}
-                lcsn-srv.bldc.net.internet2.edu: {}
                 mcp-1.bldc.net.internet2.edu: {}
                 mcp-1.wash2.net.internet2.edu: {}
                 mcp-2.bldc.net.internet2.edu: {}
@@ -823,9 +821,7 @@ all:
                 mcp-3.bldc.net.internet2.edu: {}
                 mcp-3.wash2.net.internet2.edu: {}
                 mcp-4.bldc.net.internet2.edu: {}
-                mcp-4.wash2.net.internet2.edu: {}
                 mcp-5.bldc.net.internet2.edu: {}
-                mcp-5.wash2.net.internet2.edu: {}
                 mongo1.tsds.bldc.net.internet2.edu: {}
                 mongo1.tsds.ctc.net.internet2.edu: {}
                 mongo3.tsds.bldc.net.internet2.edu: {}
@@ -834,10 +830,6 @@ all:
                 nso-mgmt.bldc.net.internet2.edu: {}
                 nso-mgmt.wash2.net.internet2.edu: {}
                 oc-denv.net.internet2.edu: {}
-                oc-indi.net.internet2.edu: {}
-                pas.bldc.net.internet2.edu: {}
-                pas.wash2.net.internet2.edu: {}
-                pwa.bldc.net.internet2.edu: {}
                 rabbitmq.tsds.bldc.net.internet2.edu: {}
                 rabbitmq.tsds.ctc.net.internet2.edu: {}
                 services.tsds.bldc.net.internet2.edu: {}
@@ -866,6 +858,7 @@ all:
                 compute3.cloud.bldc.nwave.noaa.gov: {}
                 compute3.cloud.ctc.nwave.noaa.gov: {}
                 ganglia.bldc.nwave.noaa.gov: {}
+                haproxy.k3s.ctc.nwave.noaa.gov: {}
                 hop.silv.nwave.noaa.gov: {}
                 hop.silv2.nwave.noaa.gov: {}
                 idp.bldc.nwave.noaa.gov: {}
@@ -878,6 +871,7 @@ all:
                 ldap.bldc.nwave.noaa.gov: {}
                 ldap.boul.nwave.noaa.gov: {}
                 ldap.ctc.nwave.noaa.gov: {}
+                m.k3s.ctc.nwave.noaa.gov: {}
                 maas.ctc.nwave.noaa.gov: {}
                 mcp-01.bldc.nwave.noaa.gov: {}
                 mcp-license.bldc.nwave.noaa.gov: {}
@@ -890,6 +884,7 @@ all:
                 neteng.bldc.nwave.noaa.gov: {}
                 obj.cloud.bldc.nwave.noaa.gov: {}
                 obj.cloud.ctc.nwave.noaa.gov: {}
+                ol8-ks.ctc.nwave.noaa.gov: {}
                 ol8.ctc.nwave.noaa.gov: {}
                 otp.bldc.nwave.noaa.gov: {}
                 otp.boul.nwave.noaa.gov: {}
@@ -897,12 +892,14 @@ all:
                 puppet.bldc.nwave.noaa.gov: {}
                 puppet7.bldc.nwave.noaa.gov: {}
                 puppet7.nwave.noaa.gov: {}
+                radius-new.ctc.nwave.noaa.gov: {}
                 radius.bldc.nwave.noaa.gov: {}
                 radius.boul.nwave.noaa.gov: {}
                 radius.ctc.nwave.noaa.gov: {}
                 radius.lab.nwave.noaa.gov: {}
                 radius.silv.nwave.noaa.gov: {}
                 radius.silv2.nwave.noaa.gov: {}
+                simp.lab.nwave.noaa.gov: {}
                 spare01.boul.nwave.noaa.gov: {}
                 storage.cloud.bldc.nwave.noaa.gov: {}
                 storage.cloud.ctc.nwave.noaa.gov: {}
@@ -932,6 +929,7 @@ all:
                 tools2.silv.nwave.noaa.gov: {}
                 ubuntu.ctc.nwave.noaa.gov: {}
                 vm-nms.denv.wireless.nwave.noaa.gov: {}
+                w1.k3s.ctc.nwave.noaa.gov: {}
             mis_nwave:
               hosts:
                 db2-stage.bldc.nwave.noaa.gov: {}
@@ -985,6 +983,9 @@ all:
                 perf01.alpe01.nwave.noaa.gov: {}
                 perf01.anch01.nwave.noaa.gov: {}
                 perf01.anch02.nwave.noaa.gov: {}
+                perf01.anch03.nwave.noaa.gov: {}
+                perf01.anch04.nwave.noaa.gov: {}
+                perf01.anch05.nwave.noaa.gov: {}
                 perf01.ashb01.nwave.noaa.gov: {}
                 perf01.ashb02.nwave.noaa.gov: {}
                 perf01.barr01.nwave.noaa.gov: {}
@@ -1006,6 +1007,7 @@ all:
                 perf01.gree02.nwave.noaa.gov: {}
                 perf01.gulf01.nwave.noaa.gov: {}
                 perf01.holm01.nwave.noaa.gov: {}
+                perf01.hono01.nwave.noaa.gov: {}
                 perf01.june01.nwave.noaa.gov: {}
                 perf01.june02.nwave.noaa.gov: {}
                 perf01.kans01.nwave.noaa.gov: {}
@@ -1047,6 +1049,7 @@ all:
                 rancid.bldc.nwave.noaa.gov: {}
                 rancid.boul.nwave.noaa.gov: {}
                 rancid.ctc.nwave.noaa.gov: {}
+                x-perf.denv.nwave.noaa.gov: {}
                 x-perf.wash.nwave.noaa.gov: {}
             nac_nwave:
               hosts:
