@@ -53,6 +53,7 @@ all:
                 alertmon-dev.grnoc.iu.edu: {}
                 alexmars-dev.grnoc.iu.edu: {}
                 anlazar-dev.grnoc.iu.edu: {}
+                anlazar-dev8.grnoc.iu.edu: {}
                 aragusa-dev6.grnoc.iu.edu: {}
                 araje-dev.grnoc.iu.edu: {}
                 arcnaray-dev.grnoc.iu.edu: {}
@@ -70,6 +71,8 @@ all:
                 grigutis-dev2.grnoc.iu.edu: {}
                 grigutis-dev3.grnoc.iu.edu: {}
                 hbilige-dev.grnoc.iu.edu: {}
+                himkolse-dev7.grnoc.iu.edu: {}
+                himkolse-dev8.grnoc.iu.edu: {}
                 jdmcnama-dev.grnoc.iu.edu: {}
                 jdratlif-dev8.bldc.grnoc.iu.edu: {}
                 jdratlif-dev8.grnoc.iu.edu: {}
@@ -77,6 +80,7 @@ all:
                 jonstout-dev7.grnoc.iu.edu: {}
                 jorcbrow-dev.grnoc.iu.edu: {}
                 juslangl-dev.grnoc.iu.edu: {}
+                juslangl-dev8.grnoc.iu.edu: {}
                 ksubram-dev.grnoc.iu.edu: {}
                 ksubram-dev8.grnoc.iu.edu: {}
                 lghanta-dev.grnoc.iu.edu: {}
@@ -86,6 +90,7 @@ all:
                 nocui-dev.grnoc.iu.edu: {}
                 nself-dev.grnoc.iu.edu: {}
                 nsrirang-dev.grnoc.iu.edu: {}
+                nsrirang-dev8.grnoc.iu.edu: {}
                 pauchamb-dev01.grnoc.iu.edu: {}
                 pauchamb-dev02.grnoc.iu.edu: {}
                 prattadi-dev.grnoc.iu.edu: {}
@@ -160,8 +165,10 @@ all:
                 cosign.ctc.net.cen.ct.gov: {}
                 cosign.ctc.oshean.org: {}
                 cosign2.grnoc.iu.edu: {}
+                cpe.abc.light.globalnoc.iu.edu: {}
                 cpe.desales.light.globalnoc.iu.edu: {}
                 cpe.ivytech.light.globalnoc.iu.edu: {}
+                cpe.jsu.light.globalnoc.iu.edu: {}
                 cpe.sori.light.globalnoc.iu.edu: {}
                 daripley-dev8.grnoc.iu.edu: {}
                 deploy.cloud.bldc.grnoc.iu.edu: {}
@@ -426,6 +433,7 @@ all:
                 dc.ctc.oshean.org: {}
                 iumon-new.bldc.grnoc.iu.edu: {}
                 juslangl-dev.grnoc.iu.edu: {}
+                juslangl-dev8.grnoc.iu.edu: {}
                 light-db.light.bldc.globalnoc.iu.edu: {}
                 light-db.light.ctc.globalnoc.iu.edu: {}
                 mon-01.globalnoc.mcnc.org: {}
@@ -673,10 +681,12 @@ all:
                 services.tsds.bldc.grnoc.iu.edu: {}
                 services.tsds.ctc.grnoc.iu.edu: {}
                 simp-poller.bldc.grnoc.iu.edu: {}
+                simp-test.grnoc.iu.edu: {}
                 simp.bldc.net.cen.ct.gov: {}
                 simp.grnoc.iu.edu: {}
                 snapp-01.globalnoc.mcnc.org: {}
                 snapp-02.globalnoc.mcnc.org: {}
+                snapp-arbiter.bldc.net.cen.ct.gov: {}
                 snapp-collector-01.globalnoc.mcnc.org: {}
                 snapp-collector-02.globalnoc.mcnc.org: {}
                 snapp-collector-el7-test.grnoc.iu.edu: {}
@@ -686,6 +696,7 @@ all:
                 snapp-frontend-02.globalnoc.mcnc.org: {}
                 snapp-frontend-test-01.globalnoc.mcnc.org: {}
                 snapp-mongo.bldc.net.cen.ct.gov: {}
+                snapp-mongo.ctc.net.cen.ct.gov: {}
                 snapp-mongo.oshean.org: {}
                 snapp-new.grnoc.iu.edu: {}
                 snapp-new.oshean.org: {}
@@ -722,6 +733,7 @@ all:
                 araje-oel8.grnoc.iu.edu: {}
                 awx-frontend.ctc.grnoc.iu.edu: {}
                 cpe.jdratlif.light.globalnoc.iu.edu: {}
+                haproxy.jdr.grnoc.iu.edu: {}
                 jdratlif-dev8.bldc.grnoc.iu.edu: {}
                 jdratlif-dev8.grnoc.iu.edu: {}
                 k1.jdr.grnoc.iu.edu: {}
@@ -733,11 +745,14 @@ all:
               hosts:
                 adeora-dev.grnoc.iu.edu: {}
                 anlazar-dev.grnoc.iu.edu: {}
+                anlazar-dev8.grnoc.iu.edu: {}
                 arcnaray-dev.grnoc.iu.edu: {}
                 bmcgough-dev7.grnoc.iu.edu: {}
                 bmcgough-gnui-dev.grnoc.iu.edu: {}
                 gnui.grnoc.iu.edu: {}
                 hbilige-dev.grnoc.iu.edu: {}
+                himkolse-dev7.grnoc.iu.edu: {}
+                himkolse-dev8.grnoc.iu.edu: {}
                 jorcbrow-dev.grnoc.iu.edu: {}
                 kpi-metrics-new.bldc.grnoc.iu.edu: {}
                 kpi-metrics.bldc.grnoc.iu.edu: {}
@@ -748,6 +763,7 @@ all:
                 nmahade-dev.grnoc.iu.edu: {}
                 nocui-dev.grnoc.iu.edu: {}
                 nsrirang-dev.grnoc.iu.edu: {}
+                nsrirang-dev8.grnoc.iu.edu: {}
                 rainier-dev.grnoc.iu.edu: {}
                 salapat-dev.grnoc.iu.edu: {}
                 sms-10.grnoc.iu.edu: {}
@@ -827,7 +843,6 @@ all:
                 mongo3.tsds.bldc.net.internet2.edu: {}
                 nddi-dev.bldc.net.internet2.edu: {}
                 nddi-dev2.bldc.net.internet2.edu: {}
-                nso-mgmt.bldc.net.internet2.edu: {}
                 nso-mgmt.wash2.net.internet2.edu: {}
                 oc-denv.net.internet2.edu: {}
                 rabbitmq.tsds.bldc.net.internet2.edu: {}
@@ -857,6 +872,7 @@ all:
                 compute2.cloud.ctc.nwave.noaa.gov: {}
                 compute3.cloud.bldc.nwave.noaa.gov: {}
                 compute3.cloud.ctc.nwave.noaa.gov: {}
+                egress.k3s.ctc.nwave.noaa.gov: {}
                 ganglia.bldc.nwave.noaa.gov: {}
                 haproxy.k3s.ctc.nwave.noaa.gov: {}
                 hop.silv.nwave.noaa.gov: {}
@@ -995,7 +1011,9 @@ all:
                 perf01.ches01.nwave.noaa.gov: {}
                 perf01.coll02.nwave.noaa.gov: {}
                 perf01.colo01.nwave.noaa.gov: {}
+                perf01.elpa01.nwave.noaa.gov: {}
                 perf01.frbn01.nwave.noaa.gov: {}
+                perf01.ftco01.nwave.noaa.gov: {}
                 perf01.ftwo01.nwave.noaa.gov: {}
                 perf01.gait01.nwave.noaa.gov: {}
                 perf01.gait02.nwave.noaa.gov: {}
@@ -1070,6 +1088,7 @@ all:
                 network-troubleshooter.bldc.nwave.noaa.gov: {}
                 ngfs-data2.bldc.nwave.noaa.gov: {}
                 ngfs-data2.ctc.nwave.noaa.gov: {}
+                ngfs-ingest1.bldc.nwave.noaa.gov: {}
                 ngfs-master.bldc.nwave.noaa.gov: {}
                 ngfs-master.ctc.nwave.noaa.gov: {}
                 ngfs.aggregator.bldc.nwave.noaa.gov: {}
