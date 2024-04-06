@@ -1,0 +1,10 @@
+---
+ssh_bastion_config: true
+
+ssh_vscode_hosts:
+  jdratlif-dev8.grnoc.iu.edu:
+    port: 10101
+  puppet7.grnoc.iu.edu:
+    port: 10102
+  puppet7.bldc.nwave.noaa.gov:
+    port: 10201
