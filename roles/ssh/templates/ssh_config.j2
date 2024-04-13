@@ -105,7 +105,7 @@ Match originalhost "*.nwave.noaa.gov,!bastion.*.nwave.noaa.gov"
 Match originalhost "*.scinet.usda.gov,!bastion.*.scinet.usda.gov"
     ProxyJump scinet
     {% endif %}
-    {% if inventory_hostname == "laptop" +%}
+    {% if inventory_hostname == "laptop" or inventory_hostname == "wsl" +%}
 ################################################################################
 # SOCKS proxies
 
@@ -129,6 +129,8 @@ Host noaa noaa-bldc noaa-ctc scinet scinet-bldc scinet-ctc
     PKCS11Provider /usr/lib/ssh-keychain.dylib
         {%- elif config_os_family == "Windows" +%}
     PKCS11Provider "C:\\Program Files\\OpenSC Project\\OpenSC\\pkcs11\\opensc-pkcs11.dll"
+        {%- elif config_os_family == "Debian" +%}
+    PKCS11Provider /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
         {%- else +%}
     PKCS11Provider /usr/lib64/pkcs11/opensc-pkcs11.so
         {%- endif +%}
