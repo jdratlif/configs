@@ -3,8 +3,8 @@ gitconfig:
   name: "{{ git_name }}"
   email: "john@technoplaza.net"
   credentials:
-    - name: https://github.com/sysengquick
-      username: sysengquick
+    - name: https://github.com/sysengquick-yt
+      username: jdratlif
       helper: cache --timeout 14400
     - name: https://github.com/jdratlif
       username: jdratlif
