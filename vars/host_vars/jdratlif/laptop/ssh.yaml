@@ -2,10 +2,13 @@
 ssh_host_configs:
   jdratlif-dev8.grnoc.iu.edu:
     RemoteForward:
-      - '*:1080 localhost:1080'
-      - '*:1081 localhost:1081'
-      - '*:1082 localhost:1082'
-      - '*:1083 localhost:1083'
+      - "*:1080 localhost:1080"
+      - "*:1081 localhost:1081"
+      - "*:1082 localhost:1082"
+      - "*:1083 localhost:1083"
+  araje-dev.grnoc.iu.edu:
+    RemoteForward:
+      - "*:1080 localhost:1080"
   xaiver:
     Hostname: xaiver.technoplaza.net
     Port: 5122
@@ -18,5 +21,7 @@ ssh_vscode_hosts:
     port: 10101
   puppet7.grnoc.iu.edu:
     port: 10102
+  araje-dev.grnoc.iu.edu:
+    port: 10103
   puppet7.bldc.nwave.noaa.gov:
     port: 10201
