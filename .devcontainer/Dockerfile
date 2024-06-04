@@ -4,4 +4,4 @@ FROM mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
 RUN python3 -m pip install 'ansible-core<2.17' ansible-lint pyyaml
 
 # enable git bash completion and preserve bash history
-RUN su vscode -c "echo 'source /usr/share/bash-completion/completions/git' >> ~/.bashrc"
+RUN echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
