@@ -1,11 +1,17 @@
 ---
 ssh_host_configs:
+  jdratlif-dev8.bldc.grnoc.iu.edu:
+    RemoteForward:
+      - "1080 localhost:1080"
+      - "1081 localhost:1081"
+      - "1082 localhost:1082"
+      - "1083 localhost:1083"
   jdratlif-dev8.ctc.grnoc.iu.edu:
     RemoteForward:
-      - "*:1080 localhost:1080"
-      - "*:1081 localhost:1081"
-      - "*:1082 localhost:1082"
-      - "*:1083 localhost:1083"
+      - "1080 localhost:1080"
+      - "1081 localhost:1081"
+      - "1082 localhost:1082"
+      - "1083 localhost:1083"
   xaiver:
     Hostname: xaiver.technoplaza.net
     Port: 5122
@@ -14,6 +20,7 @@ ssh_host_configs:
       - 13389 xaiver11:3389
 
 ssh_vscode_hosts:
+  jdratlif-dev8.bldc.grnoc.iu.edu:
   jdratlif-dev8.ctc.grnoc.iu.edu:
   puppet7.grnoc.iu.edu:
   puppet.grnoc.iu.edu:
