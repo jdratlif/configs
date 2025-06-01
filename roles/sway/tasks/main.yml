@@ -1,7 +1,7 @@
 ---
 - name: Check connected monitors
   ansible.builtin.shell:
-    cmd: swaymsg -t get_outputs | jq -r .[].model | grep U2722DE
+    cmd: set -o pipefail && swaymsg -t get_outputs | jq -r .[].model | grep U2722DE
   changed_when: false
   failed_when: false
   register: result
@@ -10,13 +10,13 @@
   ansible.builtin.set_fact:
     sway_office: "{{ result.rc == 0 }}"
 
-- name: Copy clamshell.sh script
-  ansible.builtin.copy:
-    src: clamshell.sh
-    dest: "{{ config_home_dir }}/.local/bin/"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0755"
+# - name: Copy clamshell.sh script
+#   ansible.builtin.copy:
+#     src: clamshell.sh
+#     dest: "{{ config_home_dir }}/.local/bin/"
+#     owner: "{{ config_user }}"
+#     group: "{{ config_group }}"
+#     mode: "0755"
 
 - name: Ensure config directories
   ansible.builtin.file:

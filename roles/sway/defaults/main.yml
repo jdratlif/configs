@@ -1,28 +1,27 @@
 ---
 sway_border: pixel
 sway_file_manager: thunar
-sway_font: Source Code Pro Medium 16
+# sway_font: Source Code Pro Medium 16
 
 sway_gaps:
   inner: 6
   outer: 2
 
-sway_office: false
-sway_menu: rofi -show drun
-sway_modifier: Mod1 # Alt
+# sway_office: false
+sway_menu: rofi -terminal '$term' -show combi -modes combi -combi-modes "window,drun,run"
+sway_modifier: Mod4 # Super/Windows
 sway_monitors:
   home:
-    - DP-3
-    - DP-4
+    - DP-1
+    - DP-2
   office:
     - Dell Inc. DELL U2722DE 2NR7GH3
     - Dell Inc. DELL U2722DE 4SR7GH3
 
-sway_terminal: xfce4-terminal
+sway_terminal: kitty
 
-sway_timeout:
-  lock: 1200 # 20 minutes
-  screen: 600 # 10 minutes AFTER lock_timeout
+sway_lock_timeout: 1200 # 20 minutes
+sway_screen_timeout: 2400 # 40 minutes after lock_timeout
 
 sway_workspaces:
   - "1: Slack | Joplin"
