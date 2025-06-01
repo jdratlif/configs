@@ -12,8 +12,8 @@ sway_menu: rofi -terminal '$term' -show combi -modes combi -combi-modes "window,
 sway_modifier: Mod4 # Super/Windows
 sway_monitors:
   home:
-    - DP-1
-    - DP-2
+    - HDMI-A-2
+    - HDMI-A-1
   office:
     - Dell Inc. DELL U2722DE 2NR7GH3
     - Dell Inc. DELL U2722DE 4SR7GH3
