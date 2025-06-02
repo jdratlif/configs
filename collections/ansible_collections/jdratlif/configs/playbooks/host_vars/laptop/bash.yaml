@@ -1,0 +1,59 @@
+---
+bash_aliases:
+  rdp_local: xfreerdp /u:john@technoplaza.net /w:1920 /h:1080 /v:xaiver11
+  rdp_ssh: xfreerdp /u:john@technoplaza.net /w:1920 /h:1080 /v:localhost:13389
+  vpn: >-
+    sudo openconnect
+    -u {{ config_user }}
+    --protocol=pulse
+    -s "vpn-slice 10.0.0.0/8 {{ vpn_hosts | join(' ') }}"
+    https://vpn.iu.edu/groups
+
+bash_ssh_agent: true
+
+vpn_hosts:
+  # AAA web application hosts
+  - weblogin.grnoc.iu.edu
+  - otp.grnoc.iu.edu
+  - cosign.areon.net
+  - weblogin.net.cen.ct.gov
+  - account.net.internet2.edu
+  - account.noc.onenet.net
+  - weblogin.oshean.org
+  - account.nwave.noaa.gov
+  - account.scinet.usda.gov
+
+  # AWX hosts
+  - awx.grnoc.iu.edu
+  - awx.test-net.grnoc.iu.edu
+  - awx.bldc.nwave.noaa.gov
+  - awx.ctc.nwave.noaa.gov
+
+  # Cobbler
+  - build.grnoc.iu.edu
+  - cobbler33.grnoc.iu.edu
+
+  # GHE
+  - github.nwave.noaa.gov
+
+  # Kubernetes
+  - vrrp.k3s.grnoc.iu.edu
+
+  # IU IPAM
+  - ipam-bl.uits.iu.edu
+  - ipam-test-bl.uits.iu.edu
+
+  # MCNC
+  - db.ncren.net
+  - db-test.ncren.net
+  - footprints.ncren.net
+
+  # OpenStack / VMware
+  - cloud.bldc.grnoc.iu.edu
+  - cloud.ctc.grnoc.iu.edu
+  - cloud.bldc.scinet.usda.gov
+  - cloud.ctc.scinet.usda.gov
+  - vmware-test.grnoc.iu.edu
+
+  # Tenable
+  - tenable.ctc.nwave.noaa.gov

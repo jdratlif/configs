@@ -1,0 +1,47 @@
+---
+sway_border: pixel
+sway_file_manager: thunar
+# sway_font: Source Code Pro Medium 16
+
+sway_gaps:
+  inner: 6
+  outer: 2
+
+sway_menu: rofi -terminal '$term' -show combi -modes combi -combi-modes "window,drun,run"
+sway_modifier: Mod1 # Alt
+sway_monitors:
+  home:
+    - HDMI-A-2
+    - HDMI-A-1
+  office:
+    - Dell Inc. DELL U2722DE 2NR7GH3
+    - Dell Inc. DELL U2722DE 4SR7GH3
+
+sway_terminal: kitty
+
+sway_lock_timeout: 1200 # 20 minutes
+sway_screen_timeout: 2400 # 40 minutes after lock_timeout
+
+sway_workspaces:
+  - "1: Slack | Joplin"
+  - "2: Scratch"
+  - "3: Scratch"
+  - "4: Scratch"
+  - "5: Scratch"
+  - "6: Firefox | Evolution"
+  - "7: VS Code"
+  - "8: Scratch"
+  - "9: Scratch"
+  - "10: Zoom"
+  - "F1: Scratch"
+  - "F2: Scratch"
+  - "F3: Scratch"
+  - "F4: Scratch"
+  - "F5: Scratch"
+  - "F6: Scratch"
+  - "F7: Scratch"
+  - "F8: Scratch"
+  - "F9: Scratch"
+  - "F10: Scratch"
+  - "F11: Scratch"
+  - "F12: Scratch"

@@ -1,0 +1,7 @@
+---
+- name: Config setup playbook
+  hosts: "{{ targets }}"
+  vars:
+    targets: laptop
+  roles:
+    - jdratlif.configs.push

@@ -1,0 +1,35 @@
+---
+bash_default_aliases:
+  del_backups: find . -type f -name '*~' -exec rm {} +
+  fix_perms: find . -type f -exec chmod 644 {} \; ; find . -type d -exec chmod 755 {} \;
+  ls: ls --color=auto
+  ll: ls -l --color=auto
+  ipt: sudo iptables --line-numbers -nvL
+  ip6t: sudo ip6tables --line-numbers -nvL
+  ssh_kill: pkill -f .ssh/cp-$(whoami)@
+
+bash_default_functions:
+  config_host:
+    - name=$1
+    - shift
+    - ansible-playbook playbook.yml -e "targets=$name" "$@"
+  del_known_host:
+    - LINE_NUMBER=$1
+    - "[[ ! -z $LINE_NUMBER ]] && sed -i -e $1d ~/.ssh/known_hosts"
+  ssl_cert_expire:
+    - >-
+      openssl s_client -showcerts -connect $1:443 2>/dev/null </dev/null
+      | awk '/BEGIN CERTIFICATE/ {p=1}; p==1; /END CERTIFICATE/ {p=0}'
+      | openssl x509 -text -noout | grep 'Not'
+
+bash_history_options_bash:
+  - histappend
+  - histverify
+
+bash_history_options_zsh:
+  - EXTENDED_HISTORY
+  - HIST_IGNORE_ALL_DUPS
+  - HIST_IGNORE_SPACE
+  - HIST_VERIFY
+  - INC_APPEND_HISTORY
+  - SHARE_HISTORY

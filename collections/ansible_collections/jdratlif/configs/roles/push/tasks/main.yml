@@ -1,0 +1,38 @@
+---
+- name: Test if we have become privileges
+  ansible.builtin.command:
+    cmd: id -un
+  changed_when: false
+  become: true
+  ignore_errors: true
+  register: become_test
+  tags: [always]
+
+- name: Find user's primary group
+  tags: [always]
+  block:
+    - name: Lookup primary group
+      ansible.builtin.command: "id -gn {{ config_user }}"
+      changed_when: false
+      register: output
+
+    - name: Register group name
+      ansible.builtin.set_fact:
+        config_group: "{{ output.stdout }}"
+
+- name: Setup gitconfig
+  ansible.builtin.include_role:
+    name: jdratlif.configs.gitconfig
+  tags:
+    - git
+
+- name: Setup ssh configs
+  ansible.builtin.include_role:
+    name: jdratlif.configs.ssh
+  tags:
+    - ssh
+
+- name: Add Unix (Linux/macOS) configs
+  ansible.builtin.import_tasks: unix.yml
+  tags:
+    - unix
