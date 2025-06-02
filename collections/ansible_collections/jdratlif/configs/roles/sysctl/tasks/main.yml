@@ -2,9 +2,22 @@
 - name: Block tag
   tags: [sysctl]
   block:
+    - name: Test for become
+      ansible.builtin.import_role:
+        name: jdratlif.configs.push
+        tasks_from: become_test
+      when: become_test is not defined
+
     - name: Copy sysctl.d files
       ansible.builtin.copy:
         src: sysctl.d/
         dest: /etc/sysctl.d/
         mode: "0644"
       become: true
+      when: become_test is success
+
+    - name: Notify the user of missing become privileges # noqa: ignore-errors
+      ansible.builtin.fail:
+        msg: "Installing sysctl.d files requires become privileges"
+      ignore_errors: true
+      when: become_test is failed
