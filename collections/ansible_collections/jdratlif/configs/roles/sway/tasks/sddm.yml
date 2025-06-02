@@ -1,0 +1,29 @@
+---
+- name: Test for become
+  ansible.builtin.import_role:
+    name: jdratlif.configs.push
+    tasks_from: become_test
+  when: become_test is not defined
+
+- name: Notify the user of missing become privileges # noqa: ignore-errors
+  ansible.builtin.fail:
+    msg: "Configuring sddm requires become privileges"
+  ignore_errors: true
+  when: become_test is failed
+
+- name: Require become privileges block
+  when: become_test is success
+  become: true
+  block:
+    - name: Add include line to sddm-greeter config
+      ansible.builtin.lineinfile:
+        path: /etc/sway/sddm-greeter.config
+        line: include sddm-greeter-ansible.conf
+        insertafter: EOF
+        state: present
+
+    - name: Write sddm-greeter-extra.conf
+      ansible.builtin.template:
+        src: templates/sway/sddm.j2
+        dest: /etc/sway/sddm-greeter-ansible.conf
+        mode: "0644"

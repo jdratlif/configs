@@ -16,28 +16,13 @@ set $term {{ sway_terminal }}
 set $lock_timeout {{ sway_lock_timeout }}
 set $screen_timeout {{ sway_screen_timeout }}
 
-set $laptop eDP-1
-{% for monitor in sway_monitors['office' if sway_office else 'home'] %}
-set $mon{{ loop.index }} {{ monitor }}
-{% endfor %}
+{% include 'snippets/monitors.j2' %}
 
 {% for workspace in sway_workspaces %}
 set $ws{{ loop.index }} {{ workspace }}
 {% endfor %}
 
 ### global configuration
-
-# set position of monitors
-{% set first = 0 %}
-
-{% if sway_office %}
-{% set first = 1920 %}
-output "$laptop" pos 0 0
-{% endif %}
-
-{% set second = first + 2560 %}
-output "$mon1" pos {{ first }} 0
-output "$mon2" pos {{ second }} 0
 
 # remove window titlebars
 default_border {{ sway_border }}
@@ -59,7 +44,7 @@ input "type:touchpad" {
     middle_emulation enabled
 }
 
-input "type:keyboard" xkb_numlock enabled
+{% include 'snippets/numlock.j2' %}
 
 # Workspaces
 workspace $ws1 output "$mon1"

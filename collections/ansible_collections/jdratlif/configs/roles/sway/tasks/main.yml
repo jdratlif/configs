@@ -33,6 +33,9 @@
         - swaylock
         - waybar
 
+    - name: Configure sddm
+      ansible.builtin.import_tasks: sddm.yml
+
     - name: Copy sway config
       ansible.builtin.template:
         src: sway/config.j2

@@ -1,0 +1,16 @@
+set $laptop eDP-1
+{% for monitor in sway_monitors['office' if sway_office else 'home'] %}
+set $mon{{ loop.index }} {{ monitor }}
+{% endfor %}
+
+# set position of monitors
+{% set first = 0 %}
+
+{% if sway_office %}
+{% set first = 1920 %}
+output "$laptop" pos 0 0
+{% endif %}
+
+{% set second = first + 2560 %}
+output "$mon1" pos {{ first }} 0
+output "$mon2" pos {{ second }} 0
