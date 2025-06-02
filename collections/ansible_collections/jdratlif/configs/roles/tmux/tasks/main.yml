@@ -1,40 +1,37 @@
 ---
-- name: Block tag
-  tags: [tmux]
-  block:
-    - name: Check tmux version
-      ansible.builtin.shell:
-        cmd: set -o pipefail; tmux -V | grep -qE '^tmux 2.'
-      changed_when: false
-      failed_when: false
-      register: result
+- name: Check tmux version
+  ansible.builtin.shell:
+    cmd: set -o pipefail; tmux -V | grep -qE '^tmux 2.'
+  changed_when: false
+  failed_when: false
+  register: result
 
-    - name: Register tmux version
-      ansible.builtin.set_fact:
-        tmux_version: "{{ 2 if result.rc == 0 else 3 }}"
+- name: Register tmux version
+  ansible.builtin.set_fact:
+    tmux_version: "{{ 2 if result.rc == 0 else 3 }}"
 
-    - name: Ensure tmux directory exists
-      ansible.builtin.file:
-        state: directory
-        dest: "{{ tmux_plugin_dir }}"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        recurse: true
+- name: Ensure tmux directory exists
+  ansible.builtin.file:
+    state: directory
+    dest: "{{ tmux_plugin_dir }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    recurse: true
 
-    - name: Install plugins # noqa: latest
-      ansible.builtin.git:
-        repo: "https://github.com/{{ plugin }}.git"
-        dest: "{{ tmux_plugin_dir }}/{{ plugin.split('/')[1] }}"
-        umask: "0022"
-      loop: "{{ tmux_plugins }}"
-      loop_control:
-        loop_var: plugin
+- name: Install plugins # noqa: latest
+  ansible.builtin.git:
+    repo: "https://github.com/{{ plugin }}.git"
+    dest: "{{ tmux_plugin_dir }}/{{ plugin.split('/')[1] }}"
+    umask: "0022"
+  loop: "{{ tmux_plugins }}"
+  loop_control:
+    loop_var: plugin
 
-    - name: Template tmux.conf
-      ansible.builtin.template:
-        src: tmux.conf.j2
-        backup: true
-        dest: "{{ config_home_dir }}/.tmux.conf"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
+- name: Template tmux.conf
+  ansible.builtin.template:
+    src: tmux.conf.j2
+    backup: true
+    dest: "{{ config_home_dir }}/.tmux.conf"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"

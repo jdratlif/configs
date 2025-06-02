@@ -1,36 +1,33 @@
 ---
-- name: Block tag
-  tags: [vim]
-  block:
-    - name: Copy vimrc
-      ansible.builtin.copy:
-        src: main.vim
-        backup: true
-        dest: "{{ config_home_dir }}/.vimrc"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
+- name: Copy vimrc
+  ansible.builtin.copy:
+    src: main.vim
+    backup: true
+    dest: "{{ config_home_dir }}/.vimrc"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
 
-    - name: Ensure ownership of viminfo
-      ansible.builtin.file:
-        path: "{{ config_home_dir }}/.viminfo"
-        state: file
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-      failed_when: false
+- name: Ensure ownership of viminfo
+  ansible.builtin.file:
+    path: "{{ config_home_dir }}/.viminfo"
+    state: file
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+  failed_when: false
 
-    - name: Create vim directory
-      ansible.builtin.file:
-        path: "{{ config_home_dir }}/.vim"
-        state: directory
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0755"
+- name: Create vim directory
+  ansible.builtin.file:
+    path: "{{ config_home_dir }}/.vim"
+    state: directory
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0755"
 
-    - name: Copy yaml plugin
-      ansible.builtin.copy:
-        src: plugins/yaml.vim
-        dest: "{{ config_home_dir }}/.vim"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
+- name: Copy yaml plugin
+  ansible.builtin.copy:
+    src: plugins/yaml.vim
+    dest: "{{ config_home_dir }}/.vim"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"

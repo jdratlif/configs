@@ -1,77 +1,74 @@
 ---
-- name: Block tag
-  tags: [sway]
-  block:
-    - name: Check connected monitors
-      ansible.builtin.shell:
-        cmd: set -o pipefail && swaymsg -t get_outputs | jq -r .[].model | grep U2722DE
-      changed_when: false
-      failed_when: false
-      register: result
+- name: Check connected monitors
+  ansible.builtin.shell:
+    cmd: set -o pipefail && swaymsg -t get_outputs | jq -r .[].model | grep U2722DE
+  changed_when: false
+  failed_when: false
+  register: result
 
-    - name: Register sway_office from monitor output
-      ansible.builtin.set_fact:
-        sway_office: "{{ result.rc == 0 }}"
+- name: Register sway_office from monitor output
+  ansible.builtin.set_fact:
+    sway_office: "{{ result.rc == 0 }}"
 
-    # - name: Copy clamshell.sh script
-    #   ansible.builtin.copy:
-    #     src: clamshell.sh
-    #     dest: "{{ config_home_dir }}/.local/bin/"
-    #     owner: "{{ config_user }}"
-    #     group: "{{ config_group }}"
-    #     mode: "0755"
+# - name: Copy clamshell.sh script
+#   ansible.builtin.copy:
+#     src: clamshell.sh
+#     dest: "{{ config_home_dir }}/.local/bin/"
+#     owner: "{{ config_user }}"
+#     group: "{{ config_group }}"
+#     mode: "0755"
 
-    - name: Ensure config directories
-      ansible.builtin.file:
-        state: directory
-        path: "{{ config_home_dir }}/.config/{{ item }}"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        recurse: true
-      loop:
-        - kitty
-        - sway
-        - swaylock
-        - waybar
+- name: Ensure config directories
+  ansible.builtin.file:
+    state: directory
+    path: "{{ config_home_dir }}/.config/{{ item }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    recurse: true
+  loop:
+    - kitty
+    - sway
+    - swaylock
+    - waybar
 
-    - name: Copy kitty configs
-      ansible.builtin.copy:
-        src: kitty/kitty.conf
-        backup: true
-        dest: "{{ config_home_dir }}/.config/kitty/kitty.conf"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
+- name: Copy kitty configs
+  ansible.builtin.copy:
+    src: kitty/kitty.conf
+    backup: true
+    dest: "{{ config_home_dir }}/.config/kitty/kitty.conf"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
 
-    - name: Copy sway config
-      ansible.builtin.template:
-        src: sway/config.j2
-        backup: true
-        dest: "{{ config_home_dir }}/.config/sway/config"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
+- name: Copy sway config
+  ansible.builtin.template:
+    src: sway/config.j2
+    backup: true
+    dest: "{{ config_home_dir }}/.config/sway/config"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
 
-    - name: Copy swaylock config
-      ansible.builtin.copy:
-        src: swaylock/config
-        backup: true
-        dest: "{{ config_home_dir }}/.config/swaylock/config"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
+- name: Copy swaylock config
+  ansible.builtin.copy:
+    src: swaylock/config
+    backup: true
+    dest: "{{ config_home_dir }}/.config/swaylock/config"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
 
-    - name: Copy waybar config
-      ansible.builtin.copy:
-        src: "waybar/{{ item }}"
-        backup: true
-        dest: "{{ config_home_dir }}/.config/waybar/{{ item }}"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
-      loop:
-        - config.jsonc
-        - style.css
+- name: Copy waybar config
+  ansible.builtin.copy:
+    src: "waybar/{{ item }}"
+    backup: true
+    dest: "{{ config_home_dir }}/.config/waybar/{{ item }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
+  loop:
+    - config.jsonc
+    - style.css
 
-    - name: Configure sddm
-      ansible.builtin.import_tasks: sddm.yml
+- name: Configure sddm
+  ansible.builtin.import_tasks: sddm.yml

@@ -2,24 +2,30 @@
 - name: Add bash configs
   ansible.builtin.import_role:
     name: jdratlif.configs.bash
+  tags: [bash]
 
 - name: Setup perltidy
   ansible.builtin.import_role:
     name: jdratlif.configs.perltidy
+  tags: [perltidy]
 
 - name: Add termcap configs
   ansible.builtin.import_role:
     name: jdratlif.configs.termcap
+  tags: [termcap]
   when: use_termcap | default(false)
 
 - name: Setup tmux config
   ansible.builtin.import_role:
     name: jdratlif.configs.tmux
+  tags: [tmux]
   when: use_tmux | default(false)
 
 - name: Setup vim
   ansible.builtin.import_role:
     name: jdratlif.configs.vim
+  tags: [vim]
 
-- name: Push Linux-only configs
+- name: Linux tasks
   ansible.builtin.import_tasks: linux.yml
+  tags: [linux]

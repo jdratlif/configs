@@ -1,0 +1,17 @@
+---
+- name: Test if we have become privileges
+  ansible.builtin.command:
+    cmd: id -un
+  changed_when: false
+  become: true
+  ignore_errors: true
+  register: become_test
+
+- name: Lookup primary group
+  ansible.builtin.command: "id -gn {{ config_user }}"
+  changed_when: false
+  register: output
+
+- name: Register group name
+  ansible.builtin.set_fact:
+    config_group: "{{ output.stdout }}"

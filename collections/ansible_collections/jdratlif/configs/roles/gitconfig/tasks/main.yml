@@ -1,12 +1,9 @@
 ---
-- name: Block tag
-  tags: [git]
-  block:
-    - name: Template gitconfig
-      ansible.builtin.template:
-        src: gitconfig.j2
-        backup: true
-        dest: "{{ config_home_dir }}/.gitconfig"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
+- name: Template gitconfig
+  ansible.builtin.template:
+    src: gitconfig.j2
+    backup: true
+    dest: "{{ config_home_dir }}/.gitconfig"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"

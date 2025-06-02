@@ -1,12 +1,9 @@
 ---
-- name: Block tag
-  tags: [termcap]
-  block:
-    - name: Copy termcap files for tmux
-      ansible.builtin.copy:
-        src: "{{ item }}/"
-        dest: "{{ config_home_dir }}/.terminfo/{{ item }}/"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
-      loop: "{{ termcap_dirs }}"
+- name: Copy termcap files for tmux
+  ansible.builtin.copy:
+    src: "{{ item }}/"
+    dest: "{{ config_home_dir }}/.terminfo/{{ item }}/"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"
+  loop: "{{ termcap_dirs }}"

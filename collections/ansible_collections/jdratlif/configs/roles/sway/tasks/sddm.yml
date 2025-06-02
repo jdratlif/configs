@@ -1,10 +1,4 @@
 ---
-- name: Test for become
-  ansible.builtin.import_role:
-    name: jdratlif.configs.push
-    tasks_from: become_test
-  when: become_test is not defined
-
 - name: Notify the user of missing become privileges # noqa: ignore-errors
   ansible.builtin.fail:
     msg: "Configuring sddm requires become privileges"
