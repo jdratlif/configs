@@ -31,6 +31,7 @@
       loop:
         - sway
         - swaylock
+        - waybar
 
     - name: Copy sway config
       ansible.builtin.template:
@@ -49,3 +50,15 @@
         owner: "{{ config_user }}"
         group: "{{ config_group }}"
         mode: "0644"
+
+    - name: Copy waybar config
+      ansible.builtin.copy:
+        src: "waybar/{{ item }}"
+        backup: true
+        dest: "{{ config_home_dir }}/.config/waybar/{{ item }}"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0644"
+      loop:
+        - config.jsonc
+        - style.css
