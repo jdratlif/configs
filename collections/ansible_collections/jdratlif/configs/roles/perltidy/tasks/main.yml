@@ -1,9 +1,12 @@
 ---
-- name: Copy perltidyrc
-  ansible.builtin.copy:
-    src: perltidyrc
-    backup: true
-    dest: "{{ config_home_dir }}/.perltidyrc"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0644"
+- name: Block tag
+  tags: [perltidy]
+  block:
+    - name: Copy perltidyrc
+      ansible.builtin.copy:
+        src: perltidyrc
+        backup: true
+        dest: "{{ config_home_dir }}/.perltidyrc"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0644"

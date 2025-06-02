@@ -1,76 +1,79 @@
 ---
-- name: Check connected monitors
-  ansible.builtin.shell:
-    cmd: xrandr --listmonitors | grep -qE DP-1-8
-  changed_when: false
-  failed_when: false
-  register: result
+- name: Block tag
+  tags: [i3]
+  block:
+    - name: Check connected monitors
+      ansible.builtin.shell:
+        cmd: set -o pipefail && xrandr --listmonitors | grep -qE DP-1-8
+      changed_when: false
+      failed_when: false
+      register: result
 
-- name: Register i3_office from monitor output
-  ansible.builtin.set_fact:
-    i3_office: "{{ result.rc == 0 }}"
+    - name: Register i3_office from monitor output
+      ansible.builtin.set_fact:
+        i3_office: "{{ result.rc == 0 }}"
 
-- name: Create config directories
-  ansible.builtin.file:
-    state: directory
-    path: "{{ config_home_dir }}/.config/{{ item }}"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    recurse: true
-  loop:
-    - bumblebee-status
-    - i3
+    - name: Create config directories
+      ansible.builtin.file:
+        state: directory
+        path: "{{ config_home_dir }}/.config/{{ item }}"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        recurse: true
+      loop:
+        - bumblebee-status
+        - i3
 
-- name: Create venvs directory
-  ansible.builtin.file:
-    state: directory
-    path: "{{ config_home_dir }}/venvs"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0755"
+    - name: Create venvs directory
+      ansible.builtin.file:
+        state: directory
+        path: "{{ config_home_dir }}/venvs"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0755"
 
-- name: Create bumblebee-status requirements.txt
-  ansible.builtin.copy:
-    src: bumblebee-status/requirements.txt
-    dest: /tmp/bumblebee-status-requirements.txt
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0644"
+    - name: Create bumblebee-status requirements.txt
+      ansible.builtin.copy:
+        src: bumblebee-status/requirements.txt
+        dest: /tmp/bumblebee-status-requirements.txt
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0644"
 
-- name: Create bumblebee-status venv
-  ansible.builtin.pip:
-    requirements: /tmp/bumblebee-status-requirements.txt
-    virtualenv: "{{ config_home_dir }}/venvs/bumblebee"
+    - name: Create bumblebee-status venv
+      ansible.builtin.pip:
+        requirements: /tmp/bumblebee-status-requirements.txt
+        virtualenv: "{{ config_home_dir }}/venvs/bumblebee"
 
-- name: Create bumblebee-status themes directory symlink
-  ansible.builtin.file:
-    state: link
-    src: "{{ config_home_dir }}/venvs/bumblebee/share/bumblebee-status/themes"
-    dest: "{{ config_home_dir }}/.config/bumblebee-status/themes"
+    - name: Create bumblebee-status themes directory symlink
+      ansible.builtin.file:
+        state: link
+        src: "{{ config_home_dir }}/venvs/bumblebee/share/bumblebee-status/themes"
+        dest: "{{ config_home_dir }}/.config/bumblebee-status/themes"
 
-- name: Add local scripts
-  ansible.builtin.copy:
-    src: "scripts/{{ item }}"
-    dest: "{{ config_home_dir }}/.local/bin/"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0755"
-  loop:
-    - run-one
+    - name: Add local scripts
+      ansible.builtin.copy:
+        src: "scripts/{{ item }}"
+        dest: "{{ config_home_dir }}/.local/bin/"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0755"
+      loop:
+        - run-one
 
-- name: Create xset-pm.sh
-  ansible.builtin.template:
-    src: xset-pm.sh.j2
-    dest: "{{ config_home_dir }}/.local/bin/xset-pm.sh"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0755"
+    - name: Create xset-pm.sh
+      ansible.builtin.template:
+        src: xset-pm.sh.j2
+        dest: "{{ config_home_dir }}/.local/bin/xset-pm.sh"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0755"
 
-- name: Template i3 config
-  ansible.builtin.template:
-    src: i3/config.j2
-    backup: true
-    dest: "{{ config_home_dir }}/.config/i3/config"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0644"
+    - name: Template i3 config
+      ansible.builtin.template:
+        src: i3/config.j2
+        backup: true
+        dest: "{{ config_home_dir }}/.config/i3/config"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0644"

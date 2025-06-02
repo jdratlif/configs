@@ -1,27 +1,27 @@
 ---
 - name: Add hyprland configs
-  ansible.builtin.include_role:
+  ansible.builtin.import_role:
     name: jdratlif.configs.hyprland
   tags:
     - hyprland
   when: use_hyprland | default(false)
 
 - name: Add i3 configs
-  ansible.builtin.include_role:
+  ansible.builtin.import_role:
     name: jdratlif.configs.i3
   tags:
     - i3
   when: use_i3 | default(false)
 
 - name: Setup sway wm config
-  ansible.builtin.include_role:
+  ansible.builtin.import_role:
     name: jdratlif.configs.sway
   tags:
     - sway
   when: use_sway | default(false)
 
 - name: Add sysctl.d configs
-  ansible.builtin.include_role:
+  ansible.builtin.import_role:
     name: jdratlif.configs.sysctl
   tags:
     - sysctl

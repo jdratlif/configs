@@ -21,18 +21,12 @@
         config_group: "{{ output.stdout }}"
 
 - name: Setup gitconfig
-  ansible.builtin.include_role:
+  ansible.builtin.import_role:
     name: jdratlif.configs.gitconfig
-  tags:
-    - git
 
 - name: Setup ssh configs
-  ansible.builtin.include_role:
+  ansible.builtin.import_role:
     name: jdratlif.configs.ssh
-  tags:
-    - ssh
 
 - name: Add Unix (Linux/macOS) configs
   ansible.builtin.import_tasks: unix.yml
-  tags:
-    - unix

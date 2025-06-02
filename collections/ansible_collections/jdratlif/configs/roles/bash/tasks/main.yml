@@ -1,24 +1,27 @@
 ---
-- name: Merge default values with overrides
-  ansible.builtin.set_fact:
-    bash_aliases: "{{ bash_default_aliases | combine(bash_aliases, recursive=True) }}"
-    bash_functions: "{{ bash_default_functions | combine(bash_functions, recursive=True) }}"
+- name: Block tag
+  tags: [bash]
+  block:
+    - name: Merge default values with overrides
+      ansible.builtin.set_fact:
+        bash_aliases: "{{ bash_default_aliases | combine(bash_aliases, recursive=True) }}"
+        bash_functions: "{{ bash_default_functions | combine(bash_functions, recursive=True) }}"
 
-- name: Template bash_profile
-  ansible.builtin.template:
-    src: bash_profile.sh.j2
-    backup: true
-    dest: "{{ config_home_dir }}/.bash_profile"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0644"
-  when: not bash_zsh
+    - name: Template bash_profile
+      ansible.builtin.template:
+        src: bash_profile.sh.j2
+        backup: true
+        dest: "{{ config_home_dir }}/.bash_profile"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0644"
+      when: not bash_zsh
 
-- name: Template bashrc/zshrc
-  ansible.builtin.template:
-    src: bashrc.sh.j2
-    backup: true
-    dest: "{{ config_home_dir }}/{{ bash_rc_file }}"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0644"
+    - name: Template bashrc/zshrc
+      ansible.builtin.template:
+        src: bashrc.sh.j2
+        backup: true
+        dest: "{{ config_home_dir }}/{{ bash_rc_file }}"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0644"
