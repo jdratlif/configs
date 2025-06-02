@@ -14,8 +14,8 @@ sway_monitors:
     - HDMI-A-2
     - HDMI-A-1
   office:
-    - Dell Inc. DELL U2722DE 2NR7GH3
     - Dell Inc. DELL U2722DE 4SR7GH3
+    - Dell Inc. DELL U2722DE 2NR7GH3
 
 sway_terminal: kitty
 

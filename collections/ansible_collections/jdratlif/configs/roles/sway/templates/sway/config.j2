@@ -27,6 +27,18 @@ set $ws{{ loop.index }} {{ workspace }}
 
 ### global configuration
 
+# set position of monitors
+{% set first = 0 %}
+
+{% if sway_office %}
+{% set first = 1920 %}
+output "$laptop" pos 0 0
+{% endif %}
+
+{% set second = first + 2560 %}
+output "$mon1" pos {{ first }} 0
+output "$mon2" pos {{ second }} 0
+
 # remove window titlebars
 default_border {{ sway_border }}
 
@@ -50,16 +62,16 @@ input "type:touchpad" {
 input "type:keyboard" xkb_numlock enabled
 
 # Workspaces
-workspace $ws1 output $mon1
-workspace $ws2 output $mon1
-workspace $ws3 output $mon1
-workspace $ws4 output $mon1
-workspace $ws5 output $mon1
-workspace $ws6 output $mon2
-workspace $ws7 output $mon2
-workspace $ws8 output $mon2
-workspace $ws9 output $mon2
-workspace $ws10 output $mon2
+workspace $ws1 output "$mon1"
+workspace $ws2 output "$mon1"
+workspace $ws3 output "$mon1"
+workspace $ws4 output "$mon1"
+workspace $ws5 output "$mon1"
+workspace $ws6 output "$mon2"
+workspace $ws7 output "$mon2"
+workspace $ws8 output "$mon2"
+workspace $ws9 output "$mon2"
+workspace $ws10 output "$mon2"
 
 # Application Workspace Associations
 
@@ -76,13 +88,6 @@ assign [app_id="^code$"] $ws7
 
 # zoom
 assign [class="^zoom$"] $ws10
-
-# scale laptop's tiny display by 33%
-output $laptop scale 1.33
-
-# set position of monitors
-output "$mon1" pos 0 0
-output "$mon2" pos 2560 0
 
 {# # enable clamshell mode
 bindswitch --reload --locked lid:on output $laptop disable
