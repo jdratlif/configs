@@ -64,21 +64,22 @@ workspace $ws10 output "$mon2"
 assign [app_id="^@joplin/app-desktop$"] $ws1
 assign [app_id="^Slack$"] $ws1
 
-# main right workspace (firefox/evolution)
+{# # main right workspace (firefox/evolution)
 assign [app_id="^org.mozilla.firefox$"] $ws6
 assign [app_id="^org.gnome.Evolution$"] $ws6
 
 # VS code
-assign [app_id="^code$"] $ws7
+assign [app_id="^code$"] $ws7 #}
 
 # zoom
 assign [class="^zoom$"] $ws10
 
-# make 1password floating
+# float 1password and evolution compose windows
 for_window [class="^1Password$"] floating enable
+for_window [class="^org.gnome.Evolution$" title="^(Re:|Compose)"] floating enable, resize set 90ppt 90ppt, move position center
 
-# keep firefox/code dialogs in their own workspace
-for_window [app_id="^(org.mozilla.firefox|code)$" floating] move container to workspace current
+{# # keep firefox/code dialogs in their own workspace
+for_window [app_id="^(org.mozilla.firefox|code)$" floating] move container to workspace current #}
 
 {# # enable clamshell mode
 bindswitch --reload --locked lid:on output $laptop disable
@@ -122,7 +123,7 @@ bindsym $mod+d exec $menu
 floating_modifier $mod normal
 
 # Reload the configuration file
-bindsym $mod+Shift+r reload
+bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'

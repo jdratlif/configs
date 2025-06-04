@@ -8,7 +8,8 @@ sway_gaps:
   outer: 2
 
 sway_menu: rofi -terminal '$term' -show combi -modes combi -combi-modes "window,drun,run"
-sway_modifier: Mod1 # Alt
+# sway_modifier: Mod1 # Alt
+sway_modifier: Mod4 # Super/Logo
 sway_monitors:
   home:
     - HDMI-A-2
