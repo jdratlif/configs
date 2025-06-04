@@ -18,9 +18,7 @@
   "files.associations": {
     "*.j2": "ansible-jinja",
     "*.yml": "ansible",
-    "*.sh.j2": "jinja-shell",
-    "*config.j2": "jinja-shell",
-    "hyprland.conf.j2": "jinja-shell"
+    "*.sh.j2": "jinja-shell"
   },
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
