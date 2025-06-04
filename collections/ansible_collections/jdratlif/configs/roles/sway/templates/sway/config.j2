@@ -77,6 +77,9 @@ assign [class="^zoom$"] $ws10
 # make 1password floating
 for_window [class="^1Password$"] floating enable
 
+# keep firefox/code dialogs in their own workspace
+for_window [app_id="^(org.mozilla.firefox|code)$" floating] move container to workspace current
+
 {# # enable clamshell mode
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
