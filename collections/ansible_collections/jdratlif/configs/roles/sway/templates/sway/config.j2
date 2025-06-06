@@ -64,22 +64,12 @@ workspace $ws10 output "$mon2"
 assign [app_id="^@joplin/app-desktop$"] $ws1
 assign [app_id="^Slack$"] $ws1
 
-{# # main right workspace (firefox/evolution)
-assign [app_id="^org.mozilla.firefox$"] $ws6
-assign [app_id="^org.gnome.Evolution$"] $ws6
-
-# VS code
-assign [app_id="^code$"] $ws7 #}
-
 # zoom
 assign [class="^zoom$"] $ws10
 
 # float 1password and evolution compose windows
 for_window [class="^1Password$"] floating enable
-for_window [class="^org.gnome.Evolution$" title="^(Re:|Compose)"] floating enable, resize set 90ppt 90ppt, move position center
-
-{# # keep firefox/code dialogs in their own workspace
-for_window [app_id="^(org.mozilla.firefox|code)$" floating] move container to workspace current #}
+for_window [app_id="^org.gnome.Evolution$" title="^(Re:|Compose)"] floating enable, resize set 90ppt 90ppt, move position center
 
 {# # enable clamshell mode
 bindswitch --reload --locked lid:on output $laptop disable
