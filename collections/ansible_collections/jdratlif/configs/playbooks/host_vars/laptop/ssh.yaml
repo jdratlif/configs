@@ -19,12 +19,6 @@ ssh_host_configs:
       - "1081 localhost:1081"
       - "1082 localhost:1082"
       - "1083 localhost:1083"
-  xaiver:
-    Hostname: xaiver.technoplaza.net
-    Port: 5122
-    DynamicForward: 1084
-    LocalForward:
-      - 13389 xaiver11:3389
 
 ssh_vscode_hosts:
   jdratlif-dev8.bldc.grnoc.iu.edu:
