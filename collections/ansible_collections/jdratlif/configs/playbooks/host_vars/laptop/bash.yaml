@@ -1,6 +1,5 @@
 ---
 bash_aliases:
-  rdp_local: xfreerdp /u:john@technoplaza.net /w:1920 /h:1080 /v:xaiver11
-  rdp_ssh: xfreerdp /u:john@technoplaza.net /w:1920 /h:1080 /v:localhost:13389
+  rdp: "xfreerdp /u:john@technoplaza.net /d: /f /v:xaiver"
 
 bash_ssh_agent: false
