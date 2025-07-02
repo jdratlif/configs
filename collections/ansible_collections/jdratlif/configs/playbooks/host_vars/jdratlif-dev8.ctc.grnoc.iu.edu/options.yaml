@@ -1,3 +1,2 @@
 ---
-bash_ssh_agent: true
 use_sysctl: true
