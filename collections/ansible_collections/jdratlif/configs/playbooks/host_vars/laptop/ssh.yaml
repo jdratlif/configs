@@ -10,18 +10,15 @@ ssh_host_common_configs:
   ControlPersist: 5m
 
 ssh_host_configs:
-  jdratlif-dev8.bldc.grnoc.iu.edu:
+  jdratlif-dev8.grnoc.iu.edu: &dev_host
+    ForwardAgent: "yes"
     RemoteForward:
       - "1080 localhost:1080"
       - "1081 localhost:1081"
       - "1082 localhost:1082"
       - "1083 localhost:1083"
-  jdratlif-dev8.ctc.grnoc.iu.edu:
-    RemoteForward:
-      - "1080 localhost:1080"
-      - "1081 localhost:1081"
-      - "1082 localhost:1082"
-      - "1083 localhost:1083"
+  jdratlif-dev8.bldc.grnoc.iu.edu: *dev_host
+  jdratlif-dev8.ctc.grnoc.iu.edu: *dev_host
 
 ssh_vscode_hosts:
   jdratlif-dev8.bldc.grnoc.iu.edu:
