@@ -1,6 +1,6 @@
 ---
 ssh_authorized_keys:
-  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBc+bQFdinbcO0eHrnxfLM+OroTUOt3RKHkTbrh6hNfm
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICMpV1NruIlhslQT56n+Gzr63c55RcumQKUUAiZnYDTC
 
 ssh_bastion_config: true
 
