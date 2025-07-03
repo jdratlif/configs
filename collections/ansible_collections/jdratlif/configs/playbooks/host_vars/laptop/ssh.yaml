@@ -5,20 +5,38 @@ ssh_authorized_keys:
 ssh_bastion_config: true
 
 ssh_host_common_configs:
+  IdentityAgent: ~/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
   ControlMaster: auto
   ControlPath: ~/.ssh/cp-%r@%h:%p
   ControlPersist: 5m
 
 ssh_host_configs:
+  "htpc pve":
+    IdentityFile: ~/.ssh/jdratlif.pub
   jdratlif-dev8.grnoc.iu.edu: &dev_host
     ForwardAgent: "yes"
+    IdentityFile: ~/.ssh/jdratlif.pub
     RemoteForward:
-      - "1080 localhost:1080"
-      - "1081 localhost:1081"
-      - "1082 localhost:1082"
-      - "1083 localhost:1083"
+      - "1080 localhost:1080" # grnoc SOCKS
+      - "1081 localhost:1081" # nwave SOCKS
+      - "1082 localhost:1082" # i2 SOCKS
+      - "1083 localhost:1083" # scinet SOCKS
   jdratlif-dev8.bldc.grnoc.iu.edu: *dev_host
   jdratlif-dev8.ctc.grnoc.iu.edu: *dev_host
+  puppet7.grnoc.iu.edu:
+    IdentityFile: ~/.ssh/jdratlif.pub
+
+# TODO: fix all the placeholder ones that don't have the right keys yet
+ssh_identities:
+  grnoc: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8Xxm9Z8N7F9zDd9WiY0WE3Uv7ezeKavo90dfwswbsL
+  i2: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8Xxm9Z8N7F9zDd9WiY0WE3Uv7ezeKavo90dfwswbsL # placeholder
+  jdratlif: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICMpV1NruIlhslQT56n+Gzr63c55RcumQKUUAiZnYDTC
+  nwave: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8Xxm9Z8N7F9zDd9WiY0WE3Uv7ezeKavo90dfwswbsL # placeholder
+  noaa: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+loEqnuYPbHD9SiasW0MTs19EJKSLbd+pwYhEdcRgmz2dESvLhpn3tH2O2eYMIzLQoVCMT8KpEwmhpFRuJ5w9Cxoqe1ReqLbVtOWlVD/BLPIzaUQhQa0+TSM2ETMXgkmGa4ARGrJVCzCQH0+z6rGX6OvWTQUEFDG0QM8ZdON+9Py6P3ZwrRDhSOobclkov7KDxqUi5SM3mjdBTdaHigNaGg7+N/koXakOwTd7Bd4PBtOWVhsqa87uOaOGXyRTeOpkE1XzFlhGOsMvd1SwN9U/DrJyazgwbJjhqXDuhOcPYFgWv0nGPX4uplDffviij6c+I9i1sMHlmDCbIU6jxKXh
+  scinet: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8Xxm9Z8N7F9zDd9WiY0WE3Uv7ezeKavo90dfwswbsL # placeholder
+  scinet-piv: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7gLhqbdNlK8OE4HujfiUHVSzqZPh/zJmjoWzA4V0O8cuDXIUiIDwvSwqBV1NB1RBoPF45X+nntdONzShHbevn8lNpAitHGeDADz4WR0RW6UJ5pW3rzJlacWYrw0lYjl32uDACWsik/Iz2gXx7X/sxKHhIrQrd8+X6UOg2CUHJ6N4AfQQ8lH6PYsr8w4sa4KEnJv+kGTAbtpmaIBIJgkMmEDtfllFIbW76x/Ax0ZsIujnhSi5SMqi4i+2tj6qeBaoy/LmsfBGXmioxDh4TIx5SVausO5WyhTJFm0m8b8PRVz3yc2TbSyh7/HlfdAl5c/YqvO/q1Y4sqIcp1OROcDAP
+  technoplaza: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwdDfiqveE9xwaJ21C/GOeheGk4OuczJXi11t1dmELG
+  xaiver: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBc+bQFdinbcO0eHrnxfLM+OroTUOt3RKHkTbrh6hNfm
 
 ssh_vscode_hosts:
   jdratlif-dev8.bldc.grnoc.iu.edu:
@@ -26,4 +44,3 @@ ssh_vscode_hosts:
   puppet7.grnoc.iu.edu:
   puppet.grnoc.iu.edu:
   puppet7.bldc.nwave.noaa.gov:
-  puppet.bldc.nwave.noaa.gov:

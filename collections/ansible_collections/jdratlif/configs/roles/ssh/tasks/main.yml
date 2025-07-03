@@ -37,3 +37,14 @@
         owner: "{{ config_user }}"
         group: "{{ config_group }}"
         mode: "0600"
+
+    - name: Setup identity files
+      ansible.builtin.copy:
+        dest: "{{ config_home_dir }}/.ssh/{{ identity }}.pub"
+        content: "{{ ssh_identities[identity] }}"
+        owner: "{{ config_user }}"
+        group: "{{ config_group }}"
+        mode: "0600"
+      loop: "{{ ssh_identities.keys() }}"
+      loop_control:
+        loop_var: identity

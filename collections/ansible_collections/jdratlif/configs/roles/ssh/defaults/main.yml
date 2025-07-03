@@ -10,6 +10,8 @@ ssh_canonical_dots: 2
 ssh_host_configs: {}
 ssh_host_common_configs: {}
 
+ssh_identities: {}
+
 ssh_socks:
   grnoc: 1080
   i2: 1082

@@ -1,7 +1,5 @@
 ---
 bash_aliases:
-  noaa: "SSH_AUTH_SOCK= ssh noaa"
-  scinet: "SSH_AUTH_SOCK= ssh scinet"
   rdp: "xfreerdp /u:john@technoplaza.net /d: /f /v:xaiver"
 
 bash_ssh_agent: false

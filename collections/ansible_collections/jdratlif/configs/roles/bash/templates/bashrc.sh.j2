@@ -134,6 +134,3 @@ if [ -d ~/{{ bash_rc_file }}.d ]; then
     done
 fi
 unset rc
-
-BITWARDEN_SSH_AUTH_SOCK=$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
-test -S "$BITWARDEN_SSH_AUTH_SOCK" && export SSH_AUTH_SOCK="$BITWARDEN_SSH_AUTH_SOCK"

@@ -94,32 +94,40 @@ Host scinet scinet-bldc scinet-ctc
 # Bastion proxying by hostname
 
 Match originalhost "*.grnoc.iu.edu,*.globalnoc.iu.edu,!leap.grnoc.iu.edu,!skip.grnoc.iu.edu,!jump.grnoc.iu.edu"
+    IdentityFile ~/.ssh/grnoc.pub
     ProxyJump grnoc
 
 Match originalhost "*.net.internet2.edu,!bastion.bldc.net.internet2.edu,!bastion.ctc.net.internet2.edu"
+    IdentityFile ~/.ssh/i2.pub
     ProxyJump i2
 
 Match originalhost "*.nwave.noaa.gov,!bastion.*.nwave.noaa.gov"
+    IdentityFile ~/.ssh/nwave.pub
     ProxyJump noaa
 
 Match originalhost "*.scinet.usda.gov,!bastion.*.scinet.usda.gov"
+    IdentityFile ~/.ssh/scinet.pub
     ProxyJump scinet
     {% endif %}
     {% if inventory_hostname == "laptop" or inventory_hostname == "wsl" +%}
 ################################################################################
-# SOCKS proxies
+# Bastion specific configs
 
 Host grnoc leap skip jump
     DynamicForward {{ ssh_socks['grnoc'] }}
+    IdentityFile ~/.ssh/grnoc.pub
 
 Host i2 i2-bldc i2-ctc
     DynamicForward {{ ssh_socks['i2'] }}
+    IdentityFile ~/.ssh/i2.pub
 
 Host noaa noaa-bldc noaa-ctc
     DynamicForward {{ ssh_socks['nwave'] }}
+    IdentityFile ~/.ssh/noaa.pub
 
 Host scinet scinet-bldc scinet-ctc
     DynamicForward {{ ssh_socks['scinet'] }}
+    IdentityFile ~/.ssh/scinet-piv.pub
 
 ################################################################################
 # PKCS11 for CAC bastions
