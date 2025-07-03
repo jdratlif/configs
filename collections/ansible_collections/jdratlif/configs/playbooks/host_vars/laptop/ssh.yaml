@@ -11,8 +11,10 @@ ssh_host_common_configs:
   ControlPersist: 5m
 
 ssh_host_configs:
-  "htpc pve":
+  "beelink pangolin16":
     IdentityFile: ~/.ssh/jdratlif.pub
+  "htpc pve":
+    IdentityFile: ~/.ssh/xaiver.pub
   jdratlif-dev8.grnoc.iu.edu: &dev_host
     ForwardAgent: "yes"
     IdentityFile: ~/.ssh/jdratlif.pub
