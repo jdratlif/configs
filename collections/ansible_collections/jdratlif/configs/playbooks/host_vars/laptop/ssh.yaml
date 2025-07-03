@@ -5,6 +5,7 @@ ssh_authorized_keys:
 ssh_bastion_config: true
 
 ssh_host_common_configs:
+  IdentitiesOnly: "yes"
   IdentityAgent: ~/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock
   ControlMaster: auto
   ControlPath: ~/.ssh/cp-%r@%h:%p

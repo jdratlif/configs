@@ -1,6 +1,5 @@
 ---
 ssh_host_common_configs_defaults:
-  IdentitiesOnly: "yes"
   ServerAliveCountMax: 3
   ServerAliveInterval: 30
   User: "{{ config_user }}"
