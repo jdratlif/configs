@@ -1,0 +1,3 @@
+---
+kitty_config_dir: "{{ config_home_dir }}/.config/kitty"
+kitty_config_file: "{{ kitty_config_dir }}/kitty.conf"

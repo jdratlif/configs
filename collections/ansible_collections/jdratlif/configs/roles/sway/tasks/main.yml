@@ -26,19 +26,9 @@
     group: "{{ config_group }}"
     recurse: true
   loop:
-    - kitty
     - sway
     - swaylock
     - waybar
-
-- name: Copy kitty configs
-  ansible.builtin.copy:
-    src: kitty/kitty.conf
-    backup: true
-    dest: "{{ config_home_dir }}/.config/kitty/kitty.conf"
-    owner: "{{ config_user }}"
-    group: "{{ config_group }}"
-    mode: "0644"
 
 - name: Copy sway config
   ansible.builtin.template:
