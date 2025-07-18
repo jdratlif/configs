@@ -1,20 +1,17 @@
 ---
-- name: Manage block
-  when: kitty_manage
-  block:
-    - name: Create config directory
-      ansible.builtin.file:
-        state: directory
-        path: "{{ kitty_config_dir }}"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        recurse: true
+- name: Create config directory
+  ansible.builtin.file:
+    state: directory
+    path: "{{ kitty_config_dir }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    recurse: true
 
-    - name: Copy kitty configs
-      ansible.builtin.copy:
-        src: kitty.conf
-        backup: true
-        dest: "{{ kitty_config_file }}"
-        owner: "{{ config_user }}"
-        group: "{{ config_group }}"
-        mode: "0644"
+- name: Copy kitty configs
+  ansible.builtin.copy:
+    src: kitty.conf
+    backup: true
+    dest: "{{ kitty_config_file }}"
+    owner: "{{ config_user }}"
+    group: "{{ config_group }}"
+    mode: "0644"

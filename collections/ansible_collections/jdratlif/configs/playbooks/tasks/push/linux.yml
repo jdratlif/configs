@@ -10,6 +10,12 @@
   tags: [i3]
   when: use_i3 | default(false)
 
+- name: Configure kitty terminal
+  ansible.builtin.import_role:
+    name: jdratlif.configs.kitty
+  tags: [kitty]
+  when: use_kitty | default(false)
+
 - name: Setup sway wm config
   ansible.builtin.import_role:
     name: jdratlif.configs.sway

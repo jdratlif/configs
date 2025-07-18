@@ -2,4 +2,5 @@
 # use_hyprland: true
 # use_i3: true
 # use_sway: true
+use_kitty: true
 use_sysctl: true
