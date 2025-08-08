@@ -114,19 +114,19 @@ Match originalhost "*.scinet.usda.gov,!bastion.*.scinet.usda.gov"
 # Bastion specific configs
 
 Host grnoc leap skip jump
-    DynamicForward {{ ssh_socks['grnoc'] }}
+    DynamicForward *:{{ ssh_socks['grnoc'] }}
     IdentityFile ~/.ssh/grnoc.pub
 
 Host i2 i2-bldc i2-ctc
-    DynamicForward {{ ssh_socks['i2'] }}
+    DynamicForward *:{{ ssh_socks['i2'] }}
     IdentityFile ~/.ssh/i2.pub
 
 Host noaa noaa-bldc noaa-ctc
-    DynamicForward {{ ssh_socks['nwave'] }}
+    DynamicForward *:{{ ssh_socks['nwave'] }}
     IdentityFile ~/.ssh/noaa.pub
 
 Host scinet scinet-bldc scinet-ctc
-    DynamicForward {{ ssh_socks['scinet'] }}
+    DynamicForward *:{{ ssh_socks['scinet'] }}
     IdentityFile ~/.ssh/scinet-piv.pub
 
 ################################################################################

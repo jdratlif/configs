@@ -16,15 +16,14 @@ ssh_host_configs:
     IdentityFile: ~/.ssh/jdratlif.pub
   "htpc pve":
     IdentityFile: ~/.ssh/xaiver.pub
-  jdratlif-dev8.grnoc.iu.edu: &dev_host
+  jdratlif-dev8.bldc.grnoc.iu.edu: &dev_host
     ForwardAgent: "yes"
     IdentityFile: ~/.ssh/jdratlif.pub
     RemoteForward:
-      - "1080 localhost:1080" # grnoc SOCKS
-      - "1081 localhost:1081" # nwave SOCKS
-      - "1082 localhost:1082" # i2 SOCKS
-      - "1083 localhost:1083" # scinet SOCKS
-  jdratlif-dev8.bldc.grnoc.iu.edu: *dev_host
+      - "*:1080 localhost:1080" # grnoc SOCKS
+      - "*:1081 localhost:1081" # nwave SOCKS
+      - "*:1082 localhost:1082" # i2 SOCKS
+      - "*:1083 localhost:1083" # scinet SOCKS
   jdratlif-dev8.ctc.grnoc.iu.edu: *dev_host
   puppet7.grnoc.iu.edu:
     IdentityFile: ~/.ssh/jdratlif.pub
@@ -45,5 +44,4 @@ ssh_vscode_hosts:
   jdratlif-dev8.bldc.grnoc.iu.edu:
   jdratlif-dev8.ctc.grnoc.iu.edu:
   puppet7.grnoc.iu.edu:
-  puppet.grnoc.iu.edu:
   puppet7.bldc.nwave.noaa.gov:
