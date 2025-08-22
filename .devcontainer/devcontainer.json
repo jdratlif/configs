@@ -1,0 +1,59 @@
+{
+  "name": "configs",
+  "dockerComposeFile": "compose.yaml",
+  "service": "devc",
+  "postStartCommand": "uv sync",
+  "workspaceFolder": "/workspace",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "be5invis.toml",
+        "bierner.markdown-preview-github-styles",
+        "DavidAnson.vscode-markdownlint",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "esbenp.prettier-vscode",
+        "mhutchie.git-graph",
+        "ms-python.black-formatter",
+        "ms-python.flake8",
+        "ms-python.isort",
+        "ms-vsliveshare.vsliveshare",
+        "oderwat.indent-rainbow",
+        "redhat.ansible",
+        "samuelcolvin.jinjahtml",
+        "yzhang.markdown-all-in-one"
+      ],
+      "settings": {
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[markdown]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        "ansible.python.interpreterPath": "/workspace/.venv/bin/python3",
+        "editor.formatOnSave": true,
+        "files.associations": {
+          "*.j2": "ansible-jinja",
+          "*.sh.j2": "jinja-shell",
+          "*.yaml.j2": "jinja-yaml",
+          "*.yml": "ansible"
+        },
+        "files.trimFinalNewlines": true,
+        "files.trimTrailingWhitespace": true,
+        "python.defaultInterpreterPath": "/workspace/.venv/bin/python3",
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestEnabled": true
+      }
+    }
+  }
+}

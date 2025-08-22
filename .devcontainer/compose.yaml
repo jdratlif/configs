@@ -1,0 +1,13 @@
+---
+services:
+  devc:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    environment:
+      ANSIBLE_CONFIG: /workspace/.devcontainer/ansible.cfg
+      ANSIBLE_COLLECTIONS_PATH: ~/.ansible/collections:/usr/share/ansible/collections:/workspace/collections
+    volumes:
+      - ..:/workspace:cached,z
+      - /home/jdratlif:/home/jdratlif
+    command: sleep infinity
