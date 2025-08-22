@@ -2,4 +2,5 @@
 ssh_host_common_configs_defaults:
   ServerAliveCountMax: 3
   ServerAliveInterval: 30
+  StrictHostKeyChecking: accept-new
   User: "{{ config_user }}"
