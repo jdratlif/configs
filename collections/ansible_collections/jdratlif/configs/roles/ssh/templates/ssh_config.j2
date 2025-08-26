@@ -44,11 +44,14 @@ Host {% if ssh_bastion_i2 == 'bldc' %}i2 {% endif %}i2-bldc
 Host {% if ssh_bastion_i2 == 'ctc' %}i2 {% endif %}i2-ctc
     HostName bastion.ctc.net.internet2.edu
 
-Host {% if ssh_bastion_noaa == 'bldc' %}noaa {% endif %} noaa-bldc
+Host {% if ssh_bastion_noaa == 'bldc' %}noaa {% endif %}noaa-bldc
     HostName bastion.bldc.nwave.noaa.gov
 
 Host {% if ssh_bastion_noaa == 'ctc' %}noaa {% endif %}noaa-ctc
     HostName bastion.ctc.nwave.noaa.gov
+
+Host {% if ssh_bastion_noaa == 'boul' %}noaa {% endif %}noaa-boul
+    HostName bastion.boul.nwave.noaa.gov
 
 Host {% if ssh_bastion_scinet == 'bldc' %}scinet {% endif %}scinet-bldc
     HostName bastion.bldc.scinet.usda.gov
@@ -75,7 +78,7 @@ Host i2 i2-bldc i2-ctc
             {%- endif %}
         {% endfor +%}
 
-Host noaa noaa-bldc noaa-ctc
+Host noaa noaa-bldc noaa-ctc noaa-boul
         {%- for host in ssh_vscode_hosts %}
             {%- if host.endswith('.nwave.noaa.gov') +%}
     LocalForward {{ ssh_vscode_hosts[host]['port'] }} {{ host }}:22
@@ -121,7 +124,7 @@ Host i2 i2-bldc i2-ctc
     DynamicForward *:{{ ssh_socks['i2'] }}
     IdentityFile ~/.ssh/i2.pub
 
-Host noaa noaa-bldc noaa-ctc
+Host noaa noaa-bldc noaa-ctc noaa-boul
     DynamicForward *:{{ ssh_socks['nwave'] }}
     IdentityFile ~/.ssh/noaa.pub
 
@@ -132,7 +135,7 @@ Host scinet scinet-bldc scinet-ctc
 ################################################################################
 # PKCS11 for CAC bastions
 
-Host noaa noaa-bldc noaa-ctc scinet scinet-bldc scinet-ctc
+Host noaa noaa-bldc noaa-ctc noaa-boul scinet scinet-bldc scinet-ctc
         {%- if config_os_family == "Darwin" +%}
     PKCS11Provider /usr/lib/ssh-keychain.dylib
         {%- elif config_os_family == "Windows" +%}
