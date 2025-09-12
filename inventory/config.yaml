@@ -4,8 +4,8 @@ aliases:
   build-new.grnoc.iu.edu:
     - build.grnoc.iu.edu
     - puppet.grnoc.iu.edu
-  jdratlif-dev8.bldc.grnoc.iu.edu:
-    - jdratlif-dev8.grnoc.iu.edu
+  neteng.ctc.grnoc.iu.edu:
+    - sandbox.grnoc.iu.edu
   puppet7.bldc.nwave.noaa.gov:
     - puppet7.nwave.noaa.gov
 
