@@ -43,5 +43,6 @@ ssh_identities:
 ssh_vscode_hosts:
   jdratlif-dev8.bldc.grnoc.iu.edu:
   jdratlif-dev8.ctc.grnoc.iu.edu:
+  sandbox.grnoc.iu.edu:
   puppet7.grnoc.iu.edu:
   puppet7.bldc.nwave.noaa.gov:
