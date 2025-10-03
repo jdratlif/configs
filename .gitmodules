@@ -1,3 +1,0 @@
-[submodule "inventory/grnoc"]
-	path = inventory/grnoc
-	url = https://github.grnoc.iu.edu/Ansible/ansible-inventory.git
