@@ -1,0 +1,3 @@
+[submodule "inventory/upstream"]
+	path = inventory/upstream
+	url = https://github.grnoc.iu.edu/ansible/ansible-inventory.git
