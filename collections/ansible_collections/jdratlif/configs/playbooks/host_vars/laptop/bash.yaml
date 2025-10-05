@@ -1,5 +1,0 @@
----
-bash_aliases:
-  rdp: "xfreerdp /u:john@technoplaza.net /d: /f /v:xaiver"
-
-bash_ssh_agent: false
