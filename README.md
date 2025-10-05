@@ -1,21 +1,11 @@
-# Home Directory Configs
+# System Configuration Plays
 
-Ansible playbook to keep home directory configuration consistent.
+This is based on the upstream sysengquick.unix collection.
+Use it from the devcontainer.
 
-Writes the following configuration files from templates:
-
-- .bashrc/.bash_profile (linux) / .zshrc (macOS)
-- .gitconfig
-- .perltidyrc
-- .ssh/config and .ssh/authorized_keys
-- .tmux.conf
-- .vimrc and vim yaml plugin
-
-## Running from the CLI (bastions and laptops)
-
-Run the repo against your host.
-Replace TARGETS with the host target (e.g. skip.grnoc.iu.edu or laptop).
+## Examples
 
 ```bash
-ansible-playbook playbook.yml -e targets=TARGETS
+ansible-playbook sysengquick.unix.fedora -e targets=beelink
+ansible-playbook sysengquick.unix.server -e targets=jdratlif-dev8.*.grnoc.iu.edu
 ```
