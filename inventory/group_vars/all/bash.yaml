@@ -5,7 +5,7 @@ bash_aliases:
   fix_perms: find . \( -type f -exec chmod 644 {} + \) -o \( -type d -exec chmod 755 {} + \)
   ipt: sudo iptables --line-numbers -nvL
   ip6t: sudo ip6tables --line-numbers -nvL
-  rdp: "xfreerdp /u:john@technoplaza.net /d: /f /v:xaiver"
+  rdp: "xfreerdp /u:john@technoplaza.net /d: /size:2560x1440 /v:xaiver"
   ssh_kill: pkill -f .ssh/cp-$(whoami)@
   fcns: compgen -A function | grep -v '^_'
 
