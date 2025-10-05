@@ -1,0 +1,8 @@
+---
+configs_files:
+  inputrc:
+    directory: ~
+    files: [.inputrc]
+  perltidy:
+    directory: ~
+    files: [.perltidyrc]

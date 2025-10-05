@@ -1,0 +1,7 @@
+---
+fstab_mounts:
+  /mnt/nas:
+    state: present
+    src: //pve/tank
+    fstype: cifs
+    opts: noauto,x-systemd.automount,_netdev,guest,uid=1000,gid=1000,file_mode=0644,dir_mode=0755

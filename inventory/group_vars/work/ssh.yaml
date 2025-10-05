@@ -1,0 +1,109 @@
+---
+ssh_authorized_keys_extra:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICMpV1NruIlhslQT56n+Gzr63c55RcumQKUUAiZnYDTC
+
+ssh_identity_keys_extra:
+  grnoc: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8Xxm9Z8N7F9zDd9WiY0WE3Uv7ezeKavo90dfwswbsL
+  i2: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN4fiRcqLzZZ9JnDmuca1a2mo/T9NGf7e1H5CnYp3gDP
+  jdratlif: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICMpV1NruIlhslQT56n+Gzr63c55RcumQKUUAiZnYDTC
+  noaa-piv: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+loEqnuYPbHD9SiasW0MTs19EJKSLbd+pwYhEdcRgmz2dESvLhpn3tH2O2eYMIzLQoVCMT8KpEwmhpFRuJ5w9Cxoqe1ReqLbVtOWlVD/BLPIzaUQhQa0+TSM2ETMXgkmGa4ARGrJVCzCQH0+z6rGX6OvWTQUEFDG0QM8ZdON+9Py6P3ZwrRDhSOobclkov7KDxqUi5SM3mjdBTdaHigNaGg7+N/koXakOwTd7Bd4PBtOWVhsqa87uOaOGXyRTeOpkE1XzFlhGOsMvd1SwN9U/DrJyazgwbJjhqXDuhOcPYFgWv0nGPX4uplDffviij6c+I9i1sMHlmDCbIU6jxKXh
+  noaa: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFEZDtiwnFPMQ2cjfXlgYyG0LjIgFgaOEz3WELyCBPKs
+  scinet-piv: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7gLhqbdNlK8OE4HujfiUHVSzqZPh/zJmjoWzA4V0O8cuDXIUiIDwvSwqBV1NB1RBoPF45X+nntdONzShHbevn8lNpAitHGeDADz4WR0RW6UJ5pW3rzJlacWYrw0lYjl32uDACWsik/Iz2gXx7X/sxKHhIrQrd8+X6UOg2CUHJ6N4AfQQ8lH6PYsr8w4sa4KEnJv+kGTAbtpmaIBIJgkMmEDtfllFIbW76x/Ax0ZsIujnhSi5SMqi4i+2tj6qeBaoy/LmsfBGXmioxDh4TIx5SVausO5WyhTJFm0m8b8PRVz3yc2TbSyh7/HlfdAl5c/YqvO/q1Y4sqIcp1OROcDAP
+  scinet: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO112FE4OhHBwRutJ4wGmqENbb9U+72REn058foc03BM
+  technoplaza: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwdDfiqveE9xwaJ21C/GOeheGk4OuczJXi11t1dmELG
+  xaiver: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBc+bQFdinbcO0eHrnxfLM+OroTUOt3RKHkTbrh6hNfm
+
+ssh_common_options_extra:
+  IdentitiesOnly: "yes"
+  IdentityAgent: ~/.1password/agent.sock
+  ControlMaster: auto
+  ControlPath: ~/.ssh/cp-%r@%h:%p
+  ControlPersist: 5m
+
+ssh_host_options_extra:
+  jdratlif-dev8.bldc.grnoc.iu.edu: &devbox-bldc
+    ForwardAgent: "yes"
+    IdentityFile: ~/.ssh/jdratlif.pub
+    RemoteForward:
+      - "*:1080 localhost:1080"
+      - "*:1081 localhost:1081"
+      - "*:1082 localhost:1082"
+      - "*:1083 localhost:1083"
+  jdratlif-dev8.ctc.grnoc.iu.edu:
+    <<: *devbox-bldc
+  sandbox.grnoc.iu.edu: {}
+  puppet7.grnoc.iu.edu:
+    IdentityFile: ~/.ssh/jdratlif.pub
+  puppet7.bldc.nwave.noaa.gov: {}
+  asahi: &laptops
+    IdentityFile: ~/.ssh/jdratlif.pub
+  beelink:
+    <<: *laptops
+  pangolin16:
+    <<: *laptops
+  yoga4:
+    <<: *laptops
+  htpc: &homelab
+    IdentityFile: ~/.ssh/xaiver.pub
+  pve:
+    <<: *homelab
+  leap: &bastion-grnoc
+    Hostname: leap.grnoc.iu.edu
+  skip:
+    Hostname: skip.grnoc.iu.edu
+  jump:
+    Hostname: jump.grnoc.iu.edu
+  grnoc:
+    <<: *bastion-grnoc
+    DynamicForward: "*:1080"
+    IdentityFile: ~/.ssh/grnoc.pub
+  i2-bldc: &bastion-i2
+    Hostname: bastion.bldc.net.internet2.edu
+  i2-ctc:
+    Hostname: bastion.ctc.net.internet2.edu
+  i2:
+    <<: *bastion-i2
+    DynamicForward: "*:1082"
+    IdentityFile: ~/.ssh/i2.pub
+  noaa-bldc: &bastion-noaa
+    Hostname: bastion.bldc.nwave.noaa.gov
+  noaa-ctc:
+    Hostname: bastion.ctc.nwave.noaa.gov
+  noaa-boul:
+    Hostname: bastion.boul.nwave.noaa.gov
+  noaa:
+    <<: *bastion-noaa
+    DynamicForward: "*:1081"
+  scinet-bldc: &bastion-scinet
+    Hostname: bastion.bldc.scinet.usda.gov
+  scinet-ctc:
+    Hostname: bastion.ctc.scinet.usda.gov
+  scinet:
+    <<: *bastion-scinet
+    DynamicForward: "*:1083"
+
+ssh_match_options_extra:
+  "originalhost *.grnoc.iu.edu,*.globalnoc.iu.edu,!leap*,!skip*,!jump*":
+    ProxyJump: grnoc
+  "host *.grnoc.iu.edu":
+    IdentityFile: ~/.ssh/grnoc.pub
+  "originalhost *.net.internet2.edu,!i2,!i2-bldc,!i2-ctc,!bastion.*":
+    ProxyJump: i2
+  "host *.net.internet2.edu":
+    IdentityFile: ~/.ssh/i2.pub
+  "originalhost *.nwave.noaa.gov,*.alaskaix.net,!bastion.*":
+    ProxyJump: noaa
+    IdentityFile: ~/.ssh/noaa.pub
+  "originalhost *.scinet.usda.gov,!bastion.*":
+    ProxyJump: scinet
+    IdentityFile: ~/.ssh/scinet.pub
+  "host bastion.*.nwave.noaa.gov":
+    IdentityFile:
+      - ~/.ssh/noaa.pub
+      - ~/.ssh/noaa-piv.pub
+    PKCS11Provider: /usr/lib64/pkcs11/opensc-pkcs11.so
+  "host bastion.*.scinet.usda.gov":
+    IdentityFile:
+      - ~/.ssh/scinet.pub
+      - ~/.ssh/scinet-piv.pub
+    PKCS11Provider: /usr/lib64/pkcs11/opensc-pkcs11.so

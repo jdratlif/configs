@@ -1,0 +1,22 @@
+bash_functions_extra:
+  p: |-
+    if [[ -z "$1" ]]; then action="run"; else action=$1; shift; fi
+    puppet="sudo /opt/puppetlabs/bin/puppet"
+    ignore_lock="--agent_disabled_lockfile=/nonexisting"
+    log="tee $HOME/puppet.log"
+    if [[ $action = "env" ]]; then grep environment /etc/puppetlabs/puppet/puppet.conf | awk "{print \$3}"
+    elif [[ $action = "enabled" ]]; then
+      msg=$(sudo cat /opt/puppetlabs/puppet/cache/state/agent_disabled.lock 2>/dev/null)
+      if [[ -z $msg ]]; then echo "puppet is enabled"
+      else echo "puppet is disabled: $(echo $msg | jq .disabled_message)"
+      fi
+    elif [[ $action = "run" ]]; then my_cmd="$puppet agent --test "$@" 2>&1 | $log"; echo "$my_cmd"; eval $my_cmd
+    elif [[ $action = "test" ]]; then my_cmd="$puppet agent --test $ignore_lock --noop "$@" 2>&1 | $log"; echo "$my_cmd"; eval $my_cmd
+    elif [[ $action = "force" ]]; then my_cmd="$puppet agent --test $ignore_lock "$@" 2>&1 | $log" ; echo "$my_cmd"; eval $my_cmd
+    elif [[ $action = "lookup" ]]; then my_cmd="$puppet lookup --merge deep --node "$@""; echo "$my_cmd"; eval $my_cmd
+    elif [[ $action = "disable" ]]; then
+      if [[ -z "$1" ]]; then msg="testing"; else msg=$1; fi
+      my_cmd="$puppet agent --disable \"$(date '+%Y-%m-%d') $(whoami) - $msg\""; echo "$my_cmd"; eval $my_cmd
+    elif [[ $action = "enable" ]]; then my_cmd="$puppet agent --enable"; echo "$my_cmd"; eval $my_cmd
+    else echo "unrecognized action ${action}"
+    fi

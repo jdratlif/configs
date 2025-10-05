@@ -1,0 +1,12 @@
+---
+configs_files_extra:
+  1Password:
+    directory: .config/1Password/ssh
+    files: [agent.toml]
+  kitty: {}
+  vscode:
+    directory: .vscode
+    files: [argv.json]
+  tmux: {}
+  waybar:
+    files: [config.jsonc]
