@@ -1,13 +1,12 @@
 ---
 services:
   devc:
-    build:
-      context: ..
-      dockerfile: .devcontainer/Dockerfile
+    build: .
+    command: sleep infinity
     environment:
       ANSIBLE_CONFIG: /workspace/.devcontainer/ansible.cfg
-      ANSIBLE_COLLECTIONS_PATH: ~/.ansible/collections:/usr/share/ansible/collections:/workspace/collections
+    network_mode: host
     volumes:
       - ..:/workspace:cached,z
-      - /home/jdratlif:/home/jdratlif
-    command: sleep infinity
+      - ${HOME}/private:/private:z
+      - ${HOME}/.ssh:/root/.ssh:z

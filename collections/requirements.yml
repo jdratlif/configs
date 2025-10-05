@@ -1,0 +1,5 @@
+---
+collections:
+  - name: https://github.com/sysengquick-yt/ansible-unix.git#collections/ansible_collections/sysengquick/unix
+    type: git
+    version: v2

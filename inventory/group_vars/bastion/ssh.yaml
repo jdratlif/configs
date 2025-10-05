@@ -1,0 +1,8 @@
+---
+ssh_common_options_extra:
+  ControlMaster: auto
+  ControlPath: ~/.ssh/cp-%r@%h:%p
+  ControlPersist: 5m
+  CanonicalizeHostname: "yes"
+  CanonicalizeMaxDots: 2
+  CanonicalDomains: alaskaix.net grnoc.iu.edu globalnoc.iu.edu net.internet2.edu nwave.noaa.gov scinet.usda.gov

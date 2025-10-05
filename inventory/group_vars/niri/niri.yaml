@@ -1,0 +1,18 @@
+---
+niri_kdl_binds_extra:
+  Mod+T: 'hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }'
+
+niri_kdl_binds_skip:
+  # PageUp/PagwDown is sufficient, thanks
+  - "Mod+U"
+  - "Mod+I"
+  - "Mod+Ctrl+U"
+  - "Mod+Ctrl+I"
+  - "Mod+Shift+U"
+  - "Mod+Shift+I"
+
+niri_kdl_clipboard: |-
+  disable-primary
+
+niri_kdl_environment:
+  ELECTRON_OZONE_PLATFORM_HINT: auto

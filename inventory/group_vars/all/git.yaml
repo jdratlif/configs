@@ -1,0 +1,18 @@
+---
+git_config:
+  user:
+    name: John Ratliff
+    email: john@technoplaza.net
+  alias:
+    oneline: log --oneline
+  commit:
+    template: /dev/null
+  core:
+    editor: vim
+  credential:
+    username: jdratlif
+    helper: cache --timeout=14400
+  pull:
+    rebase: true
+  safe:
+    directory: "*"
